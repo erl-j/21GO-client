@@ -9,6 +9,7 @@ class CatalogContainer extends React.Component<RouteComponentProps>{
         console.log(this.props.match.params);
         return (
         <div>
+        // FIGURE OUT A WAY TO DO ACESS this.props.match.params.location directly
             <h3>This is a catalog search for {Object.values(this.props.match.params).map(loc=>"loc:"+loc)}</h3>
         </div>);
 
