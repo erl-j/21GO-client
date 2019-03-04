@@ -1,22 +1,41 @@
-import * as React from 'react';
 import './App.css';
+import * as React from 'react';
+import { Route } from 'react-router-dom';
+import {Welcome} from './Scenes/Welcome/Welcome';
+import SignInContainer from './Scenes/SignIn/SignInContainer';
 
-import logo from './logo.svg';
+// function mapStateToProps({ isActivated }: IStoreState) {
+// 	return {
+// 		isActivated,
+// 	};
+// }
+// function mapDispatchToProps(dispatch: Dispatch<actions.ActivationAction>) {
+// 	return {
+// 		onActivate: () => dispatch(actions.activate()),
+// 		onDeactivate: () => dispatch(actions.deactivate()),
+// 	};
+// }
+
+// interface IAppProps {
+// 	isActivated: boolean;
+// 	onActivate: any;
+// 	onDeactivate: any;
+// }
+
+// export default connect(
+// 	mapStateToProps,
+// 	mapDispatchToProps
+// )(App);
 
 class App extends React.Component {
-  public render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.tsx</code> and save to reload.
-        </p>
-      </div>
-    );
-  }
+	public render() {
+		return (
+			<React.Fragment>
+				<Route exact={true} path="/" component={Welcome} />
+				<Route path="/signIn" component={SignInContainer} />
+			</React.Fragment>
+		);
+	}
 }
 
 export default App;
