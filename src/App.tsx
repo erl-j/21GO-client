@@ -34,7 +34,7 @@ class App extends React.Component {
 			<React.Fragment>
 				<Route exact={true} path="/" component={Welcome} />
 				<Route path="/signIn" component={SignInContainer} />
-				<Route path="/catalog/:location" render={(props)=><CatalogContainer  {...props}/>} />
+				<Route path="/catalog" render={(props)=><CatalogContainer  {...props}/>} />
 			</React.Fragment>
 		);
 	}
