@@ -2,12 +2,8 @@ import * as React from "react";
 import { RouteComponentProps } from 'react-router';
 import * as queryString from 'query-string';
 import {Link} from 'react-router-dom';
-import SuperorderContainer from '../Containers/SuperorderContainer';
-import SuperorderSummary from '../Components/SuperorderSummary';
-
-
-
-
+import SuperorderContainer from '../../Superorder/SuperorderContainer';
+import SuperorderSummary from '../../Superorder/SuperorderSummary';
 
 
 class CatalogContainer extends React.Component<RouteComponentProps>{
@@ -24,7 +20,7 @@ class CatalogContainer extends React.Component<RouteComponentProps>{
                 <button>go to fresno</button>
             </Link>
             <SuperorderContainer render={od=>(
-                <SuperorderSummary orderDetails={od}/>
+                <SuperorderSummary {...od}/>
                 )
             }/>
         </div>);

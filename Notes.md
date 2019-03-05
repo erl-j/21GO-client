@@ -2,9 +2,11 @@
 
 
 
-# Conventions
 
-# Folder Structure
+
+
+
+## Folder Structure
 
 A *scene* is really just another word for a page. Each scene should have it's route in the app component.
 
@@ -12,11 +14,9 @@ The scenes are as follows:
 
 * **Welcome**
 * **SignIn**
-* **Catalog**
-    
-    Here the user can see what superorders are available. They can search by location and tag.
+* **Catalog**: Here the user can see what superorders are available. They can search by location and tag.
 
-    * SuperorderSummary
+    <!-- * SuperorderContainer rendering a SuperorderSummary. -->
 
 * **Superorder**
     The user can inspect a superorder and make a request to add their order.
@@ -33,6 +33,7 @@ If this was ever to be a viable business it would be great (essential) to have a
 - class component
 - connected to store
 - dispatches actions
+- can summon different presentational components (using render props for now).
 
 ## Presentation components:
 
