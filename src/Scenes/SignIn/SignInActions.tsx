@@ -1,4 +1,4 @@
-import {BASE_URL} from "../../constants/index"
+import { BASE_URL } from '../../constants/index';
 
 export const SIGN_IN_BEGIN = 'SIGN_IN_BEGIN';
 export const SIGN_IN_SUCCESS = 'SIGN_IN_SUCESS';
@@ -22,7 +22,7 @@ export function fetchJwt(usernameIn: string, passwordIn: string) {
 	console.warn('sent login request for un/pw: ' + usernameIn + '/' + passwordIn);
 	return (dispatch: any) => {
 		dispatch(signInBegin());
-		return fetch(BASE_URL+'/auth/login', {
+		return fetch(BASE_URL + '/auth/login', {
 			method: 'POST',
 			mode: 'cors', // no-cors, cors, *same-origin
 			cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
