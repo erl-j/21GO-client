@@ -1,17 +1,18 @@
 import { BASE_URL } from '../../constants/index';
 
-const SEARCH_SUPERORDERS_BEGIN="SEARCH_SUPERORDERS_BEGIN";
-const SEARCH_SUPERORDERS_FAILURE="SEARCH_SUPERORDERS_FAILURE";
-const SEARCH_SUPERORDERS_SUCCESS="SEARCH_SUPERORDERS_SUCESS";
+export const SEARCH_SUPERORDERS_BEGIN="SEARCH_SUPERORDERS_BEGIN";
+export const SEARCH_SUPERORDERS_FAILURE="SEARCH_SUPERORDERS_FAILURE";
+export const SEARCH_SUPERORDERS_SUCCESS="SEARCH_SUPERORDERS_SUCCESS";
 
 export const searchSuperordersBegin = () => ({
 	type: SEARCH_SUPERORDERS_BEGIN,
 });
 
-export const searchSuperordersSuccess = (ids: number[]) => ({
+export const searchSuperordersSuccess = (results:object[]) => ({
 	type: SEARCH_SUPERORDERS_SUCCESS,
-	payload: { ids },
+	payload: { results },
 });
+
 
 export const searchSuperordersFailure = (error: string) => ({
 	type: SEARCH_SUPERORDERS_FAILURE,
@@ -19,10 +20,11 @@ export const searchSuperordersFailure = (error: string) => ({
 });
 
 export function searchSuperOrders(searchParams) {
+	console.log(searchParams);
 	return (dispatch: any) => {
 		dispatch(searchSuperordersBegin());
-		return fetch(BASE_URL + '/superorders/search', {
-			method: 'POST',
+		return fetch(BASE_URL + '/superOrders/search?', {
+			method: 'GET',
 			mode: 'cors', // no-cors, cors, *same-origin
 			cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
 			credentials: 'same-origin', // include, *same-origin, omit
@@ -32,13 +34,13 @@ export function searchSuperOrders(searchParams) {
 			},
 			redirect: 'follow', // manual, *follow, error
 			referrer: 'no-referrer', // no-referrer, *client,
-			body: JSON.stringify(searchParams),
 		})
 			.then(handleErrors)
 			.then(res => res.json())
 			.then(json => {
-				dispatch(searchSuperordersSuccess(json.jwt));
-				return json.jwt;
+				dispatch(searchSuperordersSuccess(json));
+				console.log(json);
+				return json;
 			})
 			.catch(error => dispatch(searchSuperordersFailure(error)));
 	};
@@ -46,6 +48,7 @@ export function searchSuperOrders(searchParams) {
 
 // Handle HTTP errors since fetch won't.
 function handleErrors(response: any) {
+	
 	if (!response.ok) {
 		throw Error(response.statusText);
 	}

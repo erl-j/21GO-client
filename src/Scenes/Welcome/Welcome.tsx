@@ -6,5 +6,8 @@ export const Welcome = () => (
 		<Link to="/signIn">
 			<button>Sign in</button>
 		</Link>
+		<Link to="/signUp">
+			<button>Sign up</button>
+		</Link>
 	</div>
 );

@@ -7,7 +7,7 @@ class SuperorderContainer extends React.Component<{ render: any }, {}> {
 	}
 
 	public render() {
-		return <React.Fragment>{this.props.render(this.state)}</React.Fragment>;
+		return <React.Fragment>{this.props.render(this.props)}</React.Fragment>;
 	}
 }
 

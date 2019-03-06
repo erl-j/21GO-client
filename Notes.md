@@ -48,4 +48,5 @@ If this was ever to be a viable business it would be great (essential) to have a
 - **mailboxlayer**: Email address validation
 - **NumValidate**: Open Source phone number validation
 - **Exchangeratesapi**: Exchange rates with currency conversion
+- **Cloudinary**: hosting images.
 
