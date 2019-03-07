@@ -1,14 +1,14 @@
 import 'bootstrap/dist/css/bootstrap.css';
 import * as React from 'react';
 import SuperorderContainer from 'src/Superorder/SuperorderContainer';
-import SuperorderInspect from 'src/Superorder/SuperOrderInspect';
-import * as actions from "src/Scenes/SetOrder/SetOrderActions";
+import SuperorderInspect from 'src/Superorder/SuperorderInspect';
+import * as actions from "src/Superorder/SuperorderActions";
 import {RouteComponentProps} from "react-router";
 import {connect} from "react-redux";
 
 const mapStateToProps=(state)=>(
     {
-        superorder:state.setOrder.superorder
+        superorder:state.superorder.attributes
     });
 const mapDispatchToProps=(dispatch)=>({
     getSuperorder:(id)=>dispatch(actions.getSuperorder(id))

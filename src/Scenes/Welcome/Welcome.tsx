@@ -9,5 +9,8 @@ export const Welcome = () => (
 		<Link to="/signUp">
 			<button>Sign up</button>
 		</Link>
+		<Link to="/setSuperorder">
+			<button>initiate order</button>
+		</Link>
 	</div>
 );

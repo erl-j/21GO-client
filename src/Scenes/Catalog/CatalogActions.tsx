@@ -13,14 +13,12 @@ export const searchSuperordersSuccess = (results:object[]) => ({
 	payload: { results },
 });
 
-
 export const searchSuperordersFailure = (error: string) => ({
 	type: SEARCH_SUPERORDERS_FAILURE,
 	payload: { error },
 });
 
 export function searchSuperOrders(searchParams) {
-	console.log(searchParams);
 	return (dispatch: any) => {
 		dispatch(searchSuperordersBegin());
 		return fetch(BASE_URL + '/superOrders/search?', {
@@ -39,7 +37,6 @@ export function searchSuperOrders(searchParams) {
 			.then(res => res.json())
 			.then(json => {
 				dispatch(searchSuperordersSuccess(json));
-				console.log(json);
 				return json;
 			})
 			.catch(error => dispatch(searchSuperordersFailure(error)));

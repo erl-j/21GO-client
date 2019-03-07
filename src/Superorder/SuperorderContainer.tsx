@@ -1,5 +1,8 @@
 import * as React from 'react';
 
+
+// This container might be 100% useless.
+
 interface ISuperorderContainerProps {
 	id:string;
 	storeURL: string;
