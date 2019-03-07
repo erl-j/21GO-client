@@ -1,13 +1,25 @@
 import * as React from 'react';
 
-class SuperorderContainer extends React.Component<{ render: any }, {}> {
+interface ISuperorderContainerProps {
+	id:string;
+	storeURL: string;
+	storeLocation: string;
+	deadline: string;
+	arrivalLocation: string;
+	availableDispatch: string;
+	tags: string[];
+	render: any;
+}
+
+class SuperorderContainer extends React.Component<ISuperorderContainerProps, {}> {
 	constructor(props) {
 		super(props);
-		this.state = { storeName: 'the test store' };
 	}
 
 	public render() {
-		return <React.Fragment>{this.props.render(this.props)}</React.Fragment>;
+		const { id,storeURL, storeLocation, deadline, arrivalLocation, availableDispatch, tags } = this.props;
+		const viewProps = { id,storeURL, storeLocation, deadline, arrivalLocation, availableDispatch, tags };
+		return <React.Fragment>{this.props.render(viewProps)}</React.Fragment>;
 	}
 }
 

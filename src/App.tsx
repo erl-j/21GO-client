@@ -5,6 +5,7 @@ import {Welcome} from './Scenes/Welcome/Welcome';
 import SignInContainer from './Scenes/SignIn/SignInContainer';
 import SignUpContainer from './Scenes/SignUp/SignUpContainer';
 import CatalogContainer from './Scenes/Catalog/CatalogContainer';
+import SetOrderContainer from './Scenes/SetOrder/SetOrderContainer';
 
 // function mapStateToProps({ isActivated }: IStoreState) {
 // 	return {
@@ -37,6 +38,7 @@ class App extends React.Component {
 				<Route path="/signIn" component={SignInContainer} />
 				<Route path="/catalog" render={(props)=><CatalogContainer  {...props}/>} />
 				<Route path="/signUp" component={SignUpContainer} />
+				<Route path="/setOrder/:id" render={(props)=><SetOrderContainer {...props}/>} />
 			</React.Fragment>
 		);
 	}
