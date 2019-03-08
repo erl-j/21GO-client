@@ -1,18 +1,42 @@
-import { GET_SUPERORDER_BEGIN, GET_SUPERORDER_SUCCESS, GET_SUPERORDER_FAILURE } from './SuperorderActions'
+import {
+	GET_SUPERORDER_BEGIN,
+	GET_SUPERORDER_SUCCESS,
+	GET_SUPERORDER_FAILURE,
+	SET_LOCAL_SUPERORDER,
+	POST_SUPERORDER_BEGIN,
+	POST_SUPERORDER_SUCCESS,
+	POST_SUPERORDER_FAILURE,
+} from './SuperorderActions';
 
 const initialState = {
-	attributes:{storeURL:"", storeLocation:"", deadline:"", arrivalLocation:"", availableDispatch:"", tags:"" },
+	attributes: { storeURL: '', storeLocation: '', deadline: '', arrivalLocation: '', availableDispatch: '', tags: '' },
 	loading: false,
-    error: null,
+	error: null,
+	isRemote: false,
+	id: null,
 };
 export default function setOrderReducer(state = initialState, action: any) {
 	switch (action.type) {
 		case GET_SUPERORDER_BEGIN:
-			return { ...state, error: null, loading: true ,attributes:{}};
+			return { ...state, error: null, loading: true, attributes: {} };
 		case GET_SUPERORDER_FAILURE:
 			return { ...state, loading: false, error: action.payload.error };
 		case GET_SUPERORDER_SUCCESS:
-			return { ...state, loading: false, attributes: action.payload.result };
+			return {
+				...state,
+				loading: false,
+				attributes: action.payload.result,
+				isRemote: true,
+				id: action.payload.result.id,
+			};
+		case SET_LOCAL_SUPERORDER:
+			return { ...state, loading: false, attributes: action.payload.attributes };
+		case POST_SUPERORDER_BEGIN:
+			return { ...state, loading: true };
+		case POST_SUPERORDER_FAILURE:
+			return { ...state, loading: false, error: action.payload.error.toString() };
+		case POST_SUPERORDER_SUCCESS:
+			return { ...state, loading: false, id: action.payload.id, isRemote: true };
 		default:
 			return state;
 	}

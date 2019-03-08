@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import * as React from 'react';
 
-const SuperorderEditable = ({attributes,post}) => {
+const SuperorderEditable = ({attributes,isLoading,error,post}) => {
 	// const { id, storeURL, storeLocation, deadline, arrivalLocation, availableDispatch, tags } = props;
 
 	const [isEditable, setEditable] = useState(true);
@@ -19,8 +19,10 @@ const SuperorderEditable = ({attributes,post}) => {
 				</React.Fragment>
 			))}
 			<button onClick={() => {
-				post(params);
 				setEditable(!isEditable)}}>{isEditable ? 'Seal' : 'Edit'}</button>
+			{!isEditable?<button onClick={()=>post(params)}>Post</button>:""}
+			{isLoading?"LOADING":"NOT LOADING"}
+			{error?Object.keys(error).map(er=>error[er]):""}
 		</React.Fragment>
 	);
 };

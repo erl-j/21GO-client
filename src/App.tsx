@@ -8,30 +8,8 @@ import CatalogContainer from './Scenes/Catalog/CatalogContainer';
 import SetOrderContainer from './Scenes/SetOrder/SetOrderContainer';
 import SetSuperorderContainer from './Scenes/SetSuperorder/SetSuperorderContainer';
 
-// function mapStateToProps({ isActivated }: IStoreState) {
-// 	return {
-// 		isActivated,
-// 	};
-// }
-// function mapDispatchToProps(dispatch: Dispatch<actions.ActivationAction>) {
-// 	return {
-// 		onActivate: () => dispatch(actions.activate()),
-// 		onDeactivate: () => dispatch(actions.deactivate()),
-// 	};
-// }
 
-// interface IAppProps {
-// 	isActivated: boolean;
-// 	onActivate: any;
-// 	onDeactivate: any;
-// }
-
-// export default connect(
-// 	mapStateToProps,
-// 	mapDispatchToProps
-// )(App);
-
-class App extends React.Component {
+class App extends React.Component{
 	public render() {
 		return (
 			<React.Fragment>
