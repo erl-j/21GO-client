@@ -7,7 +7,8 @@ import { Redirect } from 'react-router';
 interface ISignInContainerProps {
 	onSignInPressed: any;
 	isSignedIn: boolean;
-	isSignInLoading: boolean;
+	isLoading: boolean;
+	error: any;
 }
 
 const mapDispatchToProps = (dispatch: any) => ({
@@ -15,8 +16,9 @@ const mapDispatchToProps = (dispatch: any) => ({
 });
 
 const mapStateToProps = (state: any) => ({
-	isSignInLoading: state.signIn.loading,
+	isLoading: state.signIn.loading,
 	isSignedIn: state.signIn.isSignedIn,
+	error: state.signIn.error
 });
 
 class SignInContainer extends React.Component<ISignInContainerProps> {
@@ -25,7 +27,7 @@ class SignInContainer extends React.Component<ISignInContainerProps> {
 		return (
 			<React.Fragment>
                 {redirect}
-				<SignIn onSignInPressed={this.props.onSignInPressed} isSignInLoading={this.props.isSignInLoading} />
+				<SignIn onSignInPressed={this.props.onSignInPressed} isLoading={this.props.isLoading} error={this.props.error}/>
 			</React.Fragment>
 		);
 	}

@@ -14,6 +14,7 @@ const initialState = {
 	error: null,
 	isRemote: false,
 	id: null,
+	validationDetails:null
 };
 export default function setOrderReducer(state = initialState, action: any) {
 	switch (action.type) {
@@ -34,7 +35,7 @@ export default function setOrderReducer(state = initialState, action: any) {
 		case POST_SUPERORDER_BEGIN:
 			return { ...state, loading: true };
 		case POST_SUPERORDER_FAILURE:
-			return { ...state, loading: false, error: action.payload.error.toString() };
+			return { ...state, loading: false, error: action.payload.error, validationDetails:action.payload.details};
 		case POST_SUPERORDER_SUCCESS:
 			return { ...state, loading: false, id: action.payload.id, isRemote: true };
 		default:

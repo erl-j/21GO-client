@@ -67,9 +67,9 @@ export const postSuperorderSuccess = id => ({
 	payload: { id },
 });
 
-export const postSuperorderFailure = (error: any) => ({
+export const postSuperorderFailure = (error: any,details:any) => ({
 	type: POST_SUPERORDER_FAILURE,
-	payload: { error },
+	payload: { error,details },
 });
 
 export function postSuperorder(attributes) {
@@ -90,24 +90,41 @@ export function postSuperorder(attributes) {
 			redirect: 'follow', // manual, *follow, error
 			referrer: 'no-referrer', // no-referrer, *client,
 			body: JSON.stringify(attributes),
-		}).then(handleErrors)
-			.then(res=>res.json())
-			.then(json => {
-				dispatch(postSuperorderSuccess(json.id));
-				console.log(json.id);
-				return json;
-			})
-			.catch(error => dispatch(postSuperorderFailure(error)))
+		}).then(res=>handlePostResponse(res,dispatch))
+		.catch(error=>dispatch(postSuperorderFailure(null,error)));
 	};
 }
 
 // Handle HTTP errors since fetch won't.
 function handleErrors(response: any) {
-	console.log(response);
+
+	console.log("hek");
 	if (!response.ok) {
 		throw Error(response.statusText);
 	}
 	return response;
+}
+
+function handlePostResponse(response:any,dispatch:any){
+	console.log("hello");
+	if (!response.ok) {
+		if(response.status===400){
+			response.json()
+			.then(json=>dispatch(postSuperorderFailure(response.statusText,json)))
+		}
+		else{
+		throw Error(response.statusText);
+		}
+	}
+	else{
+		response.json().
+		then(json => {
+		dispatch(postSuperorderSuccess(json.id));
+		console.log(json.id);
+		})
+	}
+	console.log("hello");
+	return "";
 }
 
 export function editSuperorder(attributes) {
@@ -136,6 +153,6 @@ export function editSuperorder(attributes) {
 				console.log(json.id);
 				return json;
 			})
-			.catch(error => dispatch(postSuperorderFailure(error)));
+			.catch(error => dispatch(postSuperorderFailure(error,null)));
 	};
 }

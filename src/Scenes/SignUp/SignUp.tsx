@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { useState } from 'react';
+import ValidatedInput from 'src/Components/ValidatedInput'
 
 const SignUp = ({ onSignUpPressed, isSignUpLoading }) => {
 	const [params, setParam] = useState({
@@ -18,7 +19,7 @@ const SignUp = ({ onSignUpPressed, isSignUpLoading }) => {
 			{Object.keys(params).map(k => (
 				<li key={k}>
 					{k}
-					<input
+					<ValidatedInput
 						onChange={e =>
 							setParam(
                                 (params[k]=e.target.value,params)

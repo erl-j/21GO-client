@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { useState } from 'react';
 
-const SignIn = ({ onSignInPressed, isSignInLoading }) => {
+const SignIn = ({ onSignInPressed, isLoading, error}) => {
 	const [username, setUsername] = useState('');
 	const [password, setPassword] = useState('');
 
@@ -19,7 +19,8 @@ const SignIn = ({ onSignInPressed, isSignInLoading }) => {
 				</li>
 			</ul>
             <button onClick={() => onSignInPressed(username, password)}>Sign in</button>
-			<h3>{isSignInLoading ? 'LOADING' : 'NOT LOADING'}</h3>
+			<h3>{isLoading ? 'LOADING' : 'NOT LOADING'}</h3>
+			<h3>{error ? error.toString():""}</h3>
 		</div>
 	);
 };
