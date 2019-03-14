@@ -1,6 +1,6 @@
 import * as React from 'react';
-import SuperorderEditable from 'src/Superorder/SuperorderEditable';
-import * as actions from 'src/Superorder/SuperorderActions';
+import SuperorderEditable from 'src/Scenes/SetSuperorder/SuperorderEditable';
+import * as actions from 'src/Scenes/SetSuperorder/SetSuperorderActions';
 import {connect} from "react-redux";
 
 interface ISetSuperorderContainerProps{
@@ -18,7 +18,7 @@ const mapDispatchToProps=(dispatch)=>({
 })
 
 const mapStateToProps=(state)=>({
-	attributes:state.superorder.attributes,
+	attributes:(state.superorder.attributes),
 	isLoading:state.superorder.loading,
 	error:state.superorder.error
 })

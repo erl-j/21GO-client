@@ -6,7 +6,7 @@ import {
 	POST_SUPERORDER_BEGIN,
 	POST_SUPERORDER_SUCCESS,
 	POST_SUPERORDER_FAILURE,
-} from './SuperorderActions';
+} from './SetSuperorderActions';
 
 const initialState = {
 	attributes: { storeURL: '', storeLocation: '', deadline: '', arrivalLocation: '', availableDispatch: '', tags: '' },
@@ -16,7 +16,7 @@ const initialState = {
 	id: null,
 	validationDetails:null
 };
-export default function setOrderReducer(state = initialState, action: any) {
+export default function setSuperOrderReducer(state = initialState, action: any) {
 	switch (action.type) {
 		case GET_SUPERORDER_BEGIN:
 			return { ...state, error: null, loading: true, attributes: {} };
@@ -35,7 +35,8 @@ export default function setOrderReducer(state = initialState, action: any) {
 		case POST_SUPERORDER_BEGIN:
 			return { ...state, loading: true };
 		case POST_SUPERORDER_FAILURE:
-			return { ...state, loading: false, error: action.payload.error, validationDetails:action.payload.details};
+			console.log(action.payload.error);
+			return { ...state, loading: false, error: action.payload.error.toString(), validationDetails:action.payload.details};
 		case POST_SUPERORDER_SUCCESS:
 			return { ...state, loading: false, id: action.payload.id, isRemote: true };
 		default:

@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { RouteComponentProps } from 'react-router';
 import * as queryString from 'query-string';
-import SuperorderContainer from '../../Superorder/SuperorderContainer';
 import SuperorderSummary from '../../Superorder/SuperorderSummary';
 import { connect } from 'react-redux';
 import * as actions from './CatalogActions';
@@ -34,11 +33,11 @@ class CatalogContainer extends React.Component<RouteComponentProps & ICatalogCon
 		return (
 			<div>
 				<h3>This is a catalog search with parameters</h3>
+				<div className="row">
 				{this.props.searchResults.map(res =>
-					<div className="border" key={res.id} onClick={() => this.props.history.push('/setOrder/' + res.id)}>
-						<SuperorderContainer {...res} render={od => <SuperorderSummary {...od} />} />
-					</div>
+						<SuperorderSummary key={res.id} {...res} onClick={() => this.props.history.push('/setOrder/' + res.id)} />
 				)}
+				</div>
 			</div>
 		);
 	}

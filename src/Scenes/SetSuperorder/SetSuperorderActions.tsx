@@ -1,5 +1,5 @@
-import { BASE_URL } from '../constants/index';
-import loadJwt from '../helpers/loadJwt';
+import { BASE_URL } from '../../constants/index';
+import loadJwt from '../../helpers/loadJwt';
 
 export const GET_SUPERORDER_BEGIN = 'GET_SUPERORDER_BEGIN';
 export const GET_SUPERORDER_FAILURE = 'GET_SUPERORDER_FAILURE';
@@ -91,7 +91,7 @@ export function postSuperorder(attributes) {
 			referrer: 'no-referrer', // no-referrer, *client,
 			body: JSON.stringify(attributes),
 		}).then(res=>handlePostResponse(res,dispatch))
-		.catch(error=>dispatch(postSuperorderFailure(null,error)));
+		.catch(error=>dispatch(postSuperorderFailure(error,null)));
 	};
 }
 

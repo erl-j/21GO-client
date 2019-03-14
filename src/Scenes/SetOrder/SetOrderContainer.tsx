@@ -1,8 +1,7 @@
 import 'bootstrap/dist/css/bootstrap.css';
 import * as React from 'react';
-import SuperorderContainer from 'src/Superorder/SuperorderContainer';
 import SuperorderInspect from 'src/Superorder/SuperorderInspect';
-import * as actions from "src/Superorder/SuperorderActions";
+import * as actions from "src/Scenes/SetSuperorder/SetSuperorderActions";
 import {RouteComponentProps} from "react-router";
 import {connect} from "react-redux";
 
@@ -30,7 +29,7 @@ class SetOrderContainer extends React.Component<RouteComponentProps & ISetOrderC
 		<div className="row">
 
 			<div className="col-6">
-            <SuperorderContainer {...this.props.superorder} render={(p)=><SuperorderInspect {...p}/>}/>
+            <SuperorderInspect {...this.props.superorder}/>
             </div>
 
 			<div className="col-6"/>
