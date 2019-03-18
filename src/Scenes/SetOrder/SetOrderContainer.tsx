@@ -1,13 +1,15 @@
 import 'bootstrap/dist/css/bootstrap.css';
 import * as React from 'react';
 import SuperorderInspect from 'src/Superorder/SuperorderInspect';
-import * as actions from "src/Scenes/SetSuperorder/SetSuperorderActions";
+import * as actions from "src/Scenes/SetOrder/SetOrderActions";
 import {RouteComponentProps} from "react-router";
 import {connect} from "react-redux";
+import ItemForm from "./ItemForm";
 
 const mapStateToProps=(state)=>(
     {
-        superorder:state.superorder.attributes
+        superorder:state.setOrder.attributes,
+        items:state.setOrder.items
     });
 const mapDispatchToProps=(dispatch)=>({
     getSuperorder:(id)=>dispatch(actions.getSuperorder(id))
@@ -15,7 +17,8 @@ const mapDispatchToProps=(dispatch)=>({
 
 interface ISetOrderContainerProps{
     superorder:any,
-    getSuperorder:any
+    getSuperorder:any,
+    items:any
 }
 
 class SetOrderContainer extends React.Component<RouteComponentProps & ISetOrderContainerProps> {
@@ -28,11 +31,15 @@ class SetOrderContainer extends React.Component<RouteComponentProps & ISetOrderC
         return(
 		<div className="row">
 
-			<div className="col-6">
+			<div>
             <SuperorderInspect {...this.props.superorder}/>
+            
+            {this.props.items.map((attributes,idx)=>
+            <ItemForm key={idx} itemAttributes={attributes} post={e=>console.log("post order with attributes:"+e)}/> )}
+            <ItemForm key={-1} post={e=>console.log("post order with attributes"+e)}/>
             </div>
 
-			<div className="col-6"/>
+		
         </div>
         );
 	}

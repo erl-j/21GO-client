@@ -127,7 +127,7 @@ function handlePostResponse(response:any,dispatch:any){
 	return "";
 }
 
-export function editOrder(attributes) {
+export function editOrder(id,attributes) {
 	console.log('got attributes ' + attributes);
 	return (dispatch: any) => {
 		dispatch(setLocalOrder(attributes));

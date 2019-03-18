@@ -18,9 +18,9 @@ const mapDispatchToProps=(dispatch)=>({
 })
 
 const mapStateToProps=(state)=>({
-	attributes:(state.superorder.attributes),
-	isLoading:state.superorder.loading,
-	error:state.superorder.error
+	attributes:(state.setSuperorder.attributes),
+	isLoading:state.setSuperorder.loading,
+	error:state.setSuperorder.error
 })
 
 class SetSuperorderContainer extends React.Component<ISetSuperorderContainerProps>{

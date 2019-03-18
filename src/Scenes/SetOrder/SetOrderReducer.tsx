@@ -9,8 +9,8 @@ import {
 } from './SetOrderActions';
 
 const initialState = {
-    superOrderAttributes:{storeURL: '', storeLocation: '', deadline: '', arrivalLocation: '', availableDispatch: '', tags: '' },
-	orderAttributes: { },
+	superOrderAttributes:{storeURL: '', storeLocation: '', deadline: '', arrivalLocation: '', availableDispatch: '', tags: '' },
+	items:[],
 	loading: false,
 	error: null,
 	isRemote: false,
