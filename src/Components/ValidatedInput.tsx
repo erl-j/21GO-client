@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-const ValidatedInput = ({onChange}) => {
+const ValidatedInput = ({name, onChange}) => {
     const [validationMessage,setMessage]=React.useState("");
 
     const handleChange=(s)=>{
@@ -10,10 +10,12 @@ const ValidatedInput = ({onChange}) => {
     }
 
 	return (<React.Fragment>
-		<input onChange={handleChange}/>
+		<input name={name} type="text" placeholder={name} onChange={handleChange}/>
 		<span>{validationMessage}</span>
 	</React.Fragment>)
 }
 export default ValidatedInput;
 
 const validateName=(s:string)=>s.length>10?"":"name is too short"
+
+// Pass validation function as prop

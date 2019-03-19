@@ -1,4 +1,5 @@
 @import 'config';
+@import 'loader';
 
 body {
   margin: 0;
@@ -9,13 +10,13 @@ body {
 
 .logo {
  content: $logo;
- height: 100px;
+ height: 6rem;
 }
 
 .button1 {
   background: none;
   background-color: none;
-  margin: 3rem 2rem;
+  margin: 2rem 2rem;
   padding: 0.5rem 1rem;
   border: none;
   font-size: 1.8rem;
@@ -27,20 +28,26 @@ body {
   }
 }
 
+.button2 {
+  background: $primary-color;
+  background-color: $primary-color;
+  margin: 2rem 1rem;
+  padding: 0.5rem 3rem;
+  border: none;
+  font-size: 1.5rem;
+  color: #fff;
+}
+
+.error {
+  color: #ff5959;
+}
+
 .welcome {
   min-height: 100vh;
   text-align: center;
   background: $welcome-bg;
   background-attachment: fixed;
   background-size: cover;
-
-  .logo {
-    margin-top: 30vh;
-    animation-delay: 1s;
-    animation-duration: 2s;
-    animation-fill-mode: forwards;
-    animation-name: logoAnimation;
-  }
 
   .overlay {
     position: absolute;
@@ -50,13 +57,15 @@ body {
     right: 0;
     overflow: hidden;
     width: 100%;
-    height: 0;
+    height: 100%;
+    opacity: 0;
     background-color: rgba(255,255,255,1);
     background: linear-gradient(bottom, rgba(255,255,255,1) 0%, rgba(255,255,255,0.8) 60%, rgba(255,255,255,0) 100%);
     animation-delay: 1s;
     animation-duration: 2s;
+    animation-timing-function: ease-in;
     animation-fill-mode: forwards;
-    animation-name: slidein;
+    animation-name: gentleAppear;
   }
 
   .contents {
@@ -68,11 +77,19 @@ body {
     height: 100%;
   }
 
+  .logo {
+    margin-top: 30vh;
+    animation-delay: 1s;
+    animation-duration: 2s;
+    animation-fill-mode: forwards;
+    animation-name: logoAnimation;
+  }
+
   p {
     margin-left: auto;
     margin-right: auto;
     width: max-content;
-    margin-top: 2.5rem;
+    margin-top: 4rem;
     padding: 1rem 5rem;
     font-size: 2.2rem;
     font-weight: 500;
@@ -82,18 +99,59 @@ body {
     animation-name: sloganAnimation;
     animation-fill-mode: forwards;
   }
-}
 
-@keyframes slidein {
-  to {
-    height: 100%;
+  .welcome-account {
+    opacity: 0;
+    animation-delay: 1s;
+    animation-duration: 2s;
+    animation-timing-function: ease-in;
+    animation-fill-mode: forwards;
+    animation-name: gentleAppear;
+  }
+
+  .welcome-form {
+    input[type=text] {
+      width: 25rem;
+      padding: 0.8rem 1.5rem;
+      margin: 1rem 0;
+      font-size: 1.5rem;
+      font-weight: 200;
+      background: transparent;
+      border: none;
+      border-bottom: $primary-color 1px solid;
+      box-sizing: border-box;
+
+      &::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+        text-transform: capitalize;
+      }
+      &::-moz-placeholder { /* Firefox 19+ */
+        text-transform: capitalize;
+      }
+      &:-ms-input-placeholder { /* IE 10+ */
+        text-transform: capitalize;
+      }
+      &:-moz-placeholder { /* Firefox 18- */
+        text-transform: capitalize;
+      }
+    }
+
+    a {
+      position: relative;
+      left: 8rem;
+      color: $primary-color;
+      text-decoration: none;
+
+      &:visited {
+        text-decoration: none;
+      }
+    }
   }
 }
 
 @keyframes logoAnimation {
   to {
     margin-top: 10vh;
-    height: 80px;
+    height: 5rem;
   }
 }
 
@@ -102,5 +160,11 @@ body {
     margin-top: 2rem;
     padding: 0.8rem 4rem;
     font-size: 1.8rem;
+  }
+}
+
+@keyframes gentleAppear {
+  to {
+    opacity: 1;
   }
 }
