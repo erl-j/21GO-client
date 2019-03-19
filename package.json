@@ -5,7 +5,6 @@
   "dependencies": {
     "@types/react-redux": "^7.0.1",
     "@types/react-router-dom": "^4.3.1",
-    "bootstrap": "^4.3.1",
     "query-string": "^6.3.0",
     "react": "^16.8.3",
     "react-dom": "^16.8.3",
@@ -21,7 +20,8 @@
     "start": "react-scripts-ts start",
     "build": "react-scripts-ts build",
     "test": "react-scripts-ts test --env=jsdom",
-    "eject": "react-scripts-ts eject"
+    "eject": "react-scripts-ts eject",
+    "sass": "node-sass -w scss/ -o src/css/ --recursive"
   },
   "devDependencies": {
     "@types/jest": "^24.0.9",

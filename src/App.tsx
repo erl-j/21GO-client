@@ -12,11 +12,6 @@ class App extends React.Component {
 	public render() {
 		return (
 			<React.Fragment>
-				<div className="navbar navbar-dark bg-dark">
-					<a className="navbar-brand text-light">
-						21Go
-					</a>
-				</div>
 				<Route exact={true} path="/" component={Welcome} />
 				<Route path="/signIn" component={SignInContainer} />
 				<Route path="/catalog" render={props => <CatalogContainer {...props} />} />

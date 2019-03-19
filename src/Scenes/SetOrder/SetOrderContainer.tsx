@@ -1,4 +1,3 @@
-import 'bootstrap/dist/css/bootstrap.css';
 import * as React from 'react';
 import SuperorderInspect from 'src/Superorder/SuperorderInspect';
 import * as actions from "src/Scenes/SetSuperorder/SetSuperorderActions";
