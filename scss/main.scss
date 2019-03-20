@@ -10,7 +10,7 @@ body {
 
 .logo {
  content: $logo;
- height: 6rem;
+ height: 3rem;
 }
 
 .button1 {
@@ -60,7 +60,7 @@ body {
     height: 100%;
     opacity: 0;
     background-color: rgba(255,255,255,1);
-    background: linear-gradient(bottom, rgba(255,255,255,1) 0%, rgba(255,255,255,0.8) 60%, rgba(255,255,255,0) 100%);
+    background: linear-gradient(bottom, rgba(255,255,255,1) 0%, rgba(255,255,255,0.6) 50%, rgba(255,255,255,0) 100%);
     animation-delay: 1s;
     animation-duration: 2s;
     animation-timing-function: ease-in;
@@ -79,6 +79,7 @@ body {
 
   .logo {
     margin-top: 30vh;
+    height: 6rem;
     animation-delay: 1s;
     animation-duration: 2s;
     animation-fill-mode: forwards;
@@ -88,7 +89,7 @@ body {
   p {
     margin-left: auto;
     margin-right: auto;
-    width: max-content;
+    max-width: max-content;
     margin-top: 4rem;
     padding: 1rem 5rem;
     font-size: 2.2rem;
@@ -140,6 +141,7 @@ body {
       left: 8rem;
       color: $primary-color;
       text-decoration: none;
+      text-align: right;
 
       &:visited {
         text-decoration: none;
@@ -168,3 +170,5 @@ body {
     opacity: 1;
   }
 }
+
+@import 'responsive';

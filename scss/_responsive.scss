@@ -1,0 +1,69 @@
+@include mediaXl {
+
+}
+
+@include mediaLg {
+
+}
+
+@include mediaMd {
+
+}
+
+@include mediaSm {
+  .logo {
+    content: $logo;
+    height: 5.5rem;
+  }
+
+  .button1 {
+    font-size: 1.6rem;
+    padding: 0.5rem 0.8rem;
+    margin: 1rem 1rem;
+  }
+
+  .button2 {
+    font-size: 1.3rem;
+    padding: 0.5rem 2.5rem;
+  }
+
+  .welcome {
+
+    p {
+      margin-top: 3rem;
+      font-size: 2rem;
+    }
+
+    .welcome-form {
+      input[type=text] {
+        width: -moz-calc(100% - 4rem);
+        width: -webkit-calc(100% - 4rem);
+        width: -o-calc(100% - 4rem);
+        width: calc(100% - 4rem);
+        padding: 0.5rem 1.2rem;
+        font-size: 1.3rem;
+      }
+
+      a {
+        position: absolute;
+        right: 2rem;
+        font-size: 0.9rem;
+      }
+    }
+  }
+
+  @keyframes logoAnimation {
+    to {
+      margin-top: 10vh;
+      height: 4.5rem;
+    }
+  }
+
+  @keyframes sloganAnimation {
+    to {
+      margin-top: 2rem;
+      padding: 0.8rem 4rem;
+      font-size: 1.5rem;
+    }
+  }
+}
