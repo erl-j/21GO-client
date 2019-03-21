@@ -9,7 +9,7 @@ A user can initiate an super order or browse the catalog to join an existing sup
 
 ## What we've done
 
--Built a custom backend (using node.js, typeorm, mysql etc..)
+-Built a custom backend (using node.js, typeorm, mysql etc..) 60%
 
 -Landing Page/Sign in/Sign up: Most infrastructure and presentation in place. 70%
 
