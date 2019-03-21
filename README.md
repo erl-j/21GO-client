@@ -4,7 +4,7 @@
     
 *21go* is a platform on which you can easily make group orders, called *super orders*, to existing web shops.
 
-A user can initiate an group order (which we call super order) or browse the catalog to join an existing super order.
+A user can initiate an super order or browse the catalog to join an existing super order.
 
 
 ## What we've done
@@ -17,9 +17,9 @@ A user can initiate an group order (which we call super order) or browse the cat
 
 -My profile : 0%
 
--Create/edit superorder: Not yet linked anywhere but accessible at <baserUrl>/setSuperOrder 95%
+-Set (Create/edit) superorder: Not yet linked anywhere but accessible at <baserUrl>/setSuperOrder 95%
 
--Create/edit order:  Some infrastructure and presentation in place 50%   
+-Set (Create/edit) order:  Some infrastructure and presentation in place 50%   
      
 ## What we plan to do
 
@@ -39,15 +39,15 @@ Other components that are used in different scenes get their own folder in *src*
 
 The scenes are as follow:
     
-    -Welcome/Sign in/Sign up (currently separate but to be merged in the next refactor)
-    
-    -Catalog : here you can see currently available group orders
-    
-    -Create/edit superorder: here you can create or edit a super order.
-    
-    -Create/edit order: here you can add to an existing super order.
-    
-    -My profile : here you can see your account details as well as your current and past orders and super orders.
+-Welcome/Sign in/Sign up (currently separate but to be merged in the next refactor)
+
+-Catalog : here you can see currently available group orders
+
+-Set (Create/edit) superorder: here you can create or edit a super order.
+
+-Set (Create/edit) order: here you can add to an existing super order.
+
+-My profile : here you can see your account details as well as your current and past orders and super orders.
 
 
 ### Containers:
