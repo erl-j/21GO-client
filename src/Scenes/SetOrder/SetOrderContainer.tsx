@@ -1,5 +1,5 @@
 import * as React from 'react';
-import SuperorderInspect from 'src/Superorder/SuperorderInspect';
+import SuperorderInspect from 'src/Superorder/SuperorderInspect'
 import * as actions from "src/Scenes/SetOrder/SetOrderActions";
 import {RouteComponentProps} from "react-router";
 import {connect} from "react-redux";
