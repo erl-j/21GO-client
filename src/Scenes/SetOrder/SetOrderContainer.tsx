@@ -1,5 +1,4 @@
 import * as React from 'react';
-import SuperorderInspect from 'src/Superorder/SuperorderInspect'
 import * as actions from "src/Scenes/SetOrder/SetOrderActions";
 import {RouteComponentProps} from "react-router";
 import {connect} from "react-redux";
@@ -31,8 +30,7 @@ class SetOrderContainer extends React.Component<RouteComponentProps & ISetOrderC
 		<div className="row">
 
 			<div>
-            <SuperorderInspect {...this.props.superorder}/>
-            
+
             {this.props.items.map((attributes,idx)=>
             <ItemForm key={idx} itemAttributes={attributes} post={e=>console.log("post order with attributes:"+e)}/> )}
             <ItemForm key={-1} post={e=>console.log("post order with attributes"+e)}/>

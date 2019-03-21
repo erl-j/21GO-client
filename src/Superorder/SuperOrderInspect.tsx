@@ -2,12 +2,12 @@ import * as React from 'react';
 
 const SuperorderInspect = (props) => {
 
-	return <ul>
+	return (<ul>
 	{
 		Object.keys(props).map(ent=>
 			<li key={ent}>{ent+":"+props[ent]}</li>
 			)
-	}</ul>;
+	}</ul>);
 };
 
 export default SuperorderInspect;
