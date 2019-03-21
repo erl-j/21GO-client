@@ -9,7 +9,7 @@ import {
 } from './SetSuperorderActions';
 
 const initialState = {
-	attributes: { storeURL: '', storeLocation: '', deadline: '', arrivalLocation: '', availableDispatch: '', tags: '' },
+	attributes: { storeURL: '', storeLocation: '', deadline: '', storeName: '', arrivalLocation: '', availableDispatch: '', tags: '' },
 	loading: false,
 	error: null,
 	isRemote: false,

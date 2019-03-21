@@ -7,7 +7,15 @@
 }
 
 @include mediaMd {
+  .setSuperorder {
+    form {
+      max-width: 20rem;
+    }
 
+    .box1 {
+      margin-bottom: 2rem;
+    }
+  }
 }
 
 @include mediaSm {
