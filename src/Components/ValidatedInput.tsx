@@ -9,13 +9,17 @@ const ValidatedInput = ({name, onChange}) => {
         setMessage(msg);
     }
 
-	return (<React.Fragment>
-		<input name={name} type="text" placeholder={name} onChange={handleChange}/>
+	return (<React.Fragment key={name}>
+    {name==="password" ? (
+      <input name={name} type="password" placeholder={name} onChange={handleChange} />
+    ) : (
+      <input name={name} type="text" placeholder={name} onChange={handleChange}/>
+    )}
 		<span>{validationMessage}</span>
 	</React.Fragment>)
 }
 export default ValidatedInput;
 
-const validateName=(s:string)=>s.length>10?"":"name is too short"
+const validateName=(s:string)=>s.length>3?"":"name is too short"
 
 // Pass validation function as prop

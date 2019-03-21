@@ -20,7 +20,7 @@ export const signUpFailure = (error: string) => ({
 export function createUser(params,ownProps) {
 	return (dispatch: any) => {
 		dispatch(signUpBegin());
-		return fetch(BASE_URL + '/user', {
+		return fetch(BASE_URL + '/register', {
 			method: 'POST',
 			mode: 'cors', // no-cors, cors, *same-origin
 			cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached

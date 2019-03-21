@@ -13,7 +13,7 @@ const SignIn = ({ onSignInPressed, isLoading, error}) => {
 		content = <form className="welcome-form" onSubmit={(e) => {e.preventDefault(); onSignInPressed(username, password)}}>
 								<input name="username" type="text" placeholder="Username" onChange={e => setUsername(e.target.value)} />
 								<br />
-								<input name="password" type="text" placeholder="Password" onChange={e => setPassword(e.target.value)} />
+								<input name="password" type="password" placeholder="Password" onChange={e => setPassword(e.target.value)} />
 								<br />
 								<a href="#!">Forgot your password?</a>
 								<br />
