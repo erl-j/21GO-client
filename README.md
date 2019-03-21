@@ -1,25 +1,25 @@
 
 
-    ## Our idea
+## Our idea
     
-    *21go* is a platform on which you can easily make group orders, called *super orders*, to existing web shops.
-    
-    A user can initiate an group order (which we call super order) or browse the catalog to join an existing super order.
-    
+*21go* is a platform on which you can easily make group orders, called *super orders*, to existing web shops.
+
+A user can initiate an group order (which we call super order) or browse the catalog to join an existing super order.
+
 
 ## What we've done
 
-    -Built a custom backend (using node.js, typeorm, mysql etc..)
+-Built a custom backend (using node.js, typeorm, mysql etc..)
 
-    -Landing Page/Sign in/Sign up: Most infrastructure and presentation in place. 70%
-    
-    -Catalog : Infrastructure in place, presentation in progress. Currently no superorders to show 50%
-    
-    -My profile : 0%
-    
-    -Create/edit superorder: Not yet linked anywhere but accessible at <baserUrl>/setSuperOrder 95%
-    
-    -Create/edit order:  Some infrastructure and presentation in place 50%   
+-Landing Page/Sign in/Sign up: Most infrastructure and presentation in place. 70%
+
+-Catalog : Infrastructure in place, presentation in progress. Currently no superorders to show 50%
+
+-My profile : 0%
+
+-Create/edit superorder: Not yet linked anywhere but accessible at <baserUrl>/setSuperOrder 95%
+
+-Create/edit order:  Some infrastructure and presentation in place 50%   
      
 ## What we plan to do
 
