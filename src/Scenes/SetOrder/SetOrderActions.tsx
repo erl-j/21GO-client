@@ -98,7 +98,7 @@ export function postOrder(attributes) {
 // Handle HTTP errors since fetch won't.
 function handleErrors(response: any) {
 
-	console.log("hek");
+	
 	if (!response.ok) {
 		throw Error(response.statusText);
 	}
@@ -106,7 +106,6 @@ function handleErrors(response: any) {
 }
 
 function handlePostResponse(response:any,dispatch:any){
-	console.log("hello");
 	if (!response.ok) {
 		if(response.status===400){
 			response.json()
@@ -123,7 +122,6 @@ function handlePostResponse(response:any,dispatch:any){
 		console.log(json.id);
 		})
 	}
-	console.log("hello");
 	return "";
 }
 
