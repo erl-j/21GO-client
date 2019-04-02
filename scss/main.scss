@@ -152,6 +152,103 @@ body {
   }
 }
 
+.navbar {
+  padding: 2rem 2rem;
+
+  .nav-content {
+    align-items: center;
+    display: flex;
+  }
+
+  .box1 {
+    flex: 1 1 auto;
+    text-align: left;
+  }
+
+  .box2 {
+    flex: 1 1 auto;
+
+    form {
+      float: right;
+
+      input[type=search] {
+        height: 2rem;
+        width: 12rem;
+        font-size: 1.5rem;
+        font-weight: 200;
+        margin: 0 0.5rem;
+        border: none;
+        text-align: right;
+      }
+
+      button {
+        background: transparent;
+        border: none;
+        float: right;
+        padding: 0;
+      }
+    }
+
+    img {
+      margin: 0 0.5rem;
+      float: right;
+    }
+  }
+
+  .nav-account {
+    visibility: hidden;
+    float: right;
+    position: absolute;
+    top: 4rem;
+    right: 1rem;
+    width: 150px;
+    height: 190px;
+    padding: 1rem 0.4rem 1rem 0.3rem;
+    background-image: url(../img/tag_bg1.svg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+
+    &.visible {
+      visibility: visible;
+    }
+
+    h3 {
+      margin: 0;
+      padding-top: 1.3rem;
+      font-size: 1.3rem;
+    }
+
+    ul {
+      list-style-type: none;
+      padding: 0.5rem 0;
+      margin: 0;
+    }
+
+    li {
+      font-size: 1.3rem;
+      font-weight: 500;
+      padding: 0.2rem 0;
+
+      a {
+        display: block;
+        width: 100%;
+        color: $primary-color;
+        text-decoration: none;
+
+        &:visited {
+          color: $primary-color;
+        }
+
+        &:hover {
+          background-color: $primary-color;
+          color: #fff;
+        }
+      }
+    }
+  }
+}
+
 .setSuperorder {
   background: rgba(#000, 0.5);
   min-height: 100vh;

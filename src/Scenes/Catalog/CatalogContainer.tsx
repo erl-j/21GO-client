@@ -4,6 +4,7 @@ import * as queryString from 'query-string';
 import SuperorderSummary from '../../Superorder/SuperorderSummary';
 import { connect } from 'react-redux';
 import * as actions from './CatalogActions';
+import Navbar from '../../Components/Navbar';
 
 interface ICatalogContainerProps {
 	isLoading: boolean;
@@ -32,6 +33,7 @@ class CatalogContainer extends React.Component<RouteComponentProps & ICatalogCon
 
 		return (
 			<div>
+				<Navbar isCatalog={true}/>
 				<h3>This is a catalog search with parameters</h3>
 				<div className="row">
 				{this.props.searchResults.map(res =>

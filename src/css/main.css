@@ -51,6 +51,7 @@ body {
 
 .logo {
   content: url(../img/logo.png);
+  background-image: url(../img/logo.png);
   height: 3rem; }
 
 .button1 {
@@ -164,6 +165,72 @@ body {
     text-align: right; }
     .welcome .welcome-form a:visited {
       text-decoration: none; }
+
+.navbar {
+  padding: 2rem 2rem; }
+  .navbar .nav-content {
+    align-items: center;
+    display: flex; }
+  .navbar .box1 {
+    flex: 1 1 auto;
+    text-align: left; }
+  .navbar .box2 {
+    flex: 1 1 auto; }
+    .navbar .box2 form {
+      float: right; }
+      .navbar .box2 form input[type=search] {
+        height: 2rem;
+        width: 12rem;
+        font-size: 1.5rem;
+        font-weight: 200;
+        margin: 0 0.5rem;
+        border: none;
+        text-align: right; }
+      .navbar .box2 form button {
+        background: transparent;
+        border: none;
+        float: right;
+        padding: 0; }
+    .navbar .box2 img {
+      margin: 0 0.5rem;
+      float: right; }
+  .navbar .nav-account {
+    visibility: hidden;
+    float: right;
+    position: absolute;
+    top: 4rem;
+    right: 1rem;
+    width: 150px;
+    height: 190px;
+    padding: 1rem 0.4rem 1rem 0.3rem;
+    background-image: url(../img/tag_bg1.svg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain; }
+    .navbar .nav-account.visible {
+      visibility: visible; }
+    .navbar .nav-account h3 {
+      margin: 0;
+      padding-top: 1.3rem;
+      font-size: 1.3rem; }
+    .navbar .nav-account ul {
+      list-style-type: none;
+      padding: 0.5rem 0;
+      margin: 0; }
+    .navbar .nav-account li {
+      font-size: 1.3rem;
+      font-weight: 500;
+      padding: 0.2rem 0; }
+      .navbar .nav-account li a {
+        display: block;
+        width: 100%;
+        color: #233142;
+        text-decoration: none; }
+        .navbar .nav-account li a:visited {
+          color: #233142; }
+        .navbar .nav-account li a:hover {
+          background-color: #233142;
+          color: #fff; }
 
 .setSuperorder {
   background: rgba(0, 0, 0, 0.5);

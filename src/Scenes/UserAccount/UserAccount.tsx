@@ -1,6 +1,7 @@
 import * as React from 'react';
 import UserProfileContainer from './UserProfile/UserProfileContainer';
 import UserOrdersContainer from './UserOrders/UserOrdersContainer';
+import Navbar from '../../Components/Navbar';
 
 const UserAccount = () => {
 	enum modes {
@@ -37,6 +38,7 @@ const UserAccount = () => {
 
 	return (
 		<React.Fragment>
+			<Navbar isCatalog={false} />
 			{tabs.map(t => (
 				<button
 					key={t.title}

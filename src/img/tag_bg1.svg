@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="224px" height="283px" viewBox="0 0 224 283" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 53.2 (72643) - https://sketchapp.com -->
+    <title>Combined Shape</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <path d="M151.16092,13 L160.596059,0 L170.031199,13 L198,13 C203.522847,13 208,17.4771525 208,23 L208,258 C208,263.522847 203.522847,268 198,268 L10,268 C4.4771525,268 6.76353751e-16,263.522847 0,258 L0,23 C-6.76353751e-16,17.4771525 4.4771525,13 10,13 L151.16092,13 Z" id="path-1"></path>
+        <filter x="-5.3%" y="-4.1%" width="112.5%" height="109.7%" filterUnits="objectBoundingBox" id="filter-2">
+            <feOffset dx="2" dy="2" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="4" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.5 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Catalog" transform="translate(-1208.000000, -68.000000)">
+            <g id="Nav-bar" transform="translate(-0.000000, 0.000000)">
+                <g id="User-hover" transform="translate(1214.000000, 73.000000)">
+                    <g id="Combined-Shape">
+                        <use fill="black" fill-opacity="1" filter="url(#filter-2)" xlink:href="#path-1"></use>
+                        <use fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-1"></use>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
