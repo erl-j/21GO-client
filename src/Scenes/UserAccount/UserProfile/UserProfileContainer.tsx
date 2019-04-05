@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 import * as actions from "./UserProfileActions";
+import UserProfile from './UserProfile'
 
 interface IUserProfileContainerProps {
     username: string;
@@ -21,10 +22,7 @@ class UserProfileContainer extends React.Component<IUserProfileContainerProps> {
     }
 	public render() {
 		return (
-			<React.Fragment>
-				<h1>Here are my account details</h1>
-				<h1>username:{this.props.username}</h1>
-			</React.Fragment>
+			<UserProfile username={this.props.username} email="myemail@gmail.com" phoneNumber="072 312323" address="kthvägen 10"    />
 		);
 	}
 }
