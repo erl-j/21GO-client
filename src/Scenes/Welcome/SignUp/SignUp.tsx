@@ -6,9 +6,9 @@ import Loader from '../../../Components/Loader';
 const SignUp = ({ onSignUpPressed, isSignUpLoading }) => {
 	const [params, setParam] = useState({
 		username: '',
+		password: '',
 		firstName: '',
 		lastName: '',
-		password: '',
 		mail: '',
 		phone: '',
 		location: '',

@@ -39,7 +39,7 @@ export function searchSuperOrders(searchParams) {
 				dispatch(searchSuperordersSuccess(json));
 				return json;
 			})
-			.catch(error => dispatch(searchSuperordersFailure(error)));
+			.catch(error => dispatch(searchSuperordersFailure(error.message)));
 	};
 }
 
@@ -47,6 +47,7 @@ export function searchSuperOrders(searchParams) {
 function handleErrors(response: any) {
 	
 	if (!response.ok) {
+		console.log(response);
 		throw Error(response.statusText);
 	}
 	return response;

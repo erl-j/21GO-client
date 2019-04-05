@@ -1,15 +1,18 @@
 import * as React from 'react';
-import { RouteComponentProps } from 'react-router';
+import { RouteComponentProps} from 'react-router';
+import {Link} from "react-router-dom"
 import * as queryString from 'query-string';
 import SuperorderSummary from '../../Superorder/SuperorderSummary';
 import { connect } from 'react-redux';
 import * as actions from './CatalogActions';
 import Navbar from '../../Components/Navbar';
 
+
 interface ICatalogContainerProps {
 	isLoading: boolean;
 	searchSuperorders: any;
 	searchResults: any;
+	error: any;
 }
 
 const mapDispatchToProps = dispatch => ({
@@ -19,6 +22,7 @@ const mapDispatchToProps = dispatch => ({
 const mapStateToProps = state => ({
 	isLoading: state.catalog.loading,
 	searchResults: state.catalog.results,
+	error: state.catalog.error,
 });
 
 class CatalogContainer extends React.Component<RouteComponentProps & ICatalogContainerProps> {
@@ -27,18 +31,37 @@ class CatalogContainer extends React.Component<RouteComponentProps & ICatalogCon
 		this.props.searchSuperorders(queryParameters);
 	}
 
+
+
 	public render() {
-		// This next line is a hack. I am unable to properly type this.props.match so this will have to do.
-		// const {location}:any=this.props.match.params;
+
+		// Test for search. DELETE BEFORE SUBMISSION!
+		
+		// const testSearchLink = () => {
+		// 	const param = { sortType: 'createdAt', sortOrder: 'ASC' , tags:["vanessa","stanley"],page:3,dispatch:"PICKUP"};
+		// 	const paramString=queryString.stringify(param);
+		// 	console.log(paramString);
+		// 	return <Link to={"/catalog/search?"+paramString}>
+
+		// 	<button>test search</button>
+			
+		// 	</Link>;
+		// };
+
 
 		return (
 			<div>
 				<Navbar isCatalog={true}/>
 				<h3>This is a catalog search with parameters</h3>
 				<div className="row">
-				{this.props.searchResults.map(res =>
-						<SuperorderSummary key={res.id} {...res} onClick={() => this.props.history.push('/setOrder/' + res.id)} />
-				)}
+					{this.props.searchResults.map(res => (
+						<SuperorderSummary
+							key={res.id}
+							{...res}
+							onClick={() => this.props.history.push('/setOrder/' + res.id)}
+						/>
+					))}
+					<h1>{this.props.error}</h1>
 				</div>
 			</div>
 		);

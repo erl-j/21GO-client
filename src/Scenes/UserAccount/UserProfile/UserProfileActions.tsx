@@ -26,7 +26,7 @@ export const loadUsername = () => {
 	return dispatch => {
 		const user = localStorage.getItem('user');
 		if (user) {
-			const username = JSON.parse(user).username;
+			const username = JSON.parse(user).username  ;
 			if (username) {
 				dispatch(loadUsernameSucess(username));
 			}
