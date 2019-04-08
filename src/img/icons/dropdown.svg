@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="14px" height="9px" viewBox="0 0 14 9" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 53.2 (72643) - https://sketchapp.com -->
+    <title>Path Copy</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Catalog" transform="translate(-237.000000, -102.000000)" fill="#233142">
+            <g id="Nav-bar" transform="translate(-0.000000, 0.000000)">
+                <g id="Filter" transform="translate(50.000000, 94.000000)">
+                    <path d="M200.581841,8.27612797 C200.086599,7.88172123 199.353918,7.94588835 198.940599,8.41986561 L194.007432,14.1226563 L189.074265,8.41986561 C188.810261,8.10309985 188.389274,7.94842116 187.973397,8.01538571 C187.557519,8.08235025 187.211609,8.3605147 187.068852,8.74277697 C186.926095,9.12503924 187.008755,9.55178427 187.285006,9.85870179 L193.112452,16.5964034 C193.333757,16.8521451 193.661498,17 194.007082,17 C194.352666,17 194.680408,16.8521451 194.901712,16.5964034 L200.729159,9.85870179 C201.141534,9.3823353 201.075615,8.67418834 200.581841,8.27612797 Z" id="Path-Copy"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
