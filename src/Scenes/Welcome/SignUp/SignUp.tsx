@@ -2,8 +2,11 @@ import * as React from 'react';
 import { useState } from 'react';
 import ValidatedInput from 'src/Components/ValidatedInput';
 import Loader from '../../../Components/Loader';
+import validators from "../../../constants/validators";
+
 
 const SignUp = ({ onSignUpPressed, isSignUpLoading }) => {
+
 	const [params, setParam] = useState({
 		username: '',
 		password: '',
@@ -25,7 +28,8 @@ const SignUp = ({ onSignUpPressed, isSignUpLoading }) => {
 											setParam(
 												{...params, [k]: e.target.value}
 											)
-										}/>
+											
+										} validate={validators.signUp[k]}/>
 										<br />
 									</React.Fragment>
 								))}
