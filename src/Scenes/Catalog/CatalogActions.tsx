@@ -21,7 +21,7 @@ export const searchSuperordersFailure = (error: string) => ({
 export function searchSuperOrders(searchParams) {
 	return (dispatch: any) => {
 		dispatch(searchSuperordersBegin());
-		return fetch(BASE_URL + '/superOrders/search?', {
+		return fetch(BASE_URL + '/superOrder/search?', {
 			method: 'GET',
 			mode: 'cors', // no-cors, cors, *same-origin
 			cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
@@ -36,7 +36,7 @@ export function searchSuperOrders(searchParams) {
 			.then(handleErrors)
 			.then(res => res.json())
 			.then(json => {
-				dispatch(searchSuperordersSuccess(json));
+				dispatch(searchSuperordersSuccess(json.superOrders));
 				return json;
 			})
 			.catch(error => dispatch(searchSuperordersFailure(error.message)));
