@@ -1,4 +1,3 @@
-import './App.css';
 import * as React from 'react';
 import { Route } from 'react-router-dom';
 import { Welcome } from './Scenes/Welcome/Welcome';
@@ -7,6 +6,7 @@ import { Welcome } from './Scenes/Welcome/Welcome';
 import CatalogContainer from './Scenes/Catalog/CatalogContainer';
 import SetOrderContainer from './Scenes/SetOrder/SetOrderContainer';
 import SetSuperorderContainer from './Scenes/SetSuperorder/SetSuperorderContainer';
+import UserAccount from './Scenes/UserAccount/UserAccount';
 
 class App extends React.Component {
 	public render() {
@@ -18,6 +18,7 @@ class App extends React.Component {
 				{/*<Route path="/signUp" component={SignUpContainer} />*/}
 				<Route path="/setOrder/:id" render={props => <SetOrderContainer {...props} />} />
 				<Route path="/setSuperorder" component={SetSuperorderContainer} />
+				<Route path="/account" component={UserAccount}/>
 			</React.Fragment>
 		);
 	}

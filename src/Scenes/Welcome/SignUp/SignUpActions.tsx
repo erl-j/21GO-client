@@ -1,4 +1,4 @@
-import { BASE_URL } from '../../constants/index';
+import { BASE_URL } from '../../../constants/index';
 
 export const SIGN_UP_BEGIN = 'SIGN_UP_BEGIN';
 export const SIGN_UP_SUCCESS = 'SIGN_UP_SUCCESS';

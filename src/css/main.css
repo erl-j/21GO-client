@@ -49,8 +49,12 @@ body {
   color: #233142;
   font-family: 'Raleway', sans-serif; }
 
+.label {
+  font-weight: 500; }
+
 .logo {
   content: url(../img/logo.png);
+  background-image: url(../img/logo.png);
   height: 3rem; }
 
 .button1 {
@@ -164,6 +168,145 @@ body {
     text-align: right; }
     .welcome .welcome-form a:visited {
       text-decoration: none; }
+
+.nav-content, .filter-content {
+  align-items: center;
+  display: flex; }
+
+.box1 {
+  flex: 1 1 auto;
+  text-align: left; }
+
+.box2 {
+  flex: 1 1 auto;
+  text-align: right; }
+
+.navbar {
+  padding: 1.5rem 2rem 0.5rem 2rem;
+  background: #fff; }
+  .navbar .box2 form {
+    float: right; }
+    .navbar .box2 form input[type=search] {
+      height: 2rem;
+      width: 12rem;
+      font-size: 1.5rem;
+      font-weight: 200;
+      margin: 0 0.5rem;
+      border: none;
+      text-align: right; }
+    .navbar .box2 form button {
+      background: transparent;
+      border: none;
+      float: right;
+      padding: 0; }
+  .navbar .box2 img {
+    margin: 0 0.5rem;
+    float: right; }
+  .navbar .nav-account {
+    visibility: hidden;
+    float: right;
+    position: absolute;
+    top: 4rem;
+    right: 1rem;
+    width: 140px;
+    height: 190px;
+    padding: 0 0.3rem 0 0.2rem;
+    background-image: url(../img/tag_bg1.svg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain; }
+    .navbar .nav-account.visible {
+      visibility: visible; }
+    .navbar .nav-account h3 {
+      margin: 0;
+      padding-top: 1.3rem;
+      font-size: 1.3rem; }
+    .navbar .nav-account ul {
+      list-style-type: none;
+      padding: 0.5rem 0;
+      margin: 0; }
+    .navbar .nav-account li {
+      font-size: 1.3rem;
+      font-weight: 500;
+      padding: 0.2rem 0; }
+      .navbar .nav-account li a {
+        display: block;
+        width: 100%;
+        color: #233142;
+        text-decoration: none; }
+        .navbar .nav-account li a:visited {
+          color: #233142; }
+        .navbar .nav-account li a:hover {
+          background-color: #233142;
+          color: #fff; }
+
+.filter {
+  padding: 0 2rem 1rem 2rem;
+  background: #fff;
+  border-bottom: 1px solid #D8D8D8; }
+  .filter img {
+    margin: 0 0.6rem;
+    height: 30px; }
+  .filter .label {
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin-right: 1.5rem; }
+    .filter .label img {
+      margin: 0;
+      margin-left: 0.5rem; }
+  .filter select:not([multiple]) {
+    margin-left: 0.5rem;
+    font-size: 1rem;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-color: #fff;
+    background-position: right 50%;
+    background-repeat: no-repeat;
+    background-image: url(../img/icons/dropdown.svg);
+    padding: .3em;
+    padding-right: 1.5em;
+    border: none;
+    border-radius: 0;
+    border-bottom: 1px solid #233142; }
+  .filter .dropdown {
+    height: 0.6rem;
+    margin: 0;
+    margin-right: 1.5rem; }
+  .filter .tags_master {
+    visibility: hidden;
+    position: absolute;
+    top: 7.5rem;
+    left: 30rem;
+    width: 12rem;
+    min-height: 5rem;
+    background: #fff;
+    padding: 0.2rem 0.3rem;
+    border-top: 2px solid #233142;
+    border-bottom: 2px solid #233142;
+    text-align: left; }
+    .filter .tags_master .tags span {
+      display: inline-block;
+      margin: 0.1rem 0.2rem;
+      padding: 0.2rem 0.2rem;
+      color: #fff;
+      background: rgba(35, 49, 66, 0.5); }
+      .filter .tags_master .tags span .delete {
+        display: inline-block;
+        height: 0.8rem;
+        vertical-align: middle;
+        margin: 0;
+        margin-left: 0.3rem; }
+    .filter .tags_master .tags_input input[type=text] {
+      border: none;
+      font-size: 1rem; }
+      .filter .tags_master .tags_input input[type=text]:focus {
+        outline: none; }
+    .filter .tags_master.visible {
+      visibility: visible; }
+
+.catalog {
+  background: #f8f8f8;
+  height: 100vh; }
 
 .setSuperorder {
   background: rgba(0, 0, 0, 0.5);
