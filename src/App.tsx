@@ -1,4 +1,3 @@
-import './App.css';
 import * as React from 'react';
 import { Route } from 'react-router-dom';
 import { Welcome } from './Scenes/Welcome/Welcome';
