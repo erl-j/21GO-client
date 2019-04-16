@@ -5,7 +5,7 @@ import parcelIcon from '../../img/icons/addParcel.svg';
 import dropdownIcon from '../../img/icons/dropdown.svg';
 import Tag from './Tag';
 
-const CatalogFilter = () => {
+const CatalogFilter = ({pushParam}) => {
   const countryList = ['All', 'Sweden', 'United States', 'United Kingdom'];
 
   const [from, setFrom] = useState('All');
@@ -15,21 +15,26 @@ const CatalogFilter = () => {
   const [tags, setTags] = useState(array);
   const [visible, setVisible] = useState(false);
 
+
   const handleFromChange = event => {
     setFrom(event.target.value);
+    pushParam({from:event.target.value});
   }
 
   const handleSortChange = event => {
     setSort(event.target.value);
+    pushParam({sort:event.target.value});
   }
 
   const handleInputTagChange = event => {
     setInputTag(event.target.value);
+    
   }
 
   const handleKeyPress = event => {
     if(event.key === 'Enter') {
       setTags(tags.concat(inputTag));
+      pushParam({tags:[...tags,inputTag]});
       setInputTag('');
     }
   }
@@ -40,7 +45,7 @@ const CatalogFilter = () => {
     setTags(newTags);
   }
 
-  const handleTagsClick = event => {
+  const handleTagsClick = (event) => {
     if(visible) {
       setVisible(false);
     } else {

@@ -27,9 +27,29 @@ const mapStateToProps = state => ({
 });
 
 class CatalogContainer extends React.Component<RouteComponentProps & ICatalogContainerProps> {
+	constructor(props){
+		super(props);
+		this.state={
+			tags:[],
+			sort:null,
+			from:null
+		}
+
+	}
+
 	public componentDidMount() {
 		const queryParameters = queryString.parse(this.props.location.search);
 		this.props.searchSuperorders(queryParameters);
+	}
+
+	public updateParams(p){
+		const state=this.state;
+		Object.keys(p).forEach(k=>state[k]=p[k]);
+		this.setState(state,()=>{
+			console.log(this.state);
+			this.props.searchSuperorders(state);
+			const qS=queryString.stringify(state);
+			this.props.history.push('/catalog/' + qS);});
 	}
 
 
@@ -53,8 +73,7 @@ class CatalogContainer extends React.Component<RouteComponentProps & ICatalogCon
 		return (
 			<div className="catalog">
 				<Navbar isCatalog={true}/>
-				<CatalogFilter />
-				<h3>This is a catalog search with parameters</h3>
+				<CatalogFilter pushParam={p=>this.updateParams(p)}/>
 				<div className="row">
 					{this.props.searchResults.map(res => (
 						<SuperorderSummary
@@ -65,7 +84,7 @@ class CatalogContainer extends React.Component<RouteComponentProps & ICatalogCon
 					))}
 					<h1>{this.props.error}</h1>
 				</div>
-			</div>
+			</div>	
 		);
 	}
 }
