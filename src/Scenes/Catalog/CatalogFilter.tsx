@@ -6,24 +6,24 @@ import dropdownIcon from '../../img/icons/dropdown.svg';
 import Tag from './Tag';
 
 const CatalogFilter = ({pushParam}) => {
-  const countryList = ['All', 'Sweden', 'United States', 'United Kingdom'];
 
-  const [from, setFrom] = useState('All');
-  const [sort, setSort] = useState('earlyDeadline');
+  const searchParams={
+    EARLIEST_DEADLINE:{sortType:"deadline",sortOrder:"ASC"},
+    LATEST_DEADLINE:{sortType:"deadline",sortOrder:"DESC"},
+    MOST_RECENT:{sortType:"createdAt",sortOrder:"ASC"},
+    OLDEST:{sortType:"createdAt",sortOrder:"DESC"}
+  }
+
+  const [sort, setSort] = useState("EARLIEST_DEADLINE");
   const [inputTag, setInputTag] = useState('');
   const array: string[] = [];
   const [tags, setTags] = useState(array);
   const [visible, setVisible] = useState(false);
 
 
-  const handleFromChange = event => {
-    setFrom(event.target.value);
-    pushParam({from:event.target.value});
-  }
-
   const handleSortChange = event => {
     setSort(event.target.value);
-    pushParam({sort:event.target.value});
+    pushParam(searchParams[event.target.value]);
   }
 
   const handleInputTagChange = event => {
@@ -59,14 +59,10 @@ const CatalogFilter = ({pushParam}) => {
         <div className="box1">
           <span className="label">Sort by
           <select name="sortBy" value={sort} onChange={handleSortChange}>
-            <option value="earlyDeadline">Early Deadline</option>
-            <option value="distance">Distance</option>
-            <option value="newIn">New in</option>
-          </select>
-          </span>
-          <span className="label">From
-          <select name="fromCountry" value={from} onChange={handleFromChange}>
-            {countryList.map((country) => <option key={country} value={country}>{country}</option>)}
+            <option value="EARLIEST_DEADLINE">Earliest deadline</option>
+            <option value="LATEST_DEADLINE">Latest deadline</option>
+            <option value="MOST_RECENT">Most recent</option>
+            <option value="OLDEST">Oldest</option>/option>
           </select>
           </span>
           <span className="label" onClick={handleTagsClick}>Tags

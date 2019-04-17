@@ -1,4 +1,5 @@
 import { BASE_URL } from '../../constants/index';
+import * as queryString from "query-string";
 
 export const SEARCH_SUPERORDERS_BEGIN="SEARCH_SUPERORDERS_BEGIN";
 export const SEARCH_SUPERORDERS_FAILURE="SEARCH_SUPERORDERS_FAILURE";
@@ -21,7 +22,7 @@ export const searchSuperordersFailure = (error: string) => ({
 export function searchSuperOrders(searchParams) {
 	return (dispatch: any) => {
 		dispatch(searchSuperordersBegin());
-		return fetch(BASE_URL + '/superOrder/search?', {
+		return fetch(BASE_URL + '/superOrder/search?'+queryString.stringify(searchParams), {
 			method: 'GET',
 			mode: 'cors', // no-cors, cors, *same-origin
 			cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached

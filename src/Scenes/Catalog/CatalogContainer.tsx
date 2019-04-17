@@ -31,14 +31,17 @@ class CatalogContainer extends React.Component<RouteComponentProps & ICatalogCon
 		super(props);
 		this.state={
 			tags:[],
-			sort:null,
-			from:null
+			sortType:"deadline",
+			sortOrder:"ASC"
 		}
 
 	}
 
 	public componentDidMount() {
-		const queryParameters = queryString.parse(this.props.location.search);
+		let queryParameters = queryString.parse(this.props.location.search);
+		if(Object.keys(queryParameters).length===0){
+			queryParameters=this.state;
+		}
 		this.props.searchSuperorders(queryParameters);
 	}
 
