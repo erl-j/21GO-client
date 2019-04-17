@@ -52,7 +52,6 @@ class CatalogContainer extends React.Component<RouteComponentProps & ICatalogCon
 		const state=this.state;
 		Object.keys(p).forEach(k=>state[k]=p[k]);
 		this.setState(state,()=>{
-			console.log(this.state);
 			this.props.searchSuperorders(state);
 			const qS=queryString.stringify(state);
 			this.props.history.push('/catalog/' + qS);});
@@ -62,27 +61,12 @@ class CatalogContainer extends React.Component<RouteComponentProps & ICatalogCon
 
 	public render() {
 
-		// Test for search. DELETE BEFORE SUBMISSION!
-
-		// const testSearchLink = () => {
-		// 	const param = { sortType: 'createdAt', sortOrder: 'ASC' , tags:["vanessa","stanley"],page:3,dispatch:"PICKUP"};
-		// 	const paramString=queryString.stringify(param);
-		// 	console.log(paramString);
-		// 	return <Link to={"/catalog/search?"+paramString}>
-
-		// 	<button>test search</button>
-
-		// 	</Link>;
-		// };
-
-
 		return (
 			<div className="catalog">
 				<Navbar isCatalog={true}/>
 				<CatalogFilter pushParam={p=>this.updateParams(p)}/>
 				<div className="catalog-content">
 					{this.props.searchResults.map(res => {
-						console.log(res);
 						return (<SuperorderSummary
 							key={res.id}
 							{...res}
