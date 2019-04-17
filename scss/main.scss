@@ -9,6 +9,10 @@ body {
   font-family: 'Raleway', sans-serif;
 }
 
+.bold {
+  font-weight: 600;
+}
+
 .label{
   font-weight: 500;
 }
@@ -353,7 +357,76 @@ body {
 
 .catalog {
   background: #f8f8f8;
-  height: 100vh;
+  min-height: 100vh;
+
+  .catalog-content {
+    padding: 1rem 0.5rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+
+    .catalog-superorder {
+      position: relative;
+      flex-basis: auto;
+      margin: 1.5rem 2rem;
+      width: 16rem;
+      height: 18rem;
+
+      .catalog-superorder-img {
+        width: 100%;
+        height: 12rem;
+        object-fit: cover;
+      }
+
+      .catalog-superorder-store {
+        width: 100%;
+        height: 2rem;
+        background: rgba(#fff, 0.8);
+        position: absolute;
+        align-items: center;
+        padding: 0 0.5rem;
+        box-sizing: border-box;
+        top: 10rem;
+        display: flex;
+        justify-content: space-between;
+
+        span {
+          text-transform: uppercase;
+        }
+      }
+
+      .catalog-superorder-info {
+        width: 100%;
+        height: 2rem;
+        align-items: center;
+        padding: 0 0.5rem;
+        box-sizing: border-box;
+        top: 10rem;
+        display: flex;
+        justify-content: space-between;
+
+        img {
+          padding-right: 0.5rem;
+        }
+
+        span:nth-of-type(2) {
+          text-transform: uppercase;
+        }
+      }
+
+      .catalog-superorder-user {
+        text-align: left;
+
+        img {
+          max-width: 2rem;
+          max-height: 2rem;
+          object-fit: cover;
+          border-radius: 2rem;
+          padding-right: 0.5rem;
+        }
+      }
+    }
+  }
 }
 
 .setSuperorder {

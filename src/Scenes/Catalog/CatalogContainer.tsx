@@ -74,17 +74,18 @@ class CatalogContainer extends React.Component<RouteComponentProps & ICatalogCon
 			<div className="catalog">
 				<Navbar isCatalog={true}/>
 				<CatalogFilter pushParam={p=>this.updateParams(p)}/>
-				<div className="row">
-					{this.props.searchResults.map(res => (
-						<SuperorderSummary
+				<div className="catalog-content">
+					{this.props.searchResults.map(res => {
+						console.log(res);
+						return (<SuperorderSummary
 							key={res.id}
 							{...res}
 							onClick={() => this.props.history.push('/setOrder/' + res.id)}
-						/>
-					))}
+						/>);
+					})}
 					<h1>{this.props.error}</h1>
 				</div>
-			</div>	
+			</div>
 		);
 	}
 }
