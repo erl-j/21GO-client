@@ -1,5 +1,3 @@
-
-
 ## Our idea
     
 *21go* is a platform on which you can easily make group orders, called *super orders*, to existing web shops.

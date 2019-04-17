@@ -1,4 +1,4 @@
-import {LOAD_USERNAME_SUCESS} from './UserProfileActions';
+import {LOAD_USERNAME_SUCCESS} from './UserProfileActions';
 
 const initialState = {
 	username:"none"
@@ -6,8 +6,8 @@ const initialState = {
 
 export default function UserProfileReducer(state = initialState, action: any) {
 	switch (action.type) {
-        case LOAD_USERNAME_SUCESS:
-            return {...state,username:action.payload.username}
+        case LOAD_USERNAME_SUCCESS:
+            return {...state,username:action.payload.username};
 		default:
 			return state;
 	}

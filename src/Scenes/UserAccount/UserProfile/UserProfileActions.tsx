@@ -1,12 +1,12 @@
 // import { BASE_URL } from '../../../constants/index';
 
-export const LOAD_USERNAME_SUCESS = 'LOAD_USERNAME_SUCESS';
+export const LOAD_USERNAME_SUCCESS = 'LOAD_USERNAME_success';
 export const FETCH_ACCOUNT_BEGIN = 'SEARCH_SUPERORDERS_BEGIN';
 export const FETCH_ACCOUNT_FAILURE = 'SEARCH_SUPERORDERS_FAILURE';
 export const FETCH_ACCOUNT_SUCCESS = 'SEARCH_SUPERORDERS_SUCCESS';
 
-const loadUsernameSucess = (username: string) => ({
-	type: LOAD_USERNAME_SUCESS,
+const loadUsernameSuccess = (username: string) => ({
+	type: LOAD_USERNAME_SUCCESS,
 	payload: { username },
 });
 
@@ -18,7 +18,7 @@ const loadUsernameSucess = (username: string) => ({
 
 // }
 
-// const fetchAccountSucess=()=>{
+// const fetchAccountSuccess=()=>{
 
 // }
 
@@ -28,7 +28,7 @@ export const loadUsername = () => {
 		if (user) {
 			const username = JSON.parse(user).username  ;
 			if (username) {
-				dispatch(loadUsernameSucess(username));
+				dispatch(loadUsernameSuccess(username));
 			}
 		}
 	};
