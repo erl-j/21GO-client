@@ -1,5 +1,0 @@
-// import { BASE_URL } from '../../../constants/index';
-
-export const FETCH_SUPERORDER_BEGIN = 'GET_SUPERORDERS_BEGIN';
-export const FETCH_SUPERORDER_FAILURE = 'GET_SUPERORDERS_FAILURE';
-export const FETCH_SUPERORDER_SUCCESS = 'GET_SUPERORDERS_SUCCESS';

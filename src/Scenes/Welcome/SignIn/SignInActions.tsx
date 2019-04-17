@@ -1,4 +1,4 @@
-import { BASE_URL } from '../../../constants/index';
+import {APICall, Method} from "../../../apiCall";
 
 export const SIGN_IN_BEGIN = 'SIGN_IN_BEGIN';
 export const SIGN_IN_SUCCESS = 'SIGN_IN_SUCCESS';
@@ -22,34 +22,15 @@ export function fetchJwt(usernameIn: string, passwordIn: string) {
 	console.warn('sent login request for un/pw: ' + usernameIn + '/' + passwordIn);
 	return (dispatch: any) => {
 		dispatch(signInBegin());
-		return fetch(BASE_URL + '/login', {
-			method: 'POST',
-			mode: 'cors', // no-cors, cors, *same-origin
-			cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
-			credentials: 'same-origin', // include, *same-origin, omit
-			headers: {
-				'Content-Type': 'application/json',
-				// "Content-Type": "application/x-www-form-urlencoded",
-			},
-			redirect: 'follow', // manual, *follow, error
-			referrer: 'no-referrer', // no-referrer, *client,
-			body: JSON.stringify({ username: usernameIn, password: passwordIn }),
-		})
-			.then(handleErrors)
-			.then(res => res.json())
+		const body = {username: usernameIn, password: passwordIn};
+
+		return APICall(Method.POST, "/login", body, null)
 			.then(json => {
 				dispatch(signInSuccess(json.jwt));
-				localStorage.setItem("user",JSON.stringify({"token":json.jwt,"username":usernameIn}))
+				localStorage.setItem("user",JSON.stringify({"token":json.jwt,"username":usernameIn}));
+				console.log(json);
 				return json.jwt;
 			})
 			.catch(error => dispatch(signInFailure(error)));
 	};
-}
-
-// Handle HTTP errors since fetch won't.
-function handleErrors(response: any) {
-	if (!response.ok) {
-		throw Error(response.statusText);
-	}
-	return response;
 }
