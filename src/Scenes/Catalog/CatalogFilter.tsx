@@ -43,6 +43,7 @@ const CatalogFilter = ({pushParam}) => {
     const newTags = Object.assign([], tags);
     newTags.splice(index, 1);
     setTags(newTags);
+    pushParam({tags:[...newTags]});
   }
 
   const handleTagsClick = (event) => {
