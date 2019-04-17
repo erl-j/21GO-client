@@ -187,6 +187,8 @@ body {
 .navbar {
   padding: 1.5rem 2rem 0.5rem 2rem;
   background: #fff; }
+  .navbar.border {
+    border-bottom: 1px solid #D8D8D8; }
   .navbar .box2 form {
     float: right; }
     .navbar .box2 form input[type=search] {
@@ -419,6 +421,21 @@ body {
     .setSuperorder .setSuperorder-form h4 {
       margin-top: 1.5rem;
       margin-bottom: 0.5rem; }
+
+.setOrder {
+  background: #f8f8f8;
+  min-height: 100vh; }
+  .setOrder .superorder {
+    box-sizing: border-box;
+    padding: 2rem;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap; }
+    .setOrder .superorder img {
+      width: 36rem;
+      height: 27rem;
+      object-fit: cover;
+      margin: 0 4rem; }
 
 @keyframes logoAnimation {
   to {

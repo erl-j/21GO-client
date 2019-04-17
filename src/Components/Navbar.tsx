@@ -25,10 +25,10 @@ const Navbar = ({isCatalog}) => {
   }
 
   return (
-    <div className="navbar">
+    <div className={isCatalog? "navbar" : "navbar border"}>
       <div className="nav-content">
         <div className="box1">
-          <img className="logo" />
+          <a href="/catalog"><img className="logo"/></a>
         </div>
         <div className="box2">
           <img src={userIcon} alt="User" onClick={handleClick}/>
