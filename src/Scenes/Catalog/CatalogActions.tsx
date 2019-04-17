@@ -1,3 +1,4 @@
+import * as queryString from "query-string";
 import {APICall, Method} from "../../apiCall";
 
 export const SEARCH_SUPERORDERS_BEGIN="SEARCH_SUPERORDERS_BEGIN";
@@ -21,8 +22,7 @@ export const searchSuperordersFailure = (error: string) => ({
 export function searchSuperOrders(searchParams) {
 	return (dispatch: any) => {
 		dispatch(searchSuperordersBegin());
-
-		return APICall(Method.GET, '/superOrder/search?')
+		return APICall(Method.GET, '/superOrder/search?' +queryString.stringify(searchParams))
 			.then(json => {
 				dispatch(searchSuperordersSuccess(json.superOrders));
 				return json;

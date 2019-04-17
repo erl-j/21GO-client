@@ -2,21 +2,29 @@ import * as React from 'react';
 // import { Redirect } from 'react-router';
 // import { useState } from 'react';
 import im from './im1.jpg';
-import boxIcon from './box_icon.png';
+import boxIcon from '../img/icons/box.svg';
+import avatar from '../img/user1.jpg';
 
 const SuperorderSummary = props => {
 	return (
-		<div className="card ml-2 mt-2 rounded-0" onClick={props.onClick}>
-			<img className="card-img-top" src={im} alt="Card image cap" />
-			<div className="card-body">
-				<span className="fixed-left">
-					<span className="font-weight-light">Ends in </span>
-					{dateDiffInDays(new Date(), new Date(props.deadline))} days
+		<div className="catalog-superorder" onClick={props.onClick}>
+			<img className="catalog-superorder-img" src={im} alt="Card image cap" />
+			<div className="catalog-superorder-store">
+				<span className="bold">{props.storeName}</span>
+				<span>{props.storeLocation.substr(0,2)}</span>
+			</div>
+			<div className="catalog-superorder-info">
+				<span className="bold">
+					Ends in {dateDiffInDays(new Date(), new Date(props.deadline))} days
 				</span>
 				<span>
 					<img src={boxIcon} />
 					<span>{props.arrivalLocation.substring(0, 2)}</span>
 				</span>
+			</div>
+			<div className="catalog-superorder-user">
+				<img src={avatar} alt="avatar"/>
+				<span>{props.userId}</span>
 			</div>
 			{/* <ul>
 			{Object.keys(props).map(ent => (

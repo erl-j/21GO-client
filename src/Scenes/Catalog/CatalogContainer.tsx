@@ -31,14 +31,20 @@ class CatalogContainer extends React.Component<RouteComponentProps & ICatalogCon
 		super(props);
 		this.state={
 			tags:[],
-			sort:null,
-			from:null
+			sortType:"deadline",
+			sortOrder:"ASC"
 		}
 
 	}
 
 	public componentDidMount() {
-		const queryParameters = queryString.parse(this.props.location.search);
+		console.log(this.props.location);
+		let queryParameters = queryString.parse(this.props.location.pathname.substring("/catalog/".length));
+		console.log(queryParameters);
+		if(Object.keys(queryParameters).length===0){
+			queryParameters=this.state;
+		}
+		this.setState(queryParameters);
 		this.props.searchSuperorders(queryParameters);
 	}
 
@@ -74,17 +80,18 @@ class CatalogContainer extends React.Component<RouteComponentProps & ICatalogCon
 			<div className="catalog">
 				<Navbar isCatalog={true}/>
 				<CatalogFilter pushParam={p=>this.updateParams(p)}/>
-				<div className="row">
-					{this.props.searchResults.map(res => (
-						<SuperorderSummary
+				<div className="catalog-content">
+					{this.props.searchResults.map(res => {
+						console.log(res);
+						return (<SuperorderSummary
 							key={res.id}
 							{...res}
 							onClick={() => this.props.history.push('/setOrder/' + res.id)}
-						/>
-					))}
+						/>);
+					})}
 					<h1>{this.props.error}</h1>
 				</div>
-			</div>	
+			</div>
 		);
 	}
 }
