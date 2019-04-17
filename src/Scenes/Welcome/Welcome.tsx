@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { useState } from 'react';
-import SignInContainer from '../SignIn/SignInContainer';
-import SignUpContainer from '../SignUp/SignUpContainer';
+import SignInContainer from './SignIn/SignInContainer';
+import SignUpContainer from './SignUp/SignUpContainer';
 
 const welcomeMode = {
 	signIn: 'SIGN_IN',

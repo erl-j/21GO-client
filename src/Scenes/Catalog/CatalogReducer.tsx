@@ -10,6 +10,7 @@ export default function catalogReducer(state = initialState, action: any) {
 		case SEARCH_SUPERORDERS_BEGIN:
 			return { ...state, error: null, loading: true ,results:[]};
 		case SEARCH_SUPERORDERS_FAILURE:
+			console.log(action.payload.error);
 			return { ...state, loading: false, error: action.payload.error };
 		case SEARCH_SUPERORDERS_SUCCESS:
 			return { ...state, loading: false, results: action.payload.results };

@@ -1,4 +1,4 @@
-import { BASE_URL } from '../../constants/index';
+import {APICall, Method} from "../../apiCall";
 
 export const SEARCH_SUPERORDERS_BEGIN="SEARCH_SUPERORDERS_BEGIN";
 export const SEARCH_SUPERORDERS_FAILURE="SEARCH_SUPERORDERS_FAILURE";
@@ -21,35 +21,14 @@ export const searchSuperordersFailure = (error: string) => ({
 export function searchSuperOrders(searchParams) {
 	return (dispatch: any) => {
 		dispatch(searchSuperordersBegin());
-		return fetch(BASE_URL + '/superOrders/search?', {
-			method: 'GET',
-			mode: 'cors', // no-cors, cors, *same-origin
-			cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
-			credentials: 'same-origin', // include, *same-origin, omit
-			headers: {
-				'Content-Type': 'application/json',
-				// "Content-Type": "application/x-www-form-urlencoded",
-			},
-			redirect: 'follow', // manual, *follow, error
-			referrer: 'no-referrer', // no-referrer, *client,
-		})
-			.then(handleErrors)
-			.then(res => res.json())
+
+		return APICall(Method.GET, '/superOrder/search?')
 			.then(json => {
-				dispatch(searchSuperordersSuccess(json));
+				dispatch(searchSuperordersSuccess(json.superOrders));
 				return json;
 			})
-			.catch(error => dispatch(searchSuperordersFailure(error)));
+			.catch(error => dispatch(searchSuperordersFailure(error.message)));
 	};
-}
-
-// Handle HTTP errors since fetch won't.
-function handleErrors(response: any) {
-	
-	if (!response.ok) {
-		throw Error(response.statusText);
-	}
-	return response;
 }
 
 

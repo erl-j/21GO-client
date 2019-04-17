@@ -1,14 +1,15 @@
 import * as React from 'react';
 import { useState } from 'react';
 import ValidatedInput from 'src/Components/ValidatedInput';
-import Loader from '../../Components/Loader';
+import Loader from '../../../Components/Loader';
+import validators from "../../../constants/validators";
 
 const SignUp = ({ onSignUpPressed, isSignUpLoading }) => {
 	const [params, setParam] = useState({
 		username: '',
+		password: '',
 		firstName: '',
 		lastName: '',
-		password: '',
 		mail: '',
 		phone: '',
 		location: '',
@@ -21,7 +22,7 @@ const SignUp = ({ onSignUpPressed, isSignUpLoading }) => {
 		content = <form className="welcome-form" onSubmit={(e) => {e.preventDefault(); onSignUpPressed(params)}}>
 								{Object.keys(params).map(k => (
 									<React.Fragment>
-										<ValidatedInput name={k} onChange={e =>
+										<ValidatedInput validator={validators.signUp[k]} name={k} onChange={e =>
 											setParam(
 												{...params, [k]: e.target.value}
 											)
