@@ -1,5 +1,6 @@
 import { BASE_URL } from '../../constants/index';
 import loadJwt from '../../helpers/loadJwt';
+import {APICall, Method} from "../../apiCall";
 
 export const GET_SUPERORDER_BEGIN = 'GET_SUPERORDER_BEGIN';
 export const GET_SUPERORDER_FAILURE = 'GET_SUPERORDER_FAILURE';
@@ -72,25 +73,28 @@ export const postOrderFailure = (error: any,details:any) => ({
 	payload: { error,details },
 });
 
-export function postOrder(attributes) {
-	console.log('got attributes ' + attributes);
+export function postOrder(id,attributes) {
+
+	attributes={ 
+		"superOrderId": id,
+		"dispatch": "PICKUP",
+		"items": [
+			{
+			"additionalInfo":(attributes.url+" "+attributes.details),
+			"quantity":attributes.amount
+			}
+		]
+	};
+
+	console.log(attributes);
 	return (dispatch: any) => {
 		dispatch(setLocalOrder(attributes));
 		dispatch(postOrderBegin());
-		return fetch(BASE_URL + 'order', {
-			method: 'POST',
-			mode: 'cors', // no-cors, cors, *same-origin
-			cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
-			credentials: 'same-origin', // include, *same-origin, omit
-			headers: {
-				'Content-Type': 'application/json',
-				Authorization: loadJwt(),
-				// "Content-Type": "application/x-www-form-urlencoded",
-			},
-			redirect: 'follow', // manual, *follow, error
-			referrer: 'no-referrer', // no-referrer, *client,
-			body: JSON.stringify(attributes),
-		}).then(res=>handlePostResponse(res,dispatch))
+		return APICall(Method.POST, '/order/',attributes,loadJwt())
+		.then(json => {
+			dispatch(postOrderSuccess(json.id));
+			return json;
+		})
 		.catch(error=>dispatch(postOrderFailure(error,null)));
 	};
 }
@@ -105,25 +109,7 @@ function handleErrors(response: any) {
 	return response;
 }
 
-function handlePostResponse(response:any,dispatch:any){
-	if (!response.ok) {
-		if(response.status===400){
-			response.json()
-			.then(json=>dispatch(postOrderFailure(response.statusText,json)))
-		}
-		else{
-		throw Error(response.statusText);
-		}
-	}
-	else{
-		response.json().
-		then(json => {
-		dispatch(postOrderSuccess(json.id));
-		console.log(json.id);
-		})
-	}
-	return "";
-}
+
 
 export function editOrder(id,attributes) {
 	console.log('got attributes ' + attributes);
