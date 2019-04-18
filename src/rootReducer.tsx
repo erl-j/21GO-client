@@ -6,6 +6,7 @@ import setSuperorderReducer from "./Scenes/SetSuperorder/SetSuperorderReducer";
 import setOrderReducer from "./Scenes/SetOrder/SetOrderReducer";
 import accountReducer from "./Scenes/UserAccount/UserProfile/UserProfileReducer";
 import userSuperordersReducer from "./Scenes/UserAccount/UserSuperorders/UserSuperordersReducer";
+import userOrderReducer from "./Scenes/UserAccount/UserOrders/UserOrdersReducer";
 
 const rootReducer = combineReducers({
     signIn:signInReducer,
@@ -14,7 +15,8 @@ const rootReducer = combineReducers({
     setSuperorder:setSuperorderReducer,
     setOrder:setOrderReducer,
     account:accountReducer,
-    userSuperorders: userSuperordersReducer
+    userSuperorders: userSuperordersReducer,
+    userOrders: userOrderReducer
 });
 
 export default rootReducer;
