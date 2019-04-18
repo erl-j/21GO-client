@@ -19,10 +19,6 @@
 }
 
 @include mediaSm {
-  .logo {
-    content: $logo;
-    height: 5.5rem;
-  }
 
   .button1 {
     font-size: 1.6rem;
@@ -60,6 +56,14 @@
     }
   }
 
+  .setOrder {
+    .superorder {
+      .superorder-img{
+        width: 100%;
+        height: auto;
+      }
+    }
+  }
   @keyframes logoAnimation {
     to {
       margin-top: 10vh;

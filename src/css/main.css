@@ -508,9 +508,6 @@ body {
     margin-bottom: 2rem; } }
 
 @media screen and (max-width: 500px) {
-  .logo {
-    content: url(../img/logo.png);
-    height: 5.5rem; }
   .button1 {
     font-size: 1.6rem;
     padding: 0.5rem 0.8rem;
@@ -532,6 +529,9 @@ body {
     position: absolute;
     right: 2rem;
     font-size: 0.9rem; }
+  .setOrder .superorder .superorder-img {
+    width: 100%;
+    height: auto; }
   @keyframes logoAnimation {
     to {
       margin-top: 10vh;
