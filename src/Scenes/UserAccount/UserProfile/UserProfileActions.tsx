@@ -1,34 +1,28 @@
-// import { BASE_URL } from '../../../constants/index';
-import { APICall,Method } from 'src/apiCall';
-import loadJwt from 'src/helpers/loadJwt';
+import {APICall, Method} from "../../../apiCall";
+import loadJwt from "../../../helpers/loadJwt";
 
-export const LOAD_USERNAME_SUCCESS = 'LOAD_USERNAME_SUCESS';
 export const FETCH_ACCOUNT_BEGIN = 'SEARCH_SUPERORDERS_BEGIN';
 export const FETCH_ACCOUNT_FAILURE = 'SEARCH_SUPERORDERS_FAILURE';
 export const FETCH_ACCOUNT_SUCCESS = 'SEARCH_SUPERORDERS_SUCCESS';
 
-const loadUsernameSuccess = (username: string) => ({
-	type: LOAD_USERNAME_SUCCESS,
-	payload: { username },
+const fetchAccountBegin = () => ({
+	type: FETCH_ACCOUNT_BEGIN
 });
 
-const fetchAccountBegin=()=>({
-	type: FETCH_ACCOUNT_BEGIN
-})
+const fetchAccountFailure = (error) => ({
+	type: FETCH_ACCOUNT_FAILURE,
+	payload: { error },
+});
 
-const fetchAccountFailure=(err)=>({
-	type: FETCH_ACCOUNT_FAILURE
-})
-
-const fetchAccountSuccess=(res)=>({
-	type: FETCH_ACCOUNT_SUCCESS
-}
-)
+const fetchAccountSuccess = (results) => ({
+	type: FETCH_ACCOUNT_SUCCESS,
+	payload: { results },
+});
 
 export function fetchAccount(){
 	return (dispatch: any) => {
 		dispatch(fetchAccountBegin());
-		return APICall(Method.POST,'/user/profile', null, loadJwt())
+		return APICall(Method.GET,'/user/profile', null, loadJwt())
 			.then((res) => {
 				dispatch(fetchAccountSuccess(res));
 				return;
@@ -36,15 +30,3 @@ export function fetchAccount(){
 			.catch(error => dispatch(fetchAccountFailure(error)));
 	};
 }
-
-export const loadUsername = () => {
-	return dispatch => {
-		const user = localStorage.getItem('user');
-		if (user) {
-			const username = JSON.parse(user).username  ;
-			if (username) {
-				dispatch(loadUsernameSuccess(username));
-			}
-		}
-	};
-};

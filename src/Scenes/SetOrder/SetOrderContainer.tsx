@@ -1,5 +1,5 @@
 import * as React from 'react';
-import * as actions from "src/Scenes/SetOrder/SetOrderActions";
+import * as actions from "./SetOrderActions";
 import {RouteComponentProps} from "react-router";
 import {connect} from "react-redux";
 import ItemForm from "./ItemForm";
@@ -12,33 +12,38 @@ const mapStateToProps=(state)=>(
         items:state.setOrder.items
     });
 const mapDispatchToProps=(dispatch)=>({
-    getSuperorder:(id)=>dispatch(actions.getSuperorder(id))
+    getSuperorder:(id)=>dispatch(actions.getSuperorder(id)),
+    postOrder:(id,details)=>dispatch(actions.postOrder(id,details)),
 });
 
 interface ISetOrderContainerProps{
     superorder:any,
     getSuperorder:any,
-    items:any
+    items:any,
+    postOrder:any
 }
 
 class SetOrderContainer extends React.Component<RouteComponentProps & ISetOrderContainerProps> {
+
   public componentDidMount(){
-      const {id}:any=this.props.match.params;
-      this.props.getSuperorder(id);
+
+    const id="id";
+      console.log(this.props.match.params[id]);
+      const superorderId=this.props.match.params[id];
+      this.props.getSuperorder(superorderId);
   }
 	public render() {
-    // This next line is a hack. I am unable to properly type this.props.match so this will have to do.
-    return(
-  		<div className="setOrder">
-        <Navbar isCatalog={false} />
-  			<div>
-          <SuperorderInspect {...this.props.superorder}/>
-          {this.props.items.map((attributes,idx)=>
-          <ItemForm key={idx} itemAttributes={attributes} post={e=>console.log("post order with attributes:"+e)}/> )}
-          <ItemForm key={-1} post={e=>console.log("post order with attributes"+e)}/>
-        </div>
-      </div>
-    );
+        const display=(<div className="setOrder">
+            <Navbar isCatalog={false} />
+                  <div>
+              <SuperorderInspect superorder={this.props.superorder}/>
+              {this.props.items.map((attributes,idx)=>
+              <ItemForm key={idx} itemAttributes={attributes} post={(e)=>this.props.postOrder(this.props.match.params,e)}/> )}
+              <ItemForm key={-1} post={e=>this.props.postOrder(this.props.match.params,e)}/>
+            </div>
+          </div>);
+
+        return display;
 	}
 }
 

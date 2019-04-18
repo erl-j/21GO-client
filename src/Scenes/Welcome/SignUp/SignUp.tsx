@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { useState } from 'react';
-import ValidatedInput from 'src/Components/ValidatedInput';
 import Loader from '../../../Components/Loader';
 import validators from "../../../constants/validators";
+import ValidatedInput from "../../../Components/ValidatedInput";
 
 const SignUp = ({ onSignUpPressed, isSignUpLoading }) => {
 	const [params, setParam] = useState({

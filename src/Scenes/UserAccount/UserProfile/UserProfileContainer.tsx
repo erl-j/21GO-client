@@ -4,25 +4,25 @@ import * as actions from "./UserProfileActions";
 import UserProfile from './UserProfile'
 
 interface IUserProfileContainerProps {
-    username: string;
-    loadUsername:any;
+    user: any;
+    loadUser: any;
 }
 const mapStateToProps = state => ({
-	username: state.account.username
+	user: state.account.results
 });
 
 const mapDispatchToProps = dispatch => ({
-	loadUsername:()=>dispatch(actions.loadUsername())
+	loadUser: () => dispatch(actions.fetchAccount())
 });
 
 class UserProfileContainer extends React.Component<IUserProfileContainerProps> {
     
     public componentDidMount(){
-        this.props.loadUsername();
+        this.props.loadUser();
     }
 	public render() {
 		return (
-			<UserProfile username={this.props.username} email="myemail@gmail.com" phoneNumber="072 312323" address="kthvägen 10"    />
+			<UserProfile user={this.props.user}/>
 		);
 	}
 }
