@@ -6,25 +6,27 @@ import boxIcon from '../img/icons/box.svg';
 import avatar from '../img/user1.jpg';
 
 const SuperorderSummary = props => {
+	console.log(props);
 	return (
 		<div className="catalog-superorder" onClick={props.onClick}>
 			<img className="catalog-superorder-img" src={im} alt="Card image cap" />
 			<div className="catalog-superorder-store">
-				<span className="bold">{props.storeName}</span>
-				<span>{props.storeLocation.substr(0,2)}</span>
+				<span className="bold uppercase">{props.storeName}</span>
+				<span className="uppercase">{props.storeLocation.substr(0,2)}</span>
 			</div>
 			<div className="catalog-superorder-info">
 				<span className="bold">
 					Ends in {dateDiffInDays(new Date(), new Date(props.deadline))} days
 				</span>
 				<span>
-					<img src={boxIcon} />
-					<span>{props.arrivalLocation.substring(0, 2)}</span>
+					<img src={boxIcon} alt="Ship location" />
+					<span className="uppercase">{props.arrivalLocation.substring(0, 2)}</span>
 				</span>
 			</div>
 			<div className="catalog-superorder-user">
-				<img src={avatar} alt="avatar"/>
-				<span>{props.userId}</span>
+				<img className="avatar" src={avatar} alt="avatar"/>
+				{/* <img src={props.user.imageUrl} alt="avatar"/>*/}
+				<span>{props.user.firstName + " " + props.user.lastName}</span>
 			</div>
 			{/* <ul>
 			{Object.keys(props).map(ent => (
