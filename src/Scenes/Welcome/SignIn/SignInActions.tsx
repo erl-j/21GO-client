@@ -28,7 +28,6 @@ export function fetchJwt(usernameIn: string, passwordIn: string) {
 			.then(json => {
 				dispatch(signInSuccess(json.jwt));
 				localStorage.setItem("user",JSON.stringify({"token":json.jwt,"username":usernameIn}));
-				console.log(json);
 				return json.jwt;
 			})
 			.catch(error => dispatch(signInFailure(error)));

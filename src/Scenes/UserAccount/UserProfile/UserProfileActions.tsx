@@ -1,9 +1,9 @@
 import {APICall, Method} from "../../../apiCall";
 import loadJwt from "../../../helpers/loadJwt";
 
-export const FETCH_ACCOUNT_BEGIN = 'SEARCH_SUPERORDERS_BEGIN';
-export const FETCH_ACCOUNT_FAILURE = 'SEARCH_SUPERORDERS_FAILURE';
-export const FETCH_ACCOUNT_SUCCESS = 'SEARCH_SUPERORDERS_SUCCESS';
+export const FETCH_ACCOUNT_BEGIN = 'FETCH_ACCOUNT_BEGIN';
+export const FETCH_ACCOUNT_FAILURE = 'FETCH_ACCOUNT_FAILURE';
+export const FETCH_ACCOUNT_SUCCESS = 'FETCH_ACCOUNT_SUCCESS';
 
 const fetchAccountBegin = () => ({
 	type: FETCH_ACCOUNT_BEGIN
@@ -24,8 +24,8 @@ export function fetchAccount(){
 		dispatch(fetchAccountBegin());
 		return APICall(Method.GET,'/user/profile', null, loadJwt())
 			.then((res) => {
-				dispatch(fetchAccountSuccess(res));
-				return;
+				dispatch(fetchAccountSuccess(res.profile));
+				return res.profile;
 			})
 			.catch(error => dispatch(fetchAccountFailure(error)));
 	};

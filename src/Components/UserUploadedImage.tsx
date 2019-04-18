@@ -1,11 +1,14 @@
 import ImageSelector from './ImageSelector';
 import * as React from "react";
 
-const UserUploadedImage = ({ url}) => {
+const UserUploadedImage = ({url, uploadHandler}) => {
+
+	const img = url != null ? (<img alt="img" src={url} />) : (<p>No image yet</p>);
+
 	return (
 		<div>
-			<img src={url} />
-			<ImageSelector />
+			{img}
+			<ImageSelector clickHandler={uploadHandler}/>
 		</div>
 	);
 };

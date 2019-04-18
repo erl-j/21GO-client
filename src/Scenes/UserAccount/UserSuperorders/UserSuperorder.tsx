@@ -4,7 +4,6 @@ import UserSuperorderOrders from "./UserSuperorderOrders";
 const UserSuperorder = (props) => {
 
     const superorder = props.superorder;
-    console.log(superorder);
     const keyId = "id";
     const orderList = superorder.orders.map((order) => <UserSuperorderOrders order = {order} key = {order[keyId]} /> );
 

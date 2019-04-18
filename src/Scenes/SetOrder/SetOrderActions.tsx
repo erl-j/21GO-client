@@ -27,7 +27,6 @@ export const getSuperorderFailure = (error: string) => ({
 });
 
 export function getSuperorder(id) {
-	console.log('got id ' + id);
 	return (dispatch: any) => {
 		dispatch(getSuperorderBegin());
 		return APICall(Method.GET, '/superOrder/' + id, null, loadJwt())
@@ -71,7 +70,6 @@ export function postOrder(id,attributes) {
 		]
 	};
 
-	console.log(attributes);
 	return (dispatch: any) => {
 		dispatch(setLocalOrder(attributes));
 		dispatch(postOrderBegin());
@@ -85,7 +83,6 @@ export function postOrder(id,attributes) {
 }
 
 export function editOrder(id,attributes) {
-	console.log('got attributes ' + attributes);
 	return (dispatch: any) => {
 		dispatch(setLocalOrder(attributes));
 		dispatch(postOrderBegin());
@@ -93,7 +90,6 @@ export function editOrder(id,attributes) {
 		return APICall(Method.POST, '/superOrder',attributes,loadJwt())
 			.then(json => {
 				dispatch(postOrderSuccess(json.id));
-				console.log(json.id);
 				return json;
 			})
 			.catch(error => dispatch(postOrderFailure(error,null)));

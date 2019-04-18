@@ -28,7 +28,6 @@ class UserSuperordersContainer extends React.Component<IUserSuperordersContainer
 
 	public render() {
 
-    	console.log(this.props.userSuperordersResults);
 		const superorders = this.props.userSuperordersResults;
 		const idKey = "id";
 

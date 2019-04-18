@@ -11,7 +11,6 @@ export default function userSuperordersReducer(state = initialState, action: any
         case GET_USER_SUPERORDERS_BEGIN:
             return {...state, error: null, loading: true, results:[]};
         case GET_USER_SUPERORDERS_FAILURE:
-            console.log(action.payload.error);
             return {...state, loading: false, error: action.payload.error};
         case GET_USER_SUPERORDERS_SUCCESS:
             return {...state, loading: false, results: action.payload.results};

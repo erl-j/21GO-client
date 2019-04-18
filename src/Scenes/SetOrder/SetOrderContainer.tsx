@@ -32,7 +32,6 @@ class SetOrderContainer extends React.Component<RouteComponentProps & ISetOrderC
   }
 
   public render() {
-      console.log(this.props.superorder);
         return (
             <div className="setOrder">
                 <Navbar isCatalog={false} />

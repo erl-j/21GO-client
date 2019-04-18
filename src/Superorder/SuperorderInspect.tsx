@@ -3,10 +3,8 @@ import emailIcon from '../img/icons/email.svg';
 import boxIcon from '../img/icons/box.svg';
 
 const SuperorderInspect = ({superorder}) => {
-	console.log(superorder);
 
 	if(!superorder || Object.keys(superorder).length === 0){
-		console.log("nope");
 		return null;
 	}
 

@@ -27,7 +27,6 @@ export function getUserOrders() {
         dispatch(getUserOrdersBegin());
         return APICall(Method.GET, '/superOrder/joined', null, jwt)
             .then(obj => {
-                console.log(obj);
                 dispatch(getUserOrdersSuccess(obj.superOrders));
                 return obj;
             })

@@ -27,7 +27,6 @@ export const getSuperorderFailure = (error: string) => ({
 });
 
 export function getSuperorder(id) {
-	console.log('got id ' + id);
 	return (dispatch: any) => {
 		dispatch(getSuperorderBegin());
 		return fetch(BASE_URL + '/superOrder/' + id, {
@@ -46,7 +45,6 @@ export function getSuperorder(id) {
 			.then(res => res.json())
 			.then(json => {
 				dispatch(getSuperorderSuccess(json));
-				console.log(json);
 				return json;
 			})
 			.catch(error => dispatch(getSuperorderFailure(error)));
@@ -73,7 +71,6 @@ export const postSuperorderFailure = (error: any,details:any) => ({
 });
 
 export function postSuperorder(attributes) {
-	console.log('got attributes ' + attributes);
 	return (dispatch: any) => {
 		dispatch(setLocalSuperorder(attributes));
 		dispatch(postSuperorderBegin());
@@ -98,7 +95,6 @@ export function postSuperorder(attributes) {
 // Handle HTTP errors since fetch won't.
 function handleErrors(response: any) {
 
-	console.log("hek");
 	if (!response.ok) {
 		throw Error(response.statusText);
 	}
@@ -106,7 +102,6 @@ function handleErrors(response: any) {
 }
 
 function handlePostResponse(response:any,dispatch:any){
-	console.log("hello");
 	if (!response.ok) {
 		if(response.status===400){
 			response.json()
@@ -120,15 +115,12 @@ function handlePostResponse(response:any,dispatch:any){
 		response.json().
 		then(json => {
 		dispatch(postSuperorderSuccess(json.id));
-		console.log(json.id);
 		})
 	}
-	console.log("hello");
 	return "";
 }
 
 export function editSuperorder(attributes) {
-	console.log('got attributes ' + attributes);
 	return (dispatch: any) => {
 		dispatch(setLocalSuperorder(attributes));
 		dispatch(postSuperorderBegin());
@@ -150,7 +142,6 @@ export function editSuperorder(attributes) {
 			.then(res => res.json())
 			.then(json => {
 				dispatch(postSuperorderSuccess(json.id));
-				console.log(json.id);
 				return json;
 			})
 			.catch(error => dispatch(postSuperorderFailure(error,null)));
