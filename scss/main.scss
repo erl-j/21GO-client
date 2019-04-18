@@ -352,8 +352,9 @@ body {
   .tags_master {
     visibility: hidden;
     position: absolute;
+    z-index: 2;
     top: 7.5rem;
-    left: 30rem;
+    left: 20rem;
     width: 12rem;
     min-height: 5rem;
     background: #fff;
@@ -640,13 +641,36 @@ body {
       flex-basis: 10rem;
       text-align: left;
 
-      img {
+      .container {
+        position: relative;
         min-width: 8rem;
-        min-height: 8rem;
         max-width: 80%;
-        max-height: auto;
-        border-radius: 8rem;;
       }
+      .container:after {
+        content: "";
+        display: block;
+        padding-bottom: 100%; /* The padding depends on the width, not on the height, so with a padding-bottom of 100% you will get a square */
+      }
+
+      .container img {
+        position: absolute; /* Take your picture out of the flow */
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0; /* Make the picture taking the size of it's parent */
+        width: 100%; /* This if for the object-fit */
+        height: 100%; /* This if for the object-fit */
+        border-radius: 50%;
+        object-fit: cover; /* Equivalent of the background-size: cover; of a background-image */
+        object-position: center;
+      }
+      // img {
+      //   min-width: 8rem;
+      //   min-height: 8rem;
+      //   max-width: 80%;
+      //   max-height: auto;
+      //   border-radius: 50%;
+      // }
     }
   }
 }
