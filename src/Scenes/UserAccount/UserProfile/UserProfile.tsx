@@ -26,7 +26,7 @@ const UserProfile = (props) => {
             <h2 className="light">{user.location}</h2>
           </div>
           <div className="box2">
-            <img src={user.imageUrl} alt="Avatar" />
+            <div className="container"><img src={user.imageUrl} alt="Avatar" /></div>
           </div>
         </div>
           <ImageSelector clickHandler={uploadHandler}/>

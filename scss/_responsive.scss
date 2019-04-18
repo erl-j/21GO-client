@@ -1,8 +1,9 @@
 @include mediaXl {
   .account {
     .profile{
-      img {
+      .container {
         width: 20rem;
+        height: 20rem;
       }
     }
   }
@@ -56,6 +57,24 @@
     }
   }
 
+  .filter {
+    padding: 0 1.5rem 0.5rem 1.5rem;
+
+    img {
+      height: 1.5rem;
+      margin-left: 0.3rem;
+    }
+
+    .label {
+      font-size: 1rem;
+      margin-right: 1rem;
+    }
+
+    .tags_master {
+      top: 6.5rem;
+      left: 15rem;
+    }
+  }
 
   .button3 {
     margin: 1.2rem 1.2rem;
@@ -72,10 +91,9 @@
       padding-left: 6rem;
       padding-right: 3rem;
 
-      img {
+      .container {
         width: 8rem;
         height: 8rem;
-        border-radius: 8rem;
       }
     }
   }
@@ -131,6 +149,13 @@
         right: 2rem;
         font-size: 0.9rem;
       }
+    }
+  }
+
+  .filter {
+    .tags_master {
+      top: 8rem;
+      left: 10rem;
     }
   }
 

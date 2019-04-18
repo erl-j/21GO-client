@@ -86,10 +86,9 @@ function ImageSelector(props) {
                 {thumbs}
         </section>
 
-        <button type="button" onClick={() => props.clickHandler(files)}>  Submit </button>
+        <button className="button2" type="button" onClick={() => props.clickHandler(files)}>  Submit </button>
         </div>
 );
 }
 
 export default ImageSelector;
-
