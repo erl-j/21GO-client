@@ -6,7 +6,6 @@ import boxIcon from '../img/icons/box.svg';
 import avatar from '../img/user1.jpg';
 
 const SuperorderSummary = props => {
-	console.log(props);
 	return (
 		<div className="catalog-superorder" onClick={props.onClick}>
 			<img className="catalog-superorder-img" src={im} alt="Card image cap" />
