@@ -1,23 +1,25 @@
 import * as React from "react";
-import UserSuperordersOrders from "./UserSuperordersOrders";
+import UserSuperorderOrders from "./UserSuperorderOrders";
 
 const UserSuperorder = (props) => {
 
-    const {superOrder} = props;
-    const orderList = superOrder.orders.map((order) => <UserSuperordersOrders order ={order}/> );
+    const superorder = props.superorder;
+    console.log(superorder);
+    const keyId = "id";
+    const orderList = superorder.orders.map((order) => <UserSuperorderOrders order = {order} key = {order[keyId]} /> );
 
     return (
         <React.Fragment>
-            <h1>ID {superOrder.id}</h1>
-            <h1>Store URL {superOrder.storeURL}</h1>
-            <h1>Store Location {superOrder.storeLocation}</h1>
-            <h1>Deadline {superOrder.deadline}</h1>
-            <h1>Arrival Location {superOrder.arrivalLocation}</h1>
-            <h1>Available Dispatch {superOrder.availableDispatch}</h1>
-            <h1>Store Name {superOrder.storeName}</h1>
-            <h1>Tags {superOrder.tags}</h1>
-            <h1>Created At {superOrder.createdAt}</h1>
-            <h1>Is Deleted {superOrder.isDeleted}</h1>
+            <h1>ID {superorder.id}</h1>
+            <h1>Store URL {superorder.storeURL}</h1>
+            <h1>Store Location {superorder.storeLocation}</h1>
+            <h1>Deadline {superorder.deadline}</h1>
+            <h1>Arrival Location {superorder.arrivalLocation}</h1>
+            <h1>Available Dispatch {superorder.availableDispatch}</h1>
+            <h1>Store Name {superorder.storeName}</h1>
+            <h1>Tags {superorder.tags}</h1>
+            <h1>Created At {superorder.createdAt}</h1>
+            <h1>Is Deleted {superorder.isDeleted}</h1>
             {orderList}
         </React.Fragment>
     );

@@ -2,6 +2,7 @@ import * as React from 'react';
 import UserProfileContainer from './UserProfile/UserProfileContainer';
 import UserOrdersContainer from './UserOrders/UserOrdersContainer';
 import Navbar from '../../Components/Navbar';
+import UserSuperordersContainer from "./UserSuperorders/UserSuperordersContainer";
 
 const UserAccount = () => {
 	enum modes {
@@ -26,7 +27,7 @@ const UserAccount = () => {
 				cnt = <UserOrdersContainer/>;
 				break;
 			case modes.superorders:
-				cnt = <h1>superorders</h1>;
+				cnt = <UserSuperordersContainer/>;
 			default:
 				break;
 		}

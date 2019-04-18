@@ -1,10 +1,11 @@
 import * as React from "react";
 
-const UserSuperordersOrders = (props) => {
+const UserSuperorderOrders = (props) => {
 
     const {order} = props;
 
-    const items = order.orderItems.map((item) => <UserSuperordersOrdersOrderItem orderItem ={item}/> );
+    const keyId = "id";
+    const items = order.orderItems.map((item) => <UserSuperordersOrdersOrderItem orderItem ={item} key={item[keyId]}/> );
 
     return (
 
@@ -20,7 +21,7 @@ const UserSuperordersOrders = (props) => {
 
 };
 
-export default UserSuperordersOrders;
+export default UserSuperorderOrders;
 
 const UserSuperordersOrdersOrderItem = (props) => {
 
