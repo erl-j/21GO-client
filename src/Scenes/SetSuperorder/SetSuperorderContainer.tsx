@@ -1,6 +1,6 @@
 import * as React from 'react';
-import SuperorderEditable from 'src/Scenes/SetSuperorder/SuperorderEditable';
-import * as actions from 'src/Scenes/SetSuperorder/SetSuperorderActions';
+import SuperorderEditable from './SuperorderEditable';
+import * as actions from './SetSuperorderActions';
 import {connect} from "react-redux";
 
 interface ISetSuperorderContainerProps{
