@@ -7,6 +7,7 @@ import { connect } from 'react-redux';
 import * as actions from './CatalogActions';
 import Navbar from '../../Components/Navbar';
 import CatalogFilter from './CatalogFilter';
+import Loader from "../../Components/Loader";
 
 
 interface ICatalogContainerProps {
@@ -59,22 +60,32 @@ class CatalogContainer extends React.Component<RouteComponentProps & ICatalogCon
 
 	public render() {
 
+		let cont;
+
+		if(this.props.isLoading){
+			cont = <Loader/>;
+		}
+		else{
+			cont = this.props.searchResults.map(res => {
+				return (<SuperorderSummary
+					key={res.id}
+					{...res}
+					onClick={() => this.props.history.push('/setOrder/' + res.id)}
+				/>);
+			});
+		}
+
 		return (
 			<div className="catalog">
 				<Navbar isCatalog={true}/>
 				<CatalogFilter pushParam={p=>this.updateParams(p)}/>
 				<div className="catalog-content">
-					{this.props.searchResults.map(res => {
-						return (<SuperorderSummary
-							key={res.id}
-							{...res}
-							onClick={() => this.props.history.push('/setOrder/' + res.id)}
-						/>);
-					})}
-					<h1>{this.props.error}</h1>
+				{cont}
+				<h1>{this.props.error}</h1>
 				</div>
 			</div>
 		);
+
 	}
 }
 

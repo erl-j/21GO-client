@@ -2,6 +2,7 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import UserOrder from "./UserOrder";
 import * as actions from "../../UserAccount/UserOrders/UserOrdersActions";
+import Loader from "../UserSuperorders/UserSuperordersContainer";
 
 interface IUserOrdersContainerProps {
 	isLoading: boolean;
@@ -27,6 +28,10 @@ class UserOrdersContainer extends React.Component<IUserOrdersContainerProps>  {
 	}
 
 	public render() {
+		if(this.props.isLoading){
+			return <Loader/>;
+		}
+
 		const divStyle = {
 			margin: '40px',
 			border: '5px solid pink',

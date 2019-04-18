@@ -2,6 +2,7 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import UserSuperorder from "./UserSuperorder" ;
 import * as actions from "../../UserAccount/UserSuperorders/UserSuperordersActions";
+import Loader from "../../../Components/Loader";
 
 interface IUserSuperordersContainerProps {
 	isLoading: boolean;
@@ -27,6 +28,10 @@ class UserSuperordersContainer extends React.Component<IUserSuperordersContainer
 	}
 
 	public render() {
+
+    	if(this.props.isLoading){
+    		return <Loader/>;
+		}
 
 		const superorders = this.props.userSuperordersResults;
 		const idKey = "id";

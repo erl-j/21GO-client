@@ -5,10 +5,12 @@ import {connect} from "react-redux";
 import ItemForm from "./ItemForm";
 import Navbar from '../../Components/Navbar';
 import SuperorderInspect from "../../Superorder/SuperorderInspect";
+import Loader from "../../Components/Loader";
 
 const mapStateToProps=(state)=>({
     superorder:state.setOrder.attributes,
-    items:state.setOrder.items
+    items:state.setOrder.items,
+    isLoading: state.setOrder.loading
 });
 
 const mapDispatchToProps=(dispatch)=>({
@@ -20,7 +22,8 @@ interface ISetOrderContainerProps{
     superorder:any,
     getSuperorder:any,
     items:any,
-    postOrder:any
+    postOrder:any,
+    isLoading:boolean
 }
 
 class SetOrderContainer extends React.Component<RouteComponentProps & ISetOrderContainerProps> {
@@ -32,6 +35,16 @@ class SetOrderContainer extends React.Component<RouteComponentProps & ISetOrderC
   }
 
   public render() {
+
+      if(this.props.isLoading){
+
+          return (<div className="setOrder">
+                    <Navbar isCatalog={false} />
+                    <Loader/>
+                </div>);
+
+      }
+
         return (
             <div className="setOrder">
                 <Navbar isCatalog={false} />
