@@ -1,3 +1,10 @@
+## SETUP 
+
+- git clone https://github.com/erl-j/21GO-client.git
+- cd 21GO-client
+- npm install
+- npm start
+
 ## Our idea
     
 *21go* is a platform on which you can easily make group orders, called *super orders*, to existing web shops.
