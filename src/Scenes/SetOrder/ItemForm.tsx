@@ -22,15 +22,15 @@ const ItemForm = (props) => {
     const [amount,setAmount]=useState(amountIn)
 	return (
 		<React.Fragment>
-            <div>
-                url <input disabled={!isEditable} onChange={e => setUrl(e.target.value)}/>
-                details <input disabled={!isEditable} onChange={e => setDetails(e.target.value)}/>
-                amount <input disabled={!isEditable} onChange={e => setAmount(e.target.value)}/>
+            <div className="setOrder-form">
+                <input name="itemUrl" type="text" placeholder="Item Url" disabled={!isEditable} onChange={e => setUrl(e.target.value)}/>
+                <input name="itemDetail" type="text" placeholder="Details" disabled={!isEditable} onChange={e => setDetails(e.target.value)}/>
+                <input name="amount" type="number" min="1" value="1" disabled={!isEditable} onChange={e => setAmount(e.target.value)}/>
             </div>
-	
-			<button onClick={() => {
+
+			<button className="button2" onClick={() => {
 				setEditable(!isEditable)}}>{isEditable ? 'Seal' : 'Edit'}</button>
-			{!isEditable?<button onClick={()=>post({url,details,amount})}>Post</button>:""}
+			{!isEditable?<button className="button2" onClick={()=>post({url,details,amount})}>Post</button>:""}
 			{/* {isLoading?"LOADING":"NOT LOADING"}
 			{error?Object.keys(error).map(er=>error[er]):""} */}
 		</React.Fragment>
