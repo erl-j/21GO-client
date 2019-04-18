@@ -1,5 +1,5 @@
 import * as React from 'react';
-import * as actions from "src/Scenes/SetOrder/SetOrderActions";
+import * as actions from "./SetOrderActions";
 import {RouteComponentProps} from "react-router";
 import {connect} from "react-redux";
 import ItemForm from "./ItemForm";

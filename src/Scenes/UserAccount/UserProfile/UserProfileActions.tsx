@@ -1,6 +1,6 @@
 // import { BASE_URL } from '../../../constants/index';
-import { APICall,Method } from 'src/apiCall';
-import loadJwt from 'src/helpers/loadJwt';
+import { APICall,Method } from '../../../apiCall';
+import loadJwt from '../../../helpers/loadJwt';
 
 export const LOAD_USERNAME_SUCCESS = 'LOAD_USERNAME_SUCESS';
 export const FETCH_ACCOUNT_BEGIN = 'SEARCH_SUPERORDERS_BEGIN';
