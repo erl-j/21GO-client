@@ -35,7 +35,7 @@ const UserAccount = (props) => {
 		return cnt;
 	};
 
-	const button = 'button1 ';
+	const button = 'button3 ';
 	const modeKey = "mode";
 
 	const urlParam = props.match.params[modeKey];
@@ -56,20 +56,23 @@ const UserAccount = (props) => {
 	return (
 		<React.Fragment>
 			<Navbar isCatalog={false} />
-			{tabs.map(t => (
-				<button
-					key={t.title}
-					className={button + (mode === t.mode ? 'active' : '')}
-					onClick={e => {
-						setMode(t.mode);
-						props.history.push('/account/' + t.mode.toString());
-					}}
-				>
-					{t.title}
-				</button>
-			))}
-
+			<div className="account">
+				<div className="account-tab">
+					{tabs.map(t => (
+						<button
+							key={t.title}
+							className={button + (mode === t.mode ? 'active' : '')}
+							onClick={e => {
+								setMode(t.mode);
+								props.history.push('/account/' + t.mode.toString());
+							}}
+						>
+							{t.title}
+						</button>
+					))}
+				</div>
 			{displayTab(mode)}
+			</div>
 		</React.Fragment>
 	);
 };
