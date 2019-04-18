@@ -1,26 +1,24 @@
 import * as React from "react";
 import UserUploadedImage from "../../../Components/UserUploadedImage";
 
-const UserProfile = (props)=>{
+const UserProfile = (props) => {
 
-    const {username,email,phoneNumber,address}=props;
+    const {user} = props;
 
     return (
         <React.Fragment>
-            <div>
-            <span className="label">Username</span>
-            <br/>
-            {username}
-            </div>
-            
-            <h1>Email{email}</h1>
-            <h1>Phone{phoneNumber}</h1>
-            <h1>Address{address}</h1>
-            <UserUploadedImage url="http://hdwpro.com/wp-content/uploads/2016/08/Animal-Crazy-Funny-Pics.jpg"/>
+
+            <h1>Username {user.username}</h1>
+            <h1>First Name {user.firstName}</h1>
+            <h1>Last Name {user.lastName}</h1>
+            <h1>Email {user.email}</h1>
+            <h1>Phone {user.phone}</h1>
+            <h1>Location {user.location}</h1>
+            <UserUploadedImage url={user.imageUrl}/>
+
         </React.Fragment>
     );
 
-
-}
+};
 
 export default UserProfile;

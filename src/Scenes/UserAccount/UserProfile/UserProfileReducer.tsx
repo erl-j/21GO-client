@@ -1,13 +1,20 @@
-import {LOAD_USERNAME_SUCCESS} from './UserProfileActions';
+import { FETCH_ACCOUNT_BEGIN, FETCH_ACCOUNT_SUCCESS, FETCH_ACCOUNT_FAILURE } from './UserProfileActions';
 
 const initialState = {
-	username:"none"
+	results: [],
+	loading: false,
+	error: null,
 };
 
-export default function UserProfileReducer(state = initialState, action: any) {
+export default function userOrdersReducer(state = initialState, action: any) {
 	switch (action.type) {
-        case LOAD_USERNAME_SUCCESS:
-            return {...state,username:action.payload.username};
+		case FETCH_ACCOUNT_BEGIN:
+			return {...state, error: null, loading: true, results:[]};
+		case FETCH_ACCOUNT_FAILURE:
+			console.log(action.payload.error);
+			return {...state, loading: false, error: action.payload.error};
+		case FETCH_ACCOUNT_SUCCESS:
+			return {...state, loading: false, results: action.payload.results};
 		default:
 			return state;
 	}
