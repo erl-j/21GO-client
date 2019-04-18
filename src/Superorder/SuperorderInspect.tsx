@@ -1,6 +1,4 @@
 import * as React from 'react';
-import im from './im1.jpg';
-import avatar from '../img/user1.jpg';
 import emailIcon from '../img/icons/email.svg';
 import boxIcon from '../img/icons/box.svg';
 
@@ -13,13 +11,13 @@ const SuperorderInspect = ({superorder}) => {
 	}
 
 	return (<div className="superorder">
-				<img className="superorder-img" src={im} alt="Superorder image" />
+				<img className="superorder-img" src={superorder.imageUrl} alt="Superorder image" />
 				<div className="superorder-info">
 					<h3 className="bold">
 						<span className="uppercase">{superorder.storeName}</span>
 						{", " + superorder.storeLocation}
 					</h3>
-					<img className="avatar" src={avatar} alt="avatar"/>
+					<img className="avatar" src={superorder.user.imageUrl} alt="avatar"/>
 					{/* <img src={superorder.user.imageUrl} alt="avatar"/>*/}
 					<img className="emailIcon" src={emailIcon} alt="Email" /><br />
 					<span>Initiated by {superorder.user.firstName + " " + superorder.user.lastName}</span><br />

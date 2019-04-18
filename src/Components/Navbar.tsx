@@ -44,9 +44,9 @@ const Navbar = ({isCatalog}) => {
       <div className={visible ? "nav-account visible" : "nav-account"}>
         <h3>Hi, Alex!</h3>
         <ul>
-          <li><a href="/account">Profile</a></li>
-          <li><a href="/account">Orders</a></li>
-          <li><a href="/account">Superorders</a></li>
+          <li><a href="/account/profile">Profile</a></li>
+          <li><a href="/account/orders">Orders</a></li>
+          <li><a href="/account/superorders">Superorders</a></li>
         </ul>
       </div>
     </div>

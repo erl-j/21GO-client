@@ -18,7 +18,7 @@ class App extends React.Component {
 				{/*<Route path="/signUp" component={SignUpContainer} />*/}
 				<Route path="/setOrder/:id" render={props => <SetOrderContainer {...props} />} />
 				<Route path="/setSuperorder" component={SetSuperorderContainer} />
-				<Route path="/account" component={UserAccount}/>
+				<Route path="/account/:mode" render={props => <UserAccount {...props} />} />
 			</React.Fragment>
 		);
 	}

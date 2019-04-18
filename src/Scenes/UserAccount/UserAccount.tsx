@@ -5,29 +5,29 @@ import Navbar from '../../Components/Navbar';
 import UserSuperordersContainer from "./UserSuperorders/UserSuperordersContainer";
 
 
-const UserAccount = () => {
-	enum modes {
-		account,
-		orders,
-		superorders,
+const UserAccount = (props) => {
+	enum Mode {
+		PROFILE = "profile",
+		ORDERS = "orders",
+		SUPERORDERS = "superorders",
 	}
 
 	const tabs = [
-		{ title: 'My Profile', mode: modes.account },
-		{ title: 'My Orders', mode: modes.orders },
-		{ title: 'My Superorders', mode: modes.superorders },
+		{ title: 'My Profile', mode: Mode.PROFILE },
+		{ title: 'My Orders', mode: Mode.ORDERS },
+		{ title: 'My Superorders', mode: Mode.SUPERORDERS },
 	];
 
 	const displayTab = currentMode => {
 		let cnt = <span />;
 		switch (currentMode) {
-			case modes.account:
+			case Mode.PROFILE:
 				cnt = <UserProfileContainer />;
 				break;
-			case modes.orders:
+			case Mode.ORDERS:
 				cnt = <UserOrdersContainer/>;
 				break;
-			case modes.superorders:
+			case Mode.SUPERORDERS:
 				cnt = <UserSuperordersContainer/>;
 			default:
 				break;
@@ -36,7 +36,22 @@ const UserAccount = () => {
 	};
 
 	const button = 'button1 ';
-	const [mode, setMode] = React.useState(modes.account);
+	const modeKey = "mode";
+
+	const urlParam = props.match.params[modeKey];
+	let el: Mode = Mode.PROFILE;
+
+	switch(urlParam){
+		case "orders":
+			el = Mode.ORDERS;
+			break;
+		case "superorders":
+			el = Mode.SUPERORDERS;
+			break;
+		default: el = Mode.PROFILE;
+	} //ugly but Mode[urlParam] doesn't work..
+
+	const [mode, setMode] = React.useState(el);
 
 	return (
 		<React.Fragment>
@@ -45,7 +60,10 @@ const UserAccount = () => {
 				<button
 					key={t.title}
 					className={button + (mode === t.mode ? 'active' : '')}
-					onClick={e => setMode(t.mode)}
+					onClick={e => {
+						setMode(t.mode);
+						props.history.push('/account/' + t.mode.toString());
+					}}
 				>
 					{t.title}
 				</button>

@@ -1,14 +1,10 @@
 import * as React from 'react';
-// import { Redirect } from 'react-router';
-// import { useState } from 'react';
-import im from './im1.jpg';
 import boxIcon from '../img/icons/box.svg';
-import avatar from '../img/user1.jpg';
 
 const SuperorderSummary = props => {
 	return (
 		<div className="catalog-superorder" onClick={props.onClick}>
-			<img className="catalog-superorder-img" src={im} alt="Card image cap" />
+			<img className="catalog-superorder-img" src={props.imageUrl} alt="Card image cap" />
 			<div className="catalog-superorder-store">
 				<span className="bold uppercase">{props.storeName}</span>
 				<span className="uppercase">{props.storeLocation.substr(0,2)}</span>
@@ -23,8 +19,7 @@ const SuperorderSummary = props => {
 				</span>
 			</div>
 			<div className="catalog-superorder-user">
-				<img className="avatar" src={avatar} alt="avatar"/>
-				{/* <img src={props.user.imageUrl} alt="avatar"/>*/}
+				<img className="avatar" src={props.user.imageUrl} alt="avatar"/>
 				<span>{props.user.firstName + " " + props.user.lastName}</span>
 			</div>
 			{/* <ul>

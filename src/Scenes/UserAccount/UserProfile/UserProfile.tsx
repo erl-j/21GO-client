@@ -15,7 +15,6 @@ const UserProfile = (props) => {
             <h1>Phone {user.phone}</h1>
             <h1>Location {user.location}</h1>
             <UserUploadedImage url={user.imageUrl}/>
-
         </React.Fragment>
     );
 
