@@ -3,6 +3,7 @@ import * as actions from "src/Scenes/SetOrder/SetOrderActions";
 import {RouteComponentProps} from "react-router";
 import {connect} from "react-redux";
 import ItemForm from "./ItemForm";
+import Navbar from '../../Components/Navbar';
 import SuperorderInspect from "../../Superorder/SuperorderInspect";
 
 const mapStateToProps=(state)=>(
@@ -21,22 +22,23 @@ interface ISetOrderContainerProps{
 }
 
 class SetOrderContainer extends React.Component<RouteComponentProps & ISetOrderContainerProps> {
-    public componentDidMount(){
-        const {id}:any=this.props.match.params;
-        this.props.getSuperorder(id);
-    }
+  public componentDidMount(){
+      const {id}:any=this.props.match.params;
+      this.props.getSuperorder(id);
+  }
 	public render() {
-        // This next line is a hack. I am unable to properly type this.props.match so this will have to do.
-        return(
-		<div className="row">
-			<div>
-            <SuperorderInspect superorder={this.props.superorder}/>
-            {this.props.items.map((attributes,idx)=>
-            <ItemForm key={idx} itemAttributes={attributes} post={e=>console.log("post order with attributes:"+e)}/> )}
-            <ItemForm key={-1} post={e=>console.log("post order with attributes"+e)}/>
-            </div>
+    // This next line is a hack. I am unable to properly type this.props.match so this will have to do.
+    return(
+  		<div className="setOrder">
+        <Navbar isCatalog={false} />
+  			<div>
+          <SuperorderInspect {...this.props.superorder}/>
+          {this.props.items.map((attributes,idx)=>
+          <ItemForm key={idx} itemAttributes={attributes} post={e=>console.log("post order with attributes:"+e)}/> )}
+          <ItemForm key={-1} post={e=>console.log("post order with attributes"+e)}/>
         </div>
-        );
+      </div>
+    );
 	}
 }
 

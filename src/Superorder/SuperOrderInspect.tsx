@@ -1,16 +1,23 @@
 import * as React from 'react';
+import im from './im1.jpg';
 
 const SuperorderInspect = (props) => {
-	console.log(props)
-	
 	let display;
-	if(props.superorder){
-		const superorder=props.superorder;
-		display=(<ul>
-			{Object.keys(superorder).map(ent=>
-				<li key={ent}>{ent+":"+superorder[ent]}</li>
-				)}
-		</ul>)
+	if(props){
+		display=(
+			<div className="superorder">
+				<img src={im} alt="Superorder image" />
+				<div className="superorder-info">
+	
+					<ul>
+						{
+							Object.keys(props).map(ent=>
+							<li key={ent}>{ent+":"+props[ent]}</li>
+						)}
+					</ul>
+				</div>
+			</div>
+		)
 	}
 	else{
 		display="";

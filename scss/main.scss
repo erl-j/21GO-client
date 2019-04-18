@@ -176,6 +176,10 @@ body {
 }
 
 .navbar {
+  &.border {
+    border-bottom: 1px solid #D8D8D8;
+  }
+
   padding: 1.5rem 2rem 0.5rem 2rem;
   background: #fff;
 
@@ -507,6 +511,25 @@ body {
   }
 }
 
+.setOrder {
+  background: #f8f8f8;
+  min-height: 100vh;
+
+  .superorder {
+    box-sizing: border-box;
+    padding: 2rem;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+
+    img {
+      width: 36rem;
+      height: 27rem;
+      object-fit: cover;
+      margin: 0 4rem;
+    }
+  }
+}
 
 @keyframes logoAnimation {
   to {
