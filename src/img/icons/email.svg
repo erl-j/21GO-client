@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="47px" height="35px" viewBox="0 0 47 35" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 53.2 (72643) - https://sketchapp.com -->
+    <title>Shape</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Super-order---join" transform="translate(-956.000000, -240.000000)" fill="#233142" fill-rule="nonzero">
+            <g id="Super-order-contents" transform="translate(116.000000, 141.000000)">
+                <path d="M884.0625,99 L842.9375,99 C841.315164,99 840,100.305836 840,101.916667 L840,131.083333 C840,132.694164 841.315164,134 842.9375,134 L884.0625,134 C885.684836,134 887,132.694164 887,131.083333 L887,101.916667 C887,100.305836 885.684836,99 884.0625,99 Z M884,102 L884,103.85522 L864,119 L844,103.85522 L844,102 L884,102 Z M844,131 L844,108 L862.346333,121.708471 C863.371043,122.474031 864.628957,122.474031 865.653667,121.708471 L884,108 L884,131 L844,131 Z" id="Shape"></path>
+            </g>
+        </g>
+    </g>
+</svg>

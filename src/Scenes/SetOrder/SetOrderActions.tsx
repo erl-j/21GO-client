@@ -1,4 +1,3 @@
-import { BASE_URL } from '../../constants/index';
 import loadJwt from '../../helpers/loadJwt';
 import {APICall, Method} from "../../apiCall";
 
@@ -31,24 +30,10 @@ export function getSuperorder(id) {
 	console.log('got id ' + id);
 	return (dispatch: any) => {
 		dispatch(getSuperorderBegin());
-		return fetch(BASE_URL + '/superOrder/' + id, {
-			method: 'GET',
-			mode: 'cors', // no-cors, cors, *same-origin
-			cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
-			credentials: 'same-origin', // include, *same-origin, omit
-			headers: {
-				'Content-Type': 'application/json',
-				// "Content-Type": "application/x-www-form-urlencoded",
-			},
-			redirect: 'follow', // manual, *follow, error
-			referrer: 'no-referrer', // no-referrer, *client,
-		})
-			.then(handleErrors)
-			.then(res => res.json())
-			.then(json => {
-				dispatch(getSuperorderSuccess(json));
-				console.log(json);
-				return json;
+		return APICall(Method.GET, '/superOrder/' + id, null, loadJwt())
+			.then(obj => {
+				dispatch(getSuperorderSuccess(obj));
+				return obj;
 			})
 			.catch(error => dispatch(getSuperorderFailure(error)));
 	};
@@ -75,7 +60,7 @@ export const postOrderFailure = (error: any,details:any) => ({
 
 export function postOrder(id,attributes) {
 
-	attributes={ 
+	attributes = {
 		"superOrderId": id,
 		"dispatch": "PICKUP",
 		"items": [
@@ -99,39 +84,13 @@ export function postOrder(id,attributes) {
 	};
 }
 
-// Handle HTTP errors since fetch won't.
-function handleErrors(response: any) {
-
-	
-	if (!response.ok) {
-		throw Error(response.statusText);
-	}
-	return response;
-}
-
-
-
 export function editOrder(id,attributes) {
 	console.log('got attributes ' + attributes);
 	return (dispatch: any) => {
 		dispatch(setLocalOrder(attributes));
 		dispatch(postOrderBegin());
-		return fetch(BASE_URL + '/superOrder/', {
-			method: 'POST',
-			mode: 'cors', // no-cors, cors, *same-origin
-			cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
-			credentials: 'same-origin', // include, *same-origin, omit
-			headers: {
-				'Content-Type': 'application/json',
-				auth: loadJwt(),
-				// "Content-Type": "application/x-www-form-urlencoded",
-			},
-			redirect: 'follow', // manual, *follow, error
-			referrer: 'no-referrer', // no-referrer, *client,
-			body: JSON.stringify(attributes),
-		})
-			.then(handleErrors)
-			.then(res => res.json())
+
+		return APICall(Method.POST, '/superOrder',attributes,loadJwt())
 			.then(json => {
 				dispatch(postOrderSuccess(json.id));
 				console.log(json.id);
