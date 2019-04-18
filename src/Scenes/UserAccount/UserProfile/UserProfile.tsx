@@ -1,8 +1,8 @@
 import * as React from "react";
-import UserUploadedImage from "../../../Components/UserUploadedImage";
 import {uploadImage} from "../../../helpers/uploadImage";
 import {APICall, Method} from "../../../apiCall";
 import loadJwt from "../../../helpers/loadJwt";
+import ImageSelector from "../../../Components/ImageSelector";
 
 const UserProfile = (props) => {
 
@@ -29,7 +29,7 @@ const UserProfile = (props) => {
             <img src={user.imageUrl} alt="Avatar" />
           </div>
         </div>
-          <UserUploadedImage url={user.imageUrl} uploadHandler={uploadHandler}/>
+          <ImageSelector clickHandler={uploadHandler}/>
 
       </React.Fragment>
     );
