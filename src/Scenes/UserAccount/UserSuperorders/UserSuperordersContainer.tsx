@@ -5,7 +5,7 @@ import * as actions from "../../UserAccount/UserSuperorders/UserSuperordersActio
 
 interface IUserSuperordersContainerProps {
 	isLoading: boolean;
-	searchSuperorders: any;
+	getUserSuperorders: any;
 	userSuperordersResults: any;
 	error: any;
 }
@@ -23,14 +23,23 @@ const mapDispatchToProps = dispatch => ({
 class UserSuperordersContainer extends React.Component<IUserSuperordersContainerProps> {
     
     public componentDidMount(){
-
-    }
+		this.props.getUserSuperorders();
+	}
 
 	public render() {
 
-    	const list = this.props.userSuperordersResults.map((superorder) => <UserSuperorder superOrder={{superorder}} />);
+    	console.log(this.props.userSuperordersResults);
+		const superorders = this.props.userSuperordersResults;
+		const idKey = "id";
+
+		const list = Object.keys(superorders).map(key =>
+			(<UserSuperorder key={superorders[key][idKey]} superorder = {superorders[key]} />)
+		);
+
 		return (
-			{list}
+			<React.Fragment>
+				{list}
+			</React.Fragment>
 		);
 	}
 }
