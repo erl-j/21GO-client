@@ -27,7 +27,7 @@ export default function setOrderReducer(state = initialState, action: any) {
 			return {
 				...state,
 				loading: false,
-				attributes: action.payload.result,
+				attributes: action.payload.result.superOrder,
 				isRemote: true,
 				id: action.payload.result.id,
 			};

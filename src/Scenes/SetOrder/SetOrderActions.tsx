@@ -13,7 +13,7 @@ export const POST_ORDER_SUCCESS = 'POST_ORDER_SUCCESS';
 export const SET_LOCAL_ORDER = 'SET_LOCAL_ORDER';
 
 export const getSuperorderBegin = () => ({
-	type: GET_SUPERORDER_BEGIN,
+	type: GET_SUPERORDER_BEGIN
 });
 
 export const getSuperorderSuccess = result => ({
@@ -77,14 +77,14 @@ export function postOrder(attributes) {
 	return (dispatch: any) => {
 		dispatch(setLocalOrder(attributes));
 		dispatch(postOrderBegin());
-		return fetch(BASE_URL + '/superOrder/order', {
+		return fetch(BASE_URL + 'order', {
 			method: 'POST',
 			mode: 'cors', // no-cors, cors, *same-origin
 			cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
 			credentials: 'same-origin', // include, *same-origin, omit
 			headers: {
 				'Content-Type': 'application/json',
-				auth: loadJwt(),
+				Authorization: loadJwt(),
 				// "Content-Type": "application/x-www-form-urlencoded",
 			},
 			redirect: 'follow', // manual, *follow, error

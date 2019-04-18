@@ -30,7 +30,7 @@ class SetOrderContainer extends React.Component<RouteComponentProps & ISetOrderC
         return(
 		<div className="row">
 			<div>
-            <SuperorderInspect {...this.props.superorder}/>
+            <SuperorderInspect superorder={this.props.superorder}/>
             {this.props.items.map((attributes,idx)=>
             <ItemForm key={idx} itemAttributes={attributes} post={e=>console.log("post order with attributes:"+e)}/> )}
             <ItemForm key={-1} post={e=>console.log("post order with attributes"+e)}/>
