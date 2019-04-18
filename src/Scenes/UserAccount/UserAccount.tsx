@@ -49,7 +49,7 @@ const UserAccount = (props) => {
 			el = Mode.SUPERORDERS;
 			break;
 		default: el = Mode.PROFILE;
-	} //ugly but Mode[urlParam] doesn't work..
+	} // ugly but Mode[urlParam] doesn't work..
 
 	const [mode, setMode] = React.useState(el);
 

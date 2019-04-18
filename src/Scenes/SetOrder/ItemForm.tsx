@@ -25,7 +25,7 @@ const ItemForm = (props) => {
             <div className="setOrder-form">
                 <input name="itemUrl" type="text" placeholder="Item Url" disabled={!isEditable} onChange={e => setUrl(e.target.value)}/>
                 <input name="itemDetail" type="text" placeholder="Details" disabled={!isEditable} onChange={e => setDetails(e.target.value)}/>
-                <input name="amount" type="number" min="1" value="1" disabled={!isEditable} onChange={e => setAmount(e.target.value)}/>
+                <input name="amount" type="number" min="1" value={amount} disabled={!isEditable} onChange={e => setAmount(e.target.value)}/>
             </div>
 
 			<button className="button2" onClick={() => {
