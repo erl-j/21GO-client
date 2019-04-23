@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { useState } from 'react';
-import locationIcon from '../../img/icons/location.svg';
 import parcelIcon from '../../img/icons/addParcel.svg';
 import dropdownIcon from '../../img/icons/dropdown.svg';
 import Tag from './Tag';
@@ -28,7 +27,7 @@ const CatalogFilter = ({pushParam}) => {
 
   const handleInputTagChange = event => {
     setInputTag(event.target.value);
-    
+
   }
 
   const handleKeyPress = event => {
@@ -54,6 +53,10 @@ const CatalogFilter = ({pushParam}) => {
     }
   }
 
+  const handleAddSuperorder = event => {
+    console.log("Add superorder!");
+  }
+
   return (
     <div className="filter">
       <div className="filter-content">
@@ -71,8 +74,7 @@ const CatalogFilter = ({pushParam}) => {
           </span>
         </div>
         <div className="box2">
-          <img src={locationIcon} alt="Location" />
-          <img src={parcelIcon} alt="AddParcel" />
+          <img src={parcelIcon} alt="AddParcel" onClick={handleAddSuperorder} />
         </div>
       </div>
       <div className={visible ? "tags_master visible" : "tags_master"}>
