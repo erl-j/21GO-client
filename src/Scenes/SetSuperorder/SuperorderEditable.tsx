@@ -2,6 +2,7 @@ import { useState } from 'react';
 import * as React from 'react';
 import Loader from '../../Components/Loader';
 import closeIcon from '../../img/icons/close.svg';
+import Tag from '../../Components/Tag';
 
 const SuperorderEditable = ({attributes,isLoading,error,post}) => {
 	// const { id, storeURL, storeLocation, deadline, arrivalLocation, availableDispatch, tags } = props;
@@ -10,9 +11,31 @@ const SuperorderEditable = ({attributes,isLoading,error,post}) => {
 	const [params, setParams] = useState(
 		attributes
 	);
+	const [inputTag, setInputTag] = useState('');
+  const array: string[] = [];
+  const [tags, setTags] = useState(array);
 
 	const handleCloseClick = event => {
 		console.log("Close setSuperorder!");
+	}
+
+	const handleInputTagChange = event => {
+    setInputTag(event.target.value);
+  }
+
+	const handleKeyPress = event => {
+		if(event.key === 'Enter') {
+			setTags(tags.concat(inputTag));
+			setParams({...params, tags: [...tags, inputTag]});
+			setInputTag('');
+		}
+	}
+
+	const handleTagDelete = (index) => {
+		const newTags = Object.assign([], tags);
+		newTags.splice(index, 1);
+		setTags(newTags);
+		setParams({...params, tags:[...newTags]});
 	}
 
 	let content;
@@ -39,8 +62,15 @@ const SuperorderEditable = ({attributes,isLoading,error,post}) => {
 											<input name="deadline" type="date" onChange={e => setParams({...params, deadline: e.target.value})} value={params.deadline} />
 											<br />
 											<h4>Tags</h4>
-											<textarea name="tags" onChange={e => setParams({...params, tags: e.target.value})} value={params.tags} />
-											<br />
+											<div className="tags_master">
+								        <div className="tags clearfix">
+								          {tags.map((tag, index) => <Tag key={index} tag={tag} index={index} onDeleteClick={handleTagDelete}/>)}
+								        </div>
+								        <div className="tags_input">
+								          <input type="text" value={inputTag} onChange={handleInputTagChange} onKeyPress={handleKeyPress} autoFocus={true} placeholder="add..." />
+								        </div>
+								      </div>
+
 										</div>
 									</div>
 								</fieldset>

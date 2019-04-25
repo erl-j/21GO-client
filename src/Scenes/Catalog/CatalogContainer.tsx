@@ -42,7 +42,7 @@ class CatalogContainer extends React.Component<RouteComponentProps & ICatalogCon
 	public componentDidMount() {
 		let queryParameters = queryString.parse(this.props.location.pathname.substring("/catalog/".length));
 		console.log(queryParameters);
-		if(Object.keys(queryParameters).length===0){
+		if(Object.keys(queryParameters).length === 0){
 			queryParameters=this.state;
 			console.log(queryParameters);
 		}

@@ -4,6 +4,8 @@ $secondary-color: #facf5a;
 $logo: url(../img/logo.png);
 $welcome-bg: url(../img/welcome-bg.png);
 
+@import url('https://fonts.googleapis.com/css?family=Raleway:200,400,500,600');
+
 @mixin easeOut {
   transition: all 0.5s ease-out;
 }

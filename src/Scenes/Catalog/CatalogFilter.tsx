@@ -2,7 +2,7 @@ import * as React from 'react';
 import { useState } from 'react';
 import parcelIcon from '../../img/icons/addParcel.svg';
 import dropdownIcon from '../../img/icons/dropdown.svg';
-import Tag from './Tag';
+import Tag from '../../Components/Tag';
 
 const CatalogFilter = ({pushParam}) => {
 
@@ -27,7 +27,6 @@ const CatalogFilter = ({pushParam}) => {
 
   const handleInputTagChange = event => {
     setInputTag(event.target.value);
-
   }
 
   const handleKeyPress = event => {
