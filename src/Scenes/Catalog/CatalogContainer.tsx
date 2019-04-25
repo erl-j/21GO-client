@@ -3,6 +3,7 @@ import { RouteComponentProps} from 'react-router';
 // import {Link} from "react-router-dom"
 import * as queryString from 'query-string';
 import SuperorderSummary from '../../Superorder/SuperorderSummary';
+import SetSuperorderContainer from '../SetSuperorder/SetSuperorderContainer';
 import { connect } from 'react-redux';
 import * as actions from './CatalogActions';
 import Navbar from '../../Components/Navbar';
@@ -40,8 +41,10 @@ class CatalogContainer extends React.Component<RouteComponentProps & ICatalogCon
 
 	public componentDidMount() {
 		let queryParameters = queryString.parse(this.props.location.pathname.substring("/catalog/".length));
-		if(Object.keys(queryParameters).length===0){
+		console.log(queryParameters);
+		if(Object.keys(queryParameters).length === 0){
 			queryParameters=this.state;
+			console.log(queryParameters);
 		}
 		this.setState(queryParameters);
 		this.props.searchSuperorders(queryParameters);
@@ -80,8 +83,10 @@ class CatalogContainer extends React.Component<RouteComponentProps & ICatalogCon
 				<Navbar isCatalog={true}/>
 				<CatalogFilter pushParam={p=>this.updateParams(p)}/>
 				<div className="catalog-content">
-				{cont}
-				<h1>{this.props.error}</h1>
+					{/*this.state.setSuperorder ? <SetSuperorderContainer /> : ""*/}
+					<SetSuperorderContainer />
+					<div className="catalog-content-superorders">{cont}</div>
+					<h1>{this.props.error}</h1>
 				</div>
 			</div>
 		);

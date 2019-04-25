@@ -15,8 +15,6 @@ const SignIn = ({ onSignInPressed, isLoading, error}) => {
 								<br />
 								<input name="password" type="password" placeholder="Password" onChange={e => setPassword(e.target.value)} />
 								<br />
-								<a href="#!">Forgot your password?</a>
-								<br />
 								<input className="button2" type="submit" value="Enter" />
 							</form>;
 	}

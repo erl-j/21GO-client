@@ -1,5 +1,5 @@
 import * as React from 'react';
-import deleteIcon from '../../img/icons/cross_white.svg';
+import deleteIcon from '../img/icons/cross_white.svg';
 
 const Tag = ({tag, index, onDeleteClick}) => {
   const handleClick = () => {

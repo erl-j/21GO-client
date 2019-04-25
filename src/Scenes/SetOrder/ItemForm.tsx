@@ -25,11 +25,14 @@ const ItemForm = (props) => {
             <div className="setOrder-form">
                 <input name="itemUrl" type="text" placeholder="Item Url" disabled={!isEditable} onChange={e => setUrl(e.target.value)}/>
                 <input name="itemDetail" type="text" placeholder="Details" disabled={!isEditable} onChange={e => setDetails(e.target.value)}/>
-                <input name="amount" type="number" min="1" value={amount} disabled={!isEditable} onChange={e => setAmount(e.target.value)}/>
+                <div className="quantity">
+                  <input name="amount" type="number" min="1" value={amount} disabled={!isEditable} onChange={e => setAmount(e.target.value)}/>
+                  <div className="quantity-nav"><div className="quantity-button quantity-up">+</div><div className="quantity-button quantity-down">-</div></div>
+                </div>
             </div>
 
 			<button className="button2" onClick={() => {
-				setEditable(!isEditable)}}>{isEditable ? 'Seal' : 'Edit'}</button>
+				setEditable(!isEditable)}}>{isEditable ? 'Confirm' : 'Edit'}</button>
 			{!isEditable?<button className="button2" onClick={()=>post({url,details,amount})}>Post</button>:""}
 			{/* {isLoading?"LOADING":"NOT LOADING"}
 			{error?Object.keys(error).map(er=>error[er]):""} */}
