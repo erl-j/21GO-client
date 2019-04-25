@@ -15,7 +15,8 @@ const initialState = {
 	error: null,
 	isRemote: false,
 	id: null,
-	validationDetails:null
+	validationDetails:null,
+	attributes:{}
 };
 export default function setOrderReducer(state = initialState, action: any) {
 	switch (action.type) {
