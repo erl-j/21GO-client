@@ -15,6 +15,7 @@ const ValidatedInput = ({name, onChange, validator}) => {
     ) : (
       <input name={name} type="text" placeholder={name} onChange={handleChange}/>
     )}
+    <br/>
 		<span>{validationMessage}</span>
 	</React.Fragment>)
 }
