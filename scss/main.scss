@@ -77,7 +77,7 @@ body {
 }
 
 .error {
-  color: #ff5959;
+  color: $error-color;
 }
 
 .uppercase {
@@ -217,7 +217,7 @@ body {
 
 .navbar {
   &.border {
-    border-bottom: 1px solid #D8D8D8;
+    border-bottom: 1px solid $light-grey;
   }
 
   padding: 1.5rem 2rem 0.5rem 2rem;
@@ -309,7 +309,7 @@ body {
 .filter {
   padding: 0 2rem 1rem 2rem;
   background: #fff;
-  border-bottom: 1px solid #D8D8D8;
+  border-bottom: 1px solid $light-grey;
 
   img {
     margin: 0 0.6rem;
@@ -485,7 +485,7 @@ body {
     margin-right: auto;
     box-sizing: border-box;
     padding: 3rem 2rem;
-    border: #D8D8D8 1px solid;
+    border: $light-grey 1px solid;
     background: #fff;
     position: relative;
 
@@ -529,6 +529,68 @@ body {
       text-align: right;
     }
 
+    .checkbox-container {
+      display: block;
+      position: relative;
+      padding-left: 1.5rem;
+      margin-bottom: 0.5rem;
+      cursor: pointer;
+      font-size: 1.2rem;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+
+      &:hover input[type=checkbox] ~ .checkmark {
+        border: 1px solid $primary-color;
+        // background-color: $dark-grey;
+      }
+
+      input[type=checkbox] {
+        position: absolute;
+        opacity: 0;
+        cursor: pointer;
+        height: 0;
+        width: 0;
+
+        &:checked ~ .checkmark {
+          // background-color: $primary-color;
+          background-color: #fff;
+          &:after {
+            display: block;
+          }
+        }
+      }
+      .checkmark {
+        position: absolute;
+        bottom: 0.2rem;
+        left: 0;
+        height: 1.2rem;
+        width: 1.2rem;
+        background-color: $light-grey;
+
+        &:after {
+          content: "";
+          position: absolute;
+          display: none;
+        }
+
+        &:after {
+          left: 0.4rem;
+          top: 0.1rem;
+          width: 0.3rem;
+          height: 0.8rem;
+          // border: solid white;
+          border: solid $primary-color;
+          border-width: 0 2px 2px 0;
+          -webkit-transform: rotate(45deg);
+          -ms-transform: rotate(45deg);
+          transform: rotate(45deg);
+        }
+      }
+    }
+
+
     input[type=text] {
       width: 15rem;
       padding: 0.6rem 1.3rem;
@@ -557,10 +619,10 @@ body {
     textarea {
       width: 15rem;
       height: 8rem;
-      border: #D8D8D8 1px solid;
+      border: $light-grey 1px solid;
     }
 
-    h4 {
+    h3 {
       margin-top: 1.5rem;
       margin-bottom: 0.5rem;
     }
@@ -568,7 +630,7 @@ body {
     .tags_master {
       width: 15rem;
       height: 8rem;
-      border: #D8D8D8 1px solid;
+      border: $light-grey 1px solid;
       padding: 0.5rem;
       margin-right: 0;
       margin-left: auto;

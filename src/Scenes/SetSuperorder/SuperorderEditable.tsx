@@ -6,6 +6,7 @@ import Tag from '../../Components/Tag';
 
 const SuperorderEditable = ({attributes,isLoading,error,post,goBack}) => {
 	// const { id, storeURL, storeLocation, deadline, arrivalLocation, availableDispatch, tags } = props;
+	const dispatchModes = ["NEITHER", "PICKUP", "DELIVERY", "BOTH"];
 
 	const [isEditable, setEditable] = useState(true);
 	const [params, setParams] = useState(
@@ -14,6 +15,9 @@ const SuperorderEditable = ({attributes,isLoading,error,post,goBack}) => {
 	const [inputTag, setInputTag] = useState('');
   const array: string[] = [];
   const [tags, setTags] = useState(array);
+	const [availableDispatch, setAvailableDispatch] = useState(1);
+	const [isPickup, setIsPickup] = useState(true);
+	const [isDelivery, setIsDelivery] = useState(false);
 
 
 	const handleInputTagChange = event => {
@@ -35,6 +39,30 @@ const SuperorderEditable = ({attributes,isLoading,error,post,goBack}) => {
 		setParams({...params, tags:[...newTags]});
 	}
 
+	const handlePickupChange = event => {
+		let currentDispatch = availableDispatch;
+		if(isPickup) {
+			currentDispatch -= 1;
+		} else {
+			currentDispatch += 1;
+		}
+		setIsPickup(!isPickup);
+		setParams({...params, availableDispatch: dispatchModes[currentDispatch]});
+		setAvailableDispatch(currentDispatch);
+	}
+
+	const handleDeliveryChange = event => {
+		let currentDispatch = availableDispatch;
+		if(isDelivery) {
+			currentDispatch -= 2;
+		} else {
+			currentDispatch += 2;
+		}
+		setIsDelivery(!isDelivery);
+		setParams({...params, availableDispatch: dispatchModes[currentDispatch]});
+		setAvailableDispatch(currentDispatch);
+	}
+
 	let content;
 	if(isLoading) {
 		content = <Loader />;
@@ -51,14 +79,25 @@ const SuperorderEditable = ({attributes,isLoading,error,post,goBack}) => {
 											<br />
 											<input name="arrivalLocation" type="text" placeholder="arrival location" onChange={e => setParams({...params, arrivalLocation: e.target.value})} value={params.arrivalLocation} />
 											<br />
-											<input name="availableDispatch" type="text" placeholder="dispatch mode" onChange={e => setParams({...params, availableDispatch: e.target.value})} value={params.availableDispatch} />
-											<br />
+											<h3>Dispatch Method</h3>
+											<label className="checkbox-container">
+												<span>Pick up</span>
+											  <input name="pickup" type="checkbox" checked={isPickup} onChange={handlePickupChange} />
+											  <span className="checkmark" />
+											</label>
+											<label className="checkbox-container">
+												<span>Delivery</span>
+											  <input name="delivery" type="checkbox" checked={isDelivery} onChange={handleDeliveryChange} />
+											  <span className="checkmark" />
+											</label>
+											{/*<input name="availableDispatch" type="text" placeholder="dispatch mode" onChange={e => setParams({...params, availableDispatch: e.target.value})} value={params.availableDispatch} />
+											<br />*/}
 										</div>
 										<div className="box2">
-											<h4>Deadline</h4>
+											<h3>Deadline</h3>
 											<input name="deadline" type="date" onChange={e => setParams({...params, deadline: e.target.value})} value={params.deadline} />
 											<br />
-											<h4>Tags</h4>
+											<h3>Tags</h3>
 											<div className="tags_master">
 								        <div className="tags clearfix">
 								          {tags.map((tag, index) => <Tag key={index} tag={tag} index={index} onDeleteClick={handleTagDelete}/>)}
@@ -86,7 +125,6 @@ const SuperorderEditable = ({attributes,isLoading,error,post,goBack}) => {
 					{!isEditable?<button className="button2" onClick={()=>post(params)}>Post</button>:""}
 				</div>
 			</div>
-
 		</React.Fragment>
 	);
 };
