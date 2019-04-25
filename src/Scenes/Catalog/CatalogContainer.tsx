@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { RouteComponentProps} from 'react-router';
+import { RouteComponentProps } from 'react-router';
 // import {Link} from "react-router-dom"
 import * as queryString from 'query-string';
 import SuperorderSummary from '../../Superorder/SuperorderSummary';
@@ -8,8 +8,7 @@ import { connect } from 'react-redux';
 import * as actions from './CatalogActions';
 import Navbar from '../../Components/Navbar';
 import CatalogFilter from './CatalogFilter';
-import Loader from "../../Components/Loader";
-
+import Loader from '../../Components/Loader';
 
 interface ICatalogContainerProps {
 	isLoading: boolean;
@@ -28,69 +27,69 @@ const mapStateToProps = state => ({
 	error: state.catalog.error,
 });
 
-class CatalogContainer extends React.Component<RouteComponentProps & ICatalogContainerProps> {
-	constructor(props){
+class CatalogContainer extends React.Component<RouteComponentProps & ICatalogContainerProps,{_filter:any,isSettingSuperorder:boolean}> {
+	constructor(props) {
 		super(props);
-		this.state={
-			tags:[],
-			sortType:"deadline",
-			sortOrder:"ASC"
-		}
-
+		this.state = {
+			_filter:{
+			tags: [],
+			sortType: 'deadline',
+			sortOrder: 'ASC',
+			},
+			isSettingSuperorder:false
+			
+		};
 	}
 
 	public componentDidMount() {
-		let queryParameters = queryString.parse(this.props.location.pathname.substring("/catalog/".length));
+		let queryParameters = queryString.parse(this.props.location.pathname.substring('/catalog/'.length));
 		console.log(queryParameters);
-		if(Object.keys(queryParameters).length === 0){
-			queryParameters=this.state;
+		if (Object.keys(queryParameters).length === 0) {
+			queryParameters = this.state._filter;
 			console.log(queryParameters);
 		}
-		this.setState(queryParameters);
+		this.setState({_filter:queryParameters});
 		this.props.searchSuperorders(queryParameters);
 	}
 
-	public updateParams(p){
-		const state=this.state;
-		Object.keys(p).forEach(k=>state[k]=p[k]);
-		this.setState(state,()=>{
-			this.props.searchSuperorders(state);
-			const qS=queryString.stringify(state);
-			this.props.history.push('/catalog/' + qS);});
+	public updateParams(p) {
+		const newFilter = this.state._filter;
+		Object.keys(p).forEach(k => (newFilter[k] = p[k]));
+		this.setState({_filter:newFilter}, () => {
+			this.props.searchSuperorders(newFilter);
+			const qS = queryString.stringify(newFilter);
+			this.props.history.push('/catalog/' + qS);
+		});
 	}
 
-
-
 	public render() {
-
 		let cont;
 
-		if(this.props.isLoading){
-			cont = <Loader/>;
-		}
-		else{
+		if (this.props.isLoading) {
+			cont = <Loader />;
+		} else {
 			cont = this.props.searchResults.map(res => {
-				return (<SuperorderSummary
-					key={res.id}
-					{...res}
-					onClick={() => this.props.history.push('/setOrder/' + res.id)}
-				/>);
+				return (
+					<SuperorderSummary
+						key={res.id}
+						{...res}
+						onClick={() => this.props.history.push('/setOrder/' + res.id)}
+					/>
+				);
 			});
 		}
 
 		return (
 			<div className="catalog">
-				<Navbar isCatalog={true}/>
-				<CatalogFilter pushParam={p=>this.updateParams(p)}/>
+				<Navbar isCatalog={true} />
+				<CatalogFilter pushParam={p => this.updateParams(p)} goToSetSuperorder={()=>this.setState({isSettingSuperorder:true})} />
 				<div className="catalog-content">
-					{/*this.state.setSuperorder ? <SetSuperorderContainer /> : ""*/}
-					<SetSuperorderContainer />
+					{this.state.isSettingSuperorder? <SetSuperorderContainer goBack={()=>this.setState({isSettingSuperorder:false})} /> : ''}
 					<div className="catalog-content-superorders">{cont}</div>
 					<h1>{this.props.error}</h1>
 				</div>
 			</div>
 		);
-
 	}
 }
 

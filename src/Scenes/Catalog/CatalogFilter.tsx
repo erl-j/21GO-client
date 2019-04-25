@@ -4,7 +4,7 @@ import parcelIcon from '../../img/icons/addParcel.svg';
 import dropdownIcon from '../../img/icons/dropdown.svg';
 import Tag from '../../Components/Tag';
 
-const CatalogFilter = ({pushParam}) => {
+const CatalogFilter = ({pushParam,goToSetSuperorder}) => {
 
   const searchParams={
     EARLIEST_DEADLINE:{sortType:"deadline",sortOrder:"ASC"},
@@ -52,9 +52,6 @@ const CatalogFilter = ({pushParam}) => {
     }
   }
 
-  const handleAddSuperorder = event => {
-    console.log("Add superorder!");
-  }
 
   return (
     <div className="filter">
@@ -73,7 +70,7 @@ const CatalogFilter = ({pushParam}) => {
           </span>
         </div>
         <div className="box2">
-          <img src={parcelIcon} alt="AddParcel" onClick={handleAddSuperorder} />
+          <img src={parcelIcon} alt="AddParcel" onClick={goToSetSuperorder} />
         </div>
       </div>
       <div className={visible ? "tags_master visible" : "tags_master"}>

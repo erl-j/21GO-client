@@ -22,7 +22,7 @@ export const Welcome = () => {
 		welcomeForm = <SignInContainer />;
 		signInClass.push('active');
 	} else if (mode === welcomeMode.signUp) {
-		welcomeForm = <SignUpContainer />;
+		welcomeForm = <SignUpContainer redirectToSignIn={()=>setMode(welcomeMode.signIn)} />;
 		signUpClass.push('active');
 	}
 

@@ -4,7 +4,7 @@ import * as userOrdersActions from './../UserAccount/UserOrders/UserOrdersAction
 import { RouteComponentProps } from 'react-router';
 import { connect } from 'react-redux';
 import ItemForm from './ItemForm';
-import ItemDisplay from "./ItemDisplay";
+import ItemDisplay from './ItemDisplay';
 import Navbar from '../../Components/Navbar';
 import SuperorderInspect from '../../Superorder/SuperorderInspect';
 import Loader from '../../Components/Loader';
@@ -13,8 +13,8 @@ const mapStateToProps = state => ({
 	superorder: state.setOrder.attributes,
 	items: state.setOrder.items,
 	isLoading: state.setOrder.loading,
-    remoteOrders: state.userOrders.results,
-    superOrderId:state.setOrder.attributes.id
+	remoteOrders: state.userOrders.results,
+	superOrderId: state.setOrder.attributes.id,
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -25,8 +25,8 @@ const mapDispatchToProps = dispatch => ({
 
 interface ISetOrderContainerProps {
 	superorder: any;
-    getSuperorder: any;
-    superOrderId:number;
+	getSuperorder: any;
+	superOrderId: number;
 	items: any;
 	postOrder: any;
 	isLoading: boolean;
@@ -52,34 +52,32 @@ class SetOrderContainer extends React.Component<RouteComponentProps & ISetOrderC
 
 		//   }
 
+
 		return (
 			<div className="setOrder">
 				<Navbar isCatalog={false} />
 				<div>
 					<SuperorderInspect superorder={this.props.superorder} />
-					{
-                        // console.log(this.props.remoteOrders)
-                        this.props.remoteOrders
-						.filter(c =>
-							 c.id === this.props.superOrderId
-                        ).map(c=>
-                            c.myOrder.orderItems
-                            )
-                        .map(c=>c[0])
-						.map((c) => (
-							<ItemDisplay
-								key={c.id}
-                                qt={c.quantity}
-                                info={c.additionalInfo}
-							/>
-                        ))
-                    }
+					<h3>Current orders:</h3>
+					{// console.log(this.props.remoteOrders)
+
+					this.props.remoteOrders
+						.filter(c => c.id === this.props.superOrderId)
+						.map(c => c.myOrder.orderItems)
+						.map(c => c[0])
+						.map(c => (
+							<ItemDisplay key={c.id} qt={c.quantity} info={c.additionalInfo} />
+						))}
 					<br />
 					{this.props.isLoading ? (
 						<Loader />
 					) : (
-                        <ItemForm key={-1} post={e => {this.props.postOrder(this.props.match.params, e)
-                            this.props.getRemoteOrderItems()}} />
+						<ItemForm
+							key={-1}
+							post={e => {
+                                this.props.postOrder(this.props.match.params, e);
+							}}
+						/>
 					)}
 				</div>
 			</div>

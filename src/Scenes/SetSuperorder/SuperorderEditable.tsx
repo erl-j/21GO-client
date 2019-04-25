@@ -4,7 +4,7 @@ import Loader from '../../Components/Loader';
 import closeIcon from '../../img/icons/close.svg';
 import Tag from '../../Components/Tag';
 
-const SuperorderEditable = ({attributes,isLoading,error,post}) => {
+const SuperorderEditable = ({attributes,isLoading,error,post,goBack}) => {
 	// const { id, storeURL, storeLocation, deadline, arrivalLocation, availableDispatch, tags } = props;
 
 	const [isEditable, setEditable] = useState(true);
@@ -15,9 +15,6 @@ const SuperorderEditable = ({attributes,isLoading,error,post}) => {
   const array: string[] = [];
   const [tags, setTags] = useState(array);
 
-	const handleCloseClick = event => {
-		console.log("Close setSuperorder!");
-	}
 
 	const handleInputTagChange = event => {
     setInputTag(event.target.value);
@@ -80,9 +77,10 @@ const SuperorderEditable = ({attributes,isLoading,error,post}) => {
 		<React.Fragment>
 			<div className="setSuperorder">
 				<div className="setSuperorder-content">
-					<img className="close" src={closeIcon} alt="Close" onClick={handleCloseClick}/>
+					<img className="close" src={closeIcon} alt="Close" onClick={goBack}/>
 					{content}
-					{error?Object.keys(error).map(er=>(<h3 className="error">error[er]</h3>)):""}
+					{console.log(error)}
+					{/* {error?Object.keys(error).map(er=>(<h3 className="error">{error[er]}</h3>)):""} */}
 					<button className="button2" onClick={() => {
 						setEditable(!isEditable)}}>{isEditable ? 'Confirm' : 'Edit'}</button>
 					{!isEditable?<button className="button2" onClick={()=>post(params)}>Post</button>:""}

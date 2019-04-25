@@ -9,6 +9,8 @@ interface ISetSuperorderContainerProps{
 	fetchSuperorder:any,
 	isLoading:any,
 	error:any,
+	validationDetails:any,
+	goBack:any
 }
 
 const mapDispatchToProps=(dispatch)=>({
@@ -20,12 +22,13 @@ const mapDispatchToProps=(dispatch)=>({
 const mapStateToProps=(state)=>({
 	attributes:(state.setSuperorder.attributes),
 	isLoading:state.setSuperorder.loading,
-	error:state.setSuperorder.error
+	error:state.setSuperorder.error,
+	validationDetails:state.setSuperorder.validationDetails
 })
 
 class SetSuperorderContainer extends React.Component<ISetSuperorderContainerProps>{
 	public render() {
-		return <SuperorderEditable attributes={this.props.attributes} error={this.props.error} isLoading={this.props.isLoading} post={this.props.postSuperorder}/>;
+		return <SuperorderEditable attributes={this.props.attributes} error={this.props.validationDetails} isLoading={this.props.isLoading} post={this.props.postSuperorder} goBack={this.props.goBack}/>;
 	}
 }
 

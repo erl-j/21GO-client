@@ -8,6 +8,7 @@ interface ISignUpContainerProps {
 	onSignUpPressed: any;
 	isSignedUp: boolean;
 	isSignUpLoading: boolean;
+	redirectToSignIn:any;
 }
 
 const mapStateToProps = state => ({
@@ -19,10 +20,13 @@ const mapDispatchToProps = (dispatch: any,ownProps:any) => ({
 	onSignUpPressed: (params:object) => dispatch(actions.createUser(params,ownProps)),
 });
 
+
 class SignUpContainer extends React.Component<ISignUpContainerProps> {
 	public render() {
 		// const redirect = this.props.isSignedUp ? <Redirect to="/signIn" /> : '';
-
+		if(this.props.isSignedUp){
+			this.props.redirectToSignIn();
+		}
 		return (
 			<React.Fragment>
 				{/* {redirect} */}
