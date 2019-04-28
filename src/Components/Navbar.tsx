@@ -14,15 +14,11 @@ const Navbar = ({isCatalog}) => {
     } else {
       console.log("Redirecting");
     }
-  }
+  };
 
   const handleClick = event => {
-    if(visible) {
-      setVisible(false);
-    } else {
-      setVisible(true);
-    }
-  }
+      setVisible(!visible);
+  };
 
   return (
     <div className={isCatalog? "navbar" : "navbar border"}>

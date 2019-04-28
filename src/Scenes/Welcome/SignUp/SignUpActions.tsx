@@ -17,16 +17,10 @@ export const signUpFailure = (error: string) => ({
     payload: {error}
 });
 
-export function createUser(params,ownProps) {
+export function createUser(params) {
 	return (dispatch: any) => {
-		dispatch(signUpBegin());
-
 		return APICall(Method.POST,'/register', params, null)
-			.then(() => {
-				dispatch(signUpSuccess());
-				ownProps.history.push(`/signIn`);
-				return;
-			})
+			.then(() => dispatch(signUpSuccess()))
 			.catch(error => dispatch(signUpFailure(error)));
 	};
 }

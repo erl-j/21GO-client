@@ -34,11 +34,17 @@ export function APICall(method: Method, URI, body?, jwt?) {
 }
 
 // Handle HTTP errors since fetch won't.
-function handleErrors(response: any) {
+async function handleErrors(response: any) {
     if (!response.ok) {
         console.log(response);
-        throw Error(response.statusText);
+        const error = Error(response.statusText);
+        const details = "details";
+        /* const status = "status";
+        error[status] = response.status; */
+        error[details] = await response.json();
+        throw error;
     }
+
     return response;
 }
 
