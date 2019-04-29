@@ -13,15 +13,18 @@ export const signUpSuccess = () => ({
 });
 
 export const signUpFailure = (error: string) => ({
-    type: SIGN_UP_FAILURE,
-    payload: {error}
+  type: SIGN_UP_FAILURE,
+  payload: {error}
 });
 
+<<<<<<< HEAD
 export function createUser(params) {
+=======
+export function createUser(params, ownProps) {
+>>>>>>> Iris
 	return (dispatch: any) => {
 		return APICall(Method.POST,'/register', params, null)
 			.then(() => dispatch(signUpSuccess()))
 			.catch(error => dispatch(signUpFailure(error)));
 	};
 }
-

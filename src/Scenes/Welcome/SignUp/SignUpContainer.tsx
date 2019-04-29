@@ -6,10 +6,16 @@ import ValidatedInput from "../../../Components/ValidatedInput";
 import validators from "../../../constants/validators";
 
 interface ISignUpContainerProps {
+<<<<<<< HEAD
 	onSubmit: any;
 	isLoading: boolean;
 	success: boolean;
 	error: any;
+=======
+	onSignUpPressed: any;
+	isSignedUp: boolean;
+	isSignUpLoading: boolean;
+>>>>>>> Iris
 	redirectToSignIn: any;
 }
 
@@ -19,11 +25,16 @@ const mapStateToProps = state => ({
 	error: state.signUp.error
 });
 
+<<<<<<< HEAD
 const mapDispatchToProps = (dispatch: any, ownProps: any) => ({
 	onSubmit:  (params: object) =>{
 		dispatch(actions.signUpBegin());
 		dispatch(actions.createUser(params));
 	}
+=======
+const mapDispatchToProps = (dispatch: any, ownProps:any) => ({
+	onSignUpPressed: (params:object) => dispatch(actions.createUser(params, ownProps)),
+>>>>>>> Iris
 });
 
 class SignUpContainer extends React.Component<ISignUpContainerProps,{params: any, isValid: boolean}>{

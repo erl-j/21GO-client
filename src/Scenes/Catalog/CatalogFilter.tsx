@@ -4,7 +4,7 @@ import parcelIcon from '../../img/icons/addParcel.svg';
 import dropdownIcon from '../../img/icons/dropdown.svg';
 import Tag from '../../Components/Tag';
 
-const CatalogFilter = ({pushParam,goToSetSuperorder}) => {
+const CatalogFilter = ({pushParam, goToSetSuperorder}) => {
 
   const searchParams={
     EARLIEST_DEADLINE:{sortType:"deadline",sortOrder:"ASC"},
@@ -14,9 +14,8 @@ const CatalogFilter = ({pushParam,goToSetSuperorder}) => {
   }
 
   const [sort, setSort] = useState("EARLIEST_DEADLINE");
-  const [inputTag, setInputTag] = useState('');
-  const array: string[] = [];
-  const [tags, setTags] = useState(array);
+  const [inputTag, setInputTag] = useState<string>('');
+  const [tags, setTags] = useState<string[]>([]);
   const [visible, setVisible] = useState(false);
 
 

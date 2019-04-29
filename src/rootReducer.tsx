@@ -9,12 +9,12 @@ import userSuperordersReducer from "./Scenes/UserAccount/UserSuperorders/UserSup
 import userOrderReducer from "./Scenes/UserAccount/UserOrders/UserOrdersReducer";
 
 const rootReducer = combineReducers({
-    signIn:signInReducer,
-    signUp:signUpReducer,
-    catalog:catalogReducer,
-    setSuperorder:setSuperorderReducer,
-    setOrder:setOrderReducer,
-    account:accountReducer,
+    signIn: signInReducer,
+    signUp: signUpReducer,
+    catalog: catalogReducer,
+    setSuperorder: setSuperorderReducer,
+    setOrder: setOrderReducer,
+    account: accountReducer,
     userSuperorders: userSuperordersReducer,
     userOrders: userOrderReducer
 });

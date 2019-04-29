@@ -50,6 +50,12 @@ body {
   border: none;
   font-size: 1.5rem;
   color: #fff;
+
+  &.v2 {
+    background: $light-grey;
+    background-color: $light-grey;
+    color: $primary-color;
+  }
 }
 
 .button3 {
@@ -475,7 +481,7 @@ body {
   position: absolute;
   z-index: 1;
   background: rgba(#000, 0.5);
-  min-height: calc(100vh - 141px);
+  min-height: max-content;
   width: 100%;
   padding-top: 5rem;
 
@@ -723,14 +729,16 @@ body {
   }
 
   .setOrder-form {
+    text-align: left;
+    margin: 0 2rem;;
     input:focus {
       outline: 0;
     }
 
     input[type="text"], input[type="number"] {
-      width: 20rem;
-      padding: 0.5rem 1.5rem;
-      margin: 1rem 2rem;
+      width: 15rem;
+      padding: 0.5rem 1rem;
+      margin: 1rem 1rem;
       font-size: 1.2rem;
       font-weight: 200;
       background: transparent;
@@ -760,10 +768,38 @@ body {
     }
 
     input[type="number"] {
-      width: 5rem;
-      padding: 0.5rem 1.5rem;
-      margin: 1rem 2rem;
+      width: 3rem;
+      padding: 0.5rem 0.5rem;
+      margin: 1rem 1rem;
       -moz-appearance: textfield;
+    }
+
+    .quantity-nav {
+      display: inline-flex;
+      flex-direction: column;
+      position: relative;
+      left: -1.5rem;
+      top: -0.6rem;
+
+      .quantity-button {
+        display: inline-block;
+      }
+
+      .quantity-up {
+        margin-bottom: 0.5rem;
+      }
+    }
+
+    .deleteButton {
+      height: 1.2rem;
+      position: relative;
+      top: 0.2rem;
+    }
+
+    .button2 {
+      font-size: 1.3rem;
+      padding: 0.5rem 2rem;
+      margin: 1rem 0 1rem 2rem;
     }
   }
 }
