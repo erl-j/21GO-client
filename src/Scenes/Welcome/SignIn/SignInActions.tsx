@@ -18,7 +18,7 @@ export const signInFailure = (error: string) => ({
 	payload: { error },
 });
 
-export function fetchJwt(usernameIn: string, passwordIn: string) {
+export function login(usernameIn: string, passwordIn: string) {
 	console.warn('sent login request for un/pw: ' + usernameIn + '/' + passwordIn);
 	return (dispatch: any) => {
 		dispatch(signInBegin());

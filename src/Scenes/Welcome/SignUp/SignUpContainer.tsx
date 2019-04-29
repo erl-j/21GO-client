@@ -4,13 +4,13 @@ import { connect } from 'react-redux';
 import Loader from "../../../Components/Loader";
 import ValidatedInput from "../../../Components/ValidatedInput";
 import validators from "../../../constants/validators";
+import {Redirect} from "react-router";
 
 interface ISignUpContainerProps {
 	onSubmit: any;
 	isLoading: boolean;
 	success: boolean;
 	error: any;
-	redirectToSignIn: any;
 }
 
 const mapStateToProps = state => ({
@@ -44,42 +44,57 @@ class SignUpContainer extends React.Component<ISignUpContainerProps,{params: any
 		};
 	}
 
+	public componentDidUpdate(prevProps: Readonly<ISignUpContainerProps>,
+							  prevState: Readonly<{ params: any; isValid: boolean }>, snapshot?: any): void {
+
+		if(prevProps.error !== this.props.error) {
+			if (this.props.error) {
+
+				const obj = {...this.state.params};
+
+				for (const error of this.props.error.details.error) {
+					const key = error.property;
+					const msg = Object.keys(error.constraints).reduce((previous, keyy) => {
+						return previous + (previous !== "" ? ", " : "") + error.constraints[keyy];
+					}, "");
+
+					obj[key] = [this.state.params[key][0], msg];
+				}
+
+				this.setState({params: obj});
+			}
+		}
+	}
 
 	public render() {
 
-		if(this.props.success){
-			this.props.redirectToSignIn();
-			alert("successful registration");
-			return <div>yay</div>;
+		if(this.props.success) {
+			alert("Successful Registration");
+			return <Redirect to="/signIn"/>
 		}
 
 		if(this.props.isLoading) {
 			return <Loader />;
 		}
 
-		let errors = <p/>;
-
-		if(this.props.error){
-			errors = <p>{JSON.stringify(this.props.error)}</p>
-		}
-
 		return (<form className="welcome-form" onSubmit={this.onSubmit2}>
 
 			{Object.keys(this.state.params).map(k => (
 				<React.Fragment  key={k}>
-					<ValidatedInput validationMessage={this.state.params[k][1]} name={k} onBlur = {e => {
-
-						const tmp = this.state.params;
-						tmp[k] = [e.target.value, ""];
-						this.setState({params: tmp});
-
-					}}/>
+					<ValidatedInput
+						validationMessage={this.state.params[k][1]}
+						value={this.state.params[k][0]}
+						name={k}
+						onBlur = {e => {
+							const tmp = {...this.state.params};
+							tmp[k] = [e.target.value, ""];
+							this.setState({params: tmp});
+						}} />
 					<br />
 				</React.Fragment>
 			))}
 
 			<input className="button2" type="submit" value="Submit" />
-			{errors}
 		</form>);
 	}
 
@@ -106,14 +121,14 @@ class SignUpContainer extends React.Component<ISignUpContainerProps,{params: any
 
 		if(this.state.isValid){
 
-			const params = this.state.params;
+			const params = {...this.state.params};
+
 			for(const key in params){
 				if(params.hasOwnProperty(key)){
 					params[key] = params[key][0];
 				}
 			}
 
-			console.log(params);
 			this.props.onSubmit(params);
 		}
 	};
