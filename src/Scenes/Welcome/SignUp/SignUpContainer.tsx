@@ -8,7 +8,7 @@ interface ISignUpContainerProps {
 	onSignUpPressed: any;
 	isSignedUp: boolean;
 	isSignUpLoading: boolean;
-	redirectToSignIn:any;
+	redirectToSignIn: any;
 }
 
 const mapStateToProps = state => ({
@@ -16,8 +16,8 @@ const mapStateToProps = state => ({
 	isSignUpLoading: state.signUp.loading,
 });
 
-const mapDispatchToProps = (dispatch: any,ownProps:any) => ({
-	onSignUpPressed: (params:object) => dispatch(actions.createUser(params,ownProps)),
+const mapDispatchToProps = (dispatch: any, ownProps:any) => ({
+	onSignUpPressed: (params:object) => dispatch(actions.createUser(params, ownProps)),
 });
 
 

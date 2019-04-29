@@ -12,9 +12,8 @@ const SuperorderEditable = ({attributes,isLoading,error,post,goBack}) => {
 	const [params, setParams] = useState(
 		attributes
 	);
-	const [inputTag, setInputTag] = useState('');
-  const array: string[] = [];
-  const [tags, setTags] = useState(array);
+	const [inputTag, setInputTag] = useState<string>('');
+  const [tags, setTags] = useState<string[]>([]);
 	const [availableDispatch, setAvailableDispatch] = useState(1);
 	const [isPickup, setIsPickup] = useState(true);
 	const [isDelivery, setIsDelivery] = useState(false);
@@ -39,7 +38,7 @@ const SuperorderEditable = ({attributes,isLoading,error,post,goBack}) => {
 		setParams({...params, tags:[...newTags]});
 	}
 
-	const handlePickupChange = event => {
+	const handlePickupChange = () => {
 		let currentDispatch = availableDispatch;
 		if(isPickup) {
 			currentDispatch -= 1;
@@ -51,7 +50,7 @@ const SuperorderEditable = ({attributes,isLoading,error,post,goBack}) => {
 		setAvailableDispatch(currentDispatch);
 	}
 
-	const handleDeliveryChange = event => {
+	const handleDeliveryChange = () => {
 		let currentDispatch = availableDispatch;
 		if(isDelivery) {
 			currentDispatch -= 2;

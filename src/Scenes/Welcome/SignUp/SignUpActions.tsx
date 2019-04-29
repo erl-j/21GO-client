@@ -13,11 +13,11 @@ export const signUpSuccess = () => ({
 });
 
 export const signUpFailure = (error: string) => ({
-    type: SIGN_UP_FAILURE,
-    payload: {error}
+  type: SIGN_UP_FAILURE,
+  payload: {error}
 });
 
-export function createUser(params,ownProps) {
+export function createUser(params, ownProps) {
 	return (dispatch: any) => {
 		dispatch(signUpBegin());
 
@@ -30,4 +30,3 @@ export function createUser(params,ownProps) {
 			.catch(error => dispatch(signUpFailure(error)));
 	};
 }
-
