@@ -8,6 +8,15 @@ export default function loadJwt() {
     return (user && user.token) ? user.token : null;
 }
 
+export function loadUsername() {
+    if(localStorage.getItem("user") == null){
+        return null;
+    }
+    const user = JSON.parse(localStorage.getItem("user")!);
+    return (user && user.username) ? user.username : null;
+}
+
+
 export function clearJwt(){
     localStorage.removeItem("user");
 }
@@ -24,5 +33,5 @@ export async function loadUser(){
 }
 
 export async function isLoggedIn(){
-    return await loadUser() == null;
+    return await loadUser() != null;
 }

@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import * as actions from "./UserProfileActions";
 import UserProfile from './UserProfile'
 import Loader from "../../../Components/Loader";
+import {clearJwt} from "../../../helpers/loadJwt";
+import {RouteComponentProps} from "react-router";
 
 interface IUserProfileContainerProps {
 	isLoading: boolean;
@@ -20,16 +22,31 @@ const mapDispatchToProps = dispatch => ({
 	loadUser: () => dispatch(actions.fetchAccount())
 });
 
-class UserProfileContainer extends React.Component<IUserProfileContainerProps> {
+class UserProfileContainer extends React.Component<IUserProfileContainerProps & RouteComponentProps> {
     
     public componentDidMount(){
         this.props.loadUser();
     }
 
 	public render() {
-    	console.log(this.props.user);
-    	console.log(this.props.isLoading ?"ye":"ne");
-		return this.props.isLoading ? <Loader/> : <UserProfile user={this.props.user}/>;
+
+    	if(this.props.isLoading){
+			return <Loader/>;
+		}
+		if(this.props.error){
+
+			if(this.props.error.status === 401){
+				clearJwt();
+				alert("Your session has expired");
+				this.props.history.push("/catalog");
+				return null;
+			}
+			else{
+				return <p>{this.props.error.message}</p>
+			}
+		}
+
+		return <UserProfile user={this.props.user}/>;
 	}
 }
 

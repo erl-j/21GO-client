@@ -4,8 +4,8 @@ import UserOrdersContainer from './UserOrders/UserOrdersContainer';
 import Navbar from '../../Components/Navbar';
 import UserSuperordersContainer from "./UserSuperorders/UserSuperordersContainer";
 
-
 const UserAccount = (props) => {
+
 	enum Mode {
 		PROFILE = "profile",
 		ORDERS = "orders",
@@ -13,9 +13,9 @@ const UserAccount = (props) => {
 	}
 
 	const tabs = {};
-	tabs[Mode.PROFILE] = {title: "My Profile", content: <UserProfileContainer />};
-	tabs[Mode.ORDERS] = {title: "My Orders", content: <UserOrdersContainer />};
-	tabs[Mode.SUPERORDERS] = {title: "My Superorders", content: <UserSuperordersContainer />};
+	tabs[Mode.PROFILE] = {title: "My Profile", content: <UserProfileContainer {...props} />};
+	tabs[Mode.ORDERS] = {title: "My Orders", content: <UserOrdersContainer {...props} />};
+	tabs[Mode.SUPERORDERS] = {title: "My Superorders", content: <UserSuperordersContainer {...props} />};
 
 	const button = 'button3 ';
 	const urlParam = props.match.params.mode!;

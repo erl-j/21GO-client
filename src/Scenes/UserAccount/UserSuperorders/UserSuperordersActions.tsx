@@ -30,7 +30,7 @@ export function getUserSuperorders() {
                 dispatch(getUserSuperordersSuccess(obj.superOrders));
                 return obj;
             })
-            .catch(error => dispatch(getUserSuperordersFailure(error.message)));
+            .catch(error => dispatch(getUserSuperordersFailure(error)));
     };
 }
 

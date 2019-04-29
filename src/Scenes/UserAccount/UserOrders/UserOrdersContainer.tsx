@@ -2,7 +2,9 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import UserOrder from "./UserOrder";
 import * as actions from "../../UserAccount/UserOrders/UserOrdersActions";
-import Loader from "../UserSuperorders/UserSuperordersContainer";
+import {clearJwt} from "../../../helpers/loadJwt";
+import {RouteComponentProps} from "react-router";
+import Loader from "../../../Components/Loader";
 
 interface IUserOrdersContainerProps {
 	isLoading: boolean;
@@ -21,15 +23,29 @@ const mapDispatchToProps = dispatch => ({
 	getUserOrders: () => dispatch(actions.getUserOrders()),
 });
 
-class UserOrdersContainer extends React.Component<IUserOrdersContainerProps>  {
+class UserOrdersContainer extends React.Component<IUserOrdersContainerProps & RouteComponentProps>  {
 
 	public componentDidMount(){
 		this.props.getUserOrders();
 	}
 
 	public render() {
+
 		if(this.props.isLoading){
 			return <Loader/>;
+		}
+
+		if(this.props.error){
+
+			if(this.props.error.status === 401){
+				clearJwt();
+				alert("Your session has expired");
+				this.props.history.push("/catalog");
+				return null;
+			}
+			else{
+				return <p>{this.props.error.message}</p>
+			}
 		}
 
 		const confirmDelete = <div />;
