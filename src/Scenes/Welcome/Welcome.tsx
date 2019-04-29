@@ -1,43 +1,65 @@
 import * as React from 'react';
-import { useState } from 'react';
 import SignInContainer from './SignIn/SignInContainer';
 import SignUpContainer from './SignUp/SignUpContainer';
+import {RouteComponentProps} from "react-router";
 
-const welcomeMode = {
-	signIn: 'SIGN_IN',
-	signUp: 'SIGN_UP'
-};
+export enum WelcomeMode {
+	SIGN_IN, SIGN_UP
+}
 
-export const Welcome = () => {
-	const [mode, setMode] = useState(welcomeMode.signIn);
+class Welcome extends React.Component<RouteComponentProps & {mode: WelcomeMode}, {mode: WelcomeMode}> {
 
-	let welcomeForm;
-	let signInClass;
-	let signUpClass;
-
-	signInClass = ['button1'];
-	signUpClass = ['button1'];
-
-	if(mode === welcomeMode.signIn) {
-		welcomeForm = <SignInContainer />;
-		signInClass.push('active');
-	} else if (mode === welcomeMode.signUp) {
-		welcomeForm = <SignUpContainer redirectToSignIn={()=>setMode(welcomeMode.signIn)} />;
-		signUpClass.push('active');
+	constructor(props) {
+		super(props);
+		this.state = {
+			mode: props.mode
+		};
 	}
 
-	return (
+	public render(){
 
-		<div className="welcome">
-			<div className="overlay" />
-			<div className="contents">
-				<img className="logo" />
-				<p>- Hello there, welcome to 21go -</p>
-				<div className="welcome-account">
-					{welcomeForm}
-					<button className={signInClass.join(' ')} onClick={() => setMode(welcomeMode.signIn)}>Sign in</button>
-					<button className={signUpClass.join(' ')} onClick={() => setMode(welcomeMode.signUp)}>Sign up</button>
+		let welcomeForm;
+		let signInClass;
+		let signUpClass;
+
+		signInClass = ['button1'];
+		signUpClass = ['button1'];
+
+		if(this.state.mode === WelcomeMode.SIGN_IN) {
+			welcomeForm = <SignInContainer />;
+			signInClass.push('active');
+		} else if (this.state.mode === WelcomeMode.SIGN_UP) {
+			welcomeForm = <SignUpContainer redirectToSignIn={this.goToSignIn} />;
+			signUpClass.push('active');
+		}
+
+		return (
+
+			<div className="welcome">
+				<div className="overlay" />
+				<div className="contents">
+					<img className="logo"/>
+					<p>- Hello there, welcome to 21go -</p>
+					<div className="welcome-account">
+						{welcomeForm}
+						<button className={signInClass.join(' ')} onClick={this.goToSignIn}>Sign in</button>
+						<button className={signUpClass.join(' ')} onClick={this.goToSignUp}>Sign up</button>
+					</div>
 				</div>
 			</div>
-		</div>
-)};
+
+		)
+	}
+
+	private goToSignIn = () => {
+		this.setState({mode: WelcomeMode.SIGN_IN});
+		this.props.history.push("/signIn");
+	};
+
+	private goToSignUp = () => {
+		this.setState({mode: WelcomeMode.SIGN_UP});
+		this.props.history.push("/signUp");
+	};
+}
+
+export default Welcome;

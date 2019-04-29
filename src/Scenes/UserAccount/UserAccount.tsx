@@ -12,66 +12,34 @@ const UserAccount = (props) => {
 		SUPERORDERS = "superorders",
 	}
 
-	const tabs = [
-		{ title: 'My Profile', mode: Mode.PROFILE },
-		{ title: 'My Orders', mode: Mode.ORDERS },
-		{ title: 'My Superorders', mode: Mode.SUPERORDERS },
-	];
-
-	const displayTab = currentMode => {
-		let cnt = <span />;
-		switch (currentMode) {
-			case Mode.PROFILE:
-				cnt = <UserProfileContainer />;
-				break;
-			case Mode.ORDERS:
-				cnt = <UserOrdersContainer/>;
-				break;
-			case Mode.SUPERORDERS:
-				cnt = <UserSuperordersContainer/>;
-			default:
-				break;
-		}
-		return cnt;
-	};
+	const tabs = {};
+	tabs[Mode.PROFILE] = {title: "My Profile", content: <UserProfileContainer />};
+	tabs[Mode.ORDERS] = {title: "My Orders", content: <UserOrdersContainer />};
+	tabs[Mode.SUPERORDERS] = {title: "My Superorders", content: <UserSuperordersContainer />};
 
 	const button = 'button3 ';
-	const modeKey = "mode";
-
-	const urlParam = props.match.params[modeKey];
-	let el: Mode = Mode.PROFILE;
-
-	switch(urlParam){
-		case "orders":
-			el = Mode.ORDERS;
-			break;
-		case "superorders":
-			el = Mode.SUPERORDERS;
-			break;
-		default: el = Mode.PROFILE;
-	}
-
-	const [mode, setMode] = React.useState(el);
+	const urlParam = props.match.params.mode!;
+	const [mode, setMode] = React.useState(urlParam as Mode || Mode.PROFILE);
 
 	return (
 		<React.Fragment>
-			<Navbar isCatalog={false} />
+			<Navbar isCatalog={false} {...props}/>
 			<div className="account">
 				<div className="account-tab">
-					{tabs.map(t => (
+					{Object.keys(tabs).map(t => (
 						<button
-							key={t.title}
-							className={button + (mode === t.mode ? 'active' : '')}
-							onClick={e => {
-								setMode(t.mode);
-								props.history.push('/account/' + t.mode.toString());
+							key={tabs[t].title}
+							className={button + (mode === t ? 'active' : '')}
+							onClick={() => {
+								setMode(t as Mode);
+								props.history.push('/account/' + t.toString());
 							}}
 						>
-							{t.title}
+							{tabs[t].title}
 						</button>
 					))}
 				</div>
-			{displayTab(mode)}
+			{tabs[mode].content}
 			</div>
 		</React.Fragment>
 	);

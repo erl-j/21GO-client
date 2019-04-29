@@ -26,8 +26,8 @@ export function fetchJwt(usernameIn: string, passwordIn: string) {
 
 		return APICall(Method.POST, "/login", body, null)
 			.then(json => {
-				dispatch(signInSuccess(json.jwt));
 				localStorage.setItem("user",JSON.stringify({"token":json.jwt,"username":usernameIn}));
+				dispatch(signInSuccess(json.jwt));
 				return json.jwt;
 			})
 			.catch(error => dispatch(signInFailure(error)));
