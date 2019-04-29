@@ -74,7 +74,7 @@ class SignUpContainer extends React.Component<ISignUpContainerProps,{params: any
 		}
 
 		if(this.props.isLoading) {
-			return <Loader />;
+			return <div><Loader /><br /></div>;
 		}
 
 		return (<form className="welcome-form" onSubmit={this.onSubmit2}>
@@ -93,8 +93,8 @@ class SignUpContainer extends React.Component<ISignUpContainerProps,{params: any
 					<br />
 				</React.Fragment>
 			))}
-
 			<input className="button2" type="submit" value="Submit" />
+			{this.props.error && <h3 className="error">{JSON.stringify(this.props.error)}</h3>}
 		</form>);
 	}
 

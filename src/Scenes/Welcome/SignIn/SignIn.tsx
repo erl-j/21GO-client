@@ -7,7 +7,7 @@ const SignIn = ({ onSignInPressed, isLoading, error}) => {
 	const [password, setPassword] = useState('');
 
 	if (isLoading) {
-		return <Loader />;
+		return <div><Loader /><br /></div>;
 	}
 	else {
 		return (

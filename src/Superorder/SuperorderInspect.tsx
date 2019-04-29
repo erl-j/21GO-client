@@ -8,6 +8,15 @@ const SuperorderInspect = ({superorder}) => {
 		return null;
 	}
 
+	let i = 1;
+	let tagsStr = '';
+	if(superorder.tags) {
+		tagsStr = " " + superorder.tags[0];
+	}
+	for(; i < superorder.tags.length; i++) {
+		tagsStr = tagsStr + ", " + superorder.tags[i];
+	}
+
 	return (<div className="superorder">
 				<img className="superorder-img" src={superorder.imageUrl} alt="Superorder image" />
 				<div className="superorder-info">
@@ -21,17 +30,11 @@ const SuperorderInspect = ({superorder}) => {
 					<span>Initiated by {superorder.user.firstName + " " + superorder.user.lastName}</span><br />
 					<img className="boxIcon" src={boxIcon} alt="Ship location" />
 					<span>{superorder.arrivalLocation}</span><br />
-					<span>Ends in {dateDiffInDays(new Date(), new Date(superorder.deadline))} days -
+					<span>Ends in {dateDiffInDays(new Date(), new Date(superorder.deadline))} days. Till&nbsp;
 						{superorder.deadline.substring(0, 10)}</span><br />
 					<span>{superorder.availableDispatch}</span><br />
-					<p>
-						Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-						eiusmod tempor incididunt ut labore et dolore magna aliqua.
-						Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-						aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit
-						in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-						Excepteur sint occaecat cupidatat non proident, sunt in culpa qui
-						officia deserunt mollit anim id est laborum.
+					<p><span className="semi-bold">Tags:</span>
+						{tagsStr}
 					</p>
 				</div>
 			</div>);

@@ -20,19 +20,21 @@ const Item = ({index, item, isEditable, isLast, onItemChange, onDeleteClick, onA
   }
 
   const handleAmountUp = () => {
+    if(isEditable) {
     const newItem = item;
     newItem.amount += 1;
-    onItemChange(index, newItem);
+    onItemChange(index, newItem);}
   }
 
   const handleAmountDown = () => {
+    if(isEditable) {
     const newItem = item;
     if(newItem.amount > 1) {
       newItem.amount -= 1;
     } else {
       newItem.amount = 1;
     }
-    onItemChange(index, newItem);
+    onItemChange(index, newItem);}
   }
 
   return (

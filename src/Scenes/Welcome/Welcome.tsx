@@ -14,7 +14,7 @@ const Welcome = ({mode, history}) => {
 			<div className="overlay" />
 			<div className="contents">
 				<img className="logo"/>
-				<p>- Hello there, welcome to 21go -</p>
+				<p>- Welcome to the world -</p>
 				<div className="welcome-account">
 					{mode === WelcomeMode.SIGN_IN ? <SignInContainer /> : <SignUpContainer success={false} />}
 					<button className={"button1" + ((mode === WelcomeMode.SIGN_IN) ? " active": "")}
