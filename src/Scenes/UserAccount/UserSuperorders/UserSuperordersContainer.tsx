@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import UserSuperorder from "./UserSuperorder" ;
 import * as actions from "../../UserAccount/UserSuperorders/UserSuperordersActions";
 import Loader from "../../../Components/Loader";
+import {clearJwt} from "../../../helpers/loadJwt";
+import {RouteComponentProps} from "react-router";
 
 interface IUserSuperordersContainerProps {
 	isLoading: boolean;
@@ -21,7 +23,7 @@ const mapDispatchToProps = dispatch => ({
 	getUserSuperorders: () => dispatch(actions.getUserSuperorders()),
 });
 
-class UserSuperordersContainer extends React.Component<IUserSuperordersContainerProps> {
+class UserSuperordersContainer extends React.Component<IUserSuperordersContainerProps & RouteComponentProps> {
     
     public componentDidMount(){
 		this.props.getUserSuperorders();
@@ -29,15 +31,28 @@ class UserSuperordersContainer extends React.Component<IUserSuperordersContainer
 
 	public render() {
 
-    	if(this.props.isLoading){
-    		return <Loader/>;
+
+		if(this.props.isLoading){
+			return <Loader/>;
+		}
+
+		if(this.props.error){
+			console.log(this.props.error);
+			if(this.props.error.status === 401){
+				clearJwt();
+				alert("Your session has expired");
+				this.props.history.push("/catalog");
+				return null;
+			}
+			else{
+				return <p>{this.props.error.message}</p>
+			}
 		}
 
 		const superorders = this.props.userSuperordersResults;
-		const idKey = "id";
 
 		const list = Object.keys(superorders).map(key =>
-			(<UserSuperorder key={superorders[key][idKey]} superorder = {superorders[key]} />)
+			(<UserSuperorder key = {superorders[key].id!} superorder = {superorders[key]} />)
 		);
 
 		return (

@@ -22,9 +22,8 @@ export function APICall(method: Method, URI, body?, jwt?) {
     }
 
     console.log(options);
-    const bodyKey = "body";
     if(body != null){
-        options[bodyKey] = JSON.stringify(body);
+        options.body! = JSON.stringify(body);
     }
 
     return fetch(BASE_URL + URI, options)
@@ -39,9 +38,10 @@ async function handleErrors(response: any) {
         console.log(response);
         const error = Error(response.statusText);
         const details = "details";
-        /* const status = "status";
-        error[status] = response.status; */
-        error[details] = await response.json();
+        const status = "status";
+        error[status] = response.status;
+        const body = await response.text();
+        error[details] = body ? JSON.parse(body) : {};
         throw error;
     }
 

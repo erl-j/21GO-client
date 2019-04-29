@@ -1,12 +1,11 @@
 import * as React from 'react';
 import searchIcon from '../img/icons/search.svg';
 import userIcon from '../img/icons/user.svg';
-import loadJwt, {clearJwt, loadUser} from "../helpers/loadJwt";
-import Loader from "./Loader";
+import loadJwt, {clearJwt, loadUsername} from "../helpers/loadJwt";
 import {RouteComponentProps} from "react-router";
 
 class Navbar extends React.Component< { isCatalog: boolean } & RouteComponentProps<{}>,
-    { search: string, visible: boolean, loggedIn: boolean, user: any, loading: boolean} > {
+    { search: string, visible: boolean, loggedIn: boolean, username: string | null}>{
 
     constructor(props) {
         super(props);
@@ -14,30 +13,20 @@ class Navbar extends React.Component< { isCatalog: boolean } & RouteComponentPro
         this.state = {
             search: "",
             visible: false,
-            loggedIn: false,
-            user: null,
-            loading: true
+            loggedIn: loadJwt() != null,
+            username: loadUsername()
         }
-    }
-
-    public async componentDidMount(){
-        console.log(loadJwt());
-        const user = await loadUser();
-        console.log(user);
-        this.setState({user, loggedIn: user != null, loading: false});
     }
 
     public render() {
 
         let content;
 
-        if(this.state.loading){
-            content = <Loader/>;
-        }
-        else if(this.state.loggedIn){
+
+        if(this.state.loggedIn){
             content =
                 <React.Fragment>
-                    <h3>Hi, {this.state.user.firstName}!</h3>
+                    <h3>Hi, {this.state.username}</h3>
                     <ul>
                         <li><a href="/account/profile">Profile</a></li>
                         <li><a href="/account/orders">Orders</a></li>
@@ -99,8 +88,7 @@ class Navbar extends React.Component< { isCatalog: boolean } & RouteComponentPro
 
     private onLogOut = () => {
         clearJwt();
-        this.setState({loggedIn: !this.state.loggedIn});
-        this.setState({user: null});
+        this.setState({loggedIn: !this.state.loggedIn, username: null});
         this.props.history.push("/catalog");
     };
 
