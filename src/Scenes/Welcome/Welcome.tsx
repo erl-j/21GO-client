@@ -39,7 +39,7 @@ class Welcome extends React.Component<RouteComponentProps & {mode: WelcomeMode},
 				<div className="overlay" />
 				<div className="contents">
 					<img className="logo"/>
-					<p>- Hello there, welcome to 21go -</p>
+					<p className="semi-bold">- Welcome to the world -</p>
 					<div className="welcome-account">
 						{welcomeForm}
 						<button className={signInClass.join(' ')} onClick={this.goToSignIn}>Sign in</button>

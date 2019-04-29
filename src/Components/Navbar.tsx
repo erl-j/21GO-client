@@ -38,7 +38,7 @@ class Navbar extends React.Component< { isCatalog: boolean } & RouteComponentPro
             content =
                 <React.Fragment>
                     <h3>Hi, {this.state.user.firstName}!</h3>
-                    <ul>
+                    <ul className="semi-bold">
                         <li><a href="/account/profile">Profile</a></li>
                         <li><a href="/account/orders">Orders</a></li>
                         <li><a href="/account/superorders">Superorders</a></li>
@@ -50,12 +50,23 @@ class Navbar extends React.Component< { isCatalog: boolean } & RouteComponentPro
             content = (
                 <React.Fragment>
                     <h3>Hi!</h3>
-                    <ul>
+                    <ul className="semi-bold">
                         <li><a href="/signIn">Sign In</a></li>
                         <li><a href="/signUp">Sign Up</a></li>
                     </ul>
                 </React.Fragment>
             );
+        }
+
+        let navAccountClass = '';
+        if(this.state.visible) {
+          navAccountClass = 'nav-account visible';
+        } else {
+          navAccountClass = 'nav-account';
+        }
+
+        if(this.state.loggedIn) {
+          navAccountClass += ' loggedIn';
         }
 
         return (
@@ -77,7 +88,7 @@ class Navbar extends React.Component< { isCatalog: boolean } & RouteComponentPro
                     </div>
                 </div>
 
-                <div className={this.state.visible ? "nav-account visible" : "nav-account"}>
+                <div className={navAccountClass}>
                     {content}
                 </div>
             </div>)
