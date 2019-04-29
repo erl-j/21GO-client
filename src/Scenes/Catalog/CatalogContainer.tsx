@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { RouteComponentProps } from 'react-router';
-// import {Link} from "react-router-dom"
 import * as queryString from 'query-string';
 import SuperorderSummary from '../../Superorder/SuperorderSummary';
 import SetSuperorderContainer from '../SetSuperorder/SetSuperorderContainer';
@@ -81,7 +80,7 @@ class CatalogContainer extends React.Component<RouteComponentProps & ICatalogCon
 
 		return (
 			<div className="catalog">
-				<Navbar isCatalog={true} />
+				<Navbar isCatalog={true} {...this.props}/>
 				<CatalogFilter pushParam={p => this.updateParams(p)} goToSetSuperorder={()=>this.setState({isSettingSuperorder:true})} />
 				<div className="catalog-content">
 					{this.state.isSettingSuperorder? <SetSuperorderContainer goBack={()=>this.setState({isSettingSuperorder:false})} /> : ''}

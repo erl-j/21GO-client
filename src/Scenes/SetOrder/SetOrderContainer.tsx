@@ -55,7 +55,7 @@ class SetOrderContainer extends React.Component<RouteComponentProps & ISetOrderC
 
 		return (
 			<div className="setOrder">
-				<Navbar isCatalog={false} />
+				<Navbar isCatalog={false} {...this.props} />
 				<div>
 					<SuperorderInspect superorder={this.props.superorder} />
 					<h3>Current orders:</h3>
