@@ -17,11 +17,7 @@ export const signUpFailure = (error: string) => ({
   payload: {error}
 });
 
-<<<<<<< HEAD
 export function createUser(params) {
-=======
-export function createUser(params, ownProps) {
->>>>>>> Iris
 	return (dispatch: any) => {
 		return APICall(Method.POST,'/register', params, null)
 			.then(() => dispatch(signUpSuccess()))
