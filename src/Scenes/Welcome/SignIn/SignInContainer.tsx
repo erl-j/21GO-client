@@ -12,7 +12,7 @@ interface ISignInContainerProps {
 }
 
 const mapDispatchToProps = (dispatch: any) => ({
-	onSignInPressed: (username: string, password: string) => dispatch(actions.fetchJwt(username, password)),
+	onSignInPressed: (username: string, password: string) => dispatch(actions.login(username, password)),
 });
 
 const mapStateToProps = (state: any) => ({
