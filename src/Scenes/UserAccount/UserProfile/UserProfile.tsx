@@ -10,7 +10,7 @@ const UserProfile = (props) => {
 
     return (
       <React.Fragment>
-        <div className="profile">
+        <div className="account-profile">
           <div className="box1">
             <h2 className="bold">Username</h2>
             <h2 className="light">{user.username}</h2>
@@ -19,7 +19,7 @@ const UserProfile = (props) => {
             <h2 className="bold">Last Name</h2>
             <h2 className="light">{user.lastName}</h2>
             <h2 className="bold">Email</h2>
-            <h2 className="light">{user.email}</h2>
+            <h2 className="light">{user.mail}</h2>
             <h2 className="bold">Phone</h2>
             <h2 className="light">{user.phone}</h2>
             <h2 className="bold">Location</h2>

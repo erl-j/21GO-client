@@ -1,6 +1,6 @@
 @include mediaXl {
   .account {
-    .profile{
+    .account-profile{
       .container {
         width: 20rem;
         height: 20rem;
@@ -95,7 +95,7 @@
       height: 5rem;
     }
 
-    .profile{
+    .account-profile{
       padding-left: 6rem;
       padding-right: 3rem;
 
@@ -228,7 +228,7 @@
       height: max-content;
     }
 
-    .profile {
+    .account-profile {
       padding: 2rem 0;
       flex-direction: column-reverse;
       align-items: center;

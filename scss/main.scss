@@ -498,7 +498,7 @@ body {
     margin-right: auto;
     box-sizing: border-box;
     padding: 3rem 2rem;
-    border: $light-grey 1px solid;
+    border: $dark-grey 1px solid;
     background: #fff;
     position: relative;
 
@@ -818,13 +818,23 @@ body {
     background: $primary-color;
   }
 
-  .profile {
-    padding: 2rem 10rem;
+  .account-profile {
+    padding: 2rem 8rem;
     display: flex;
     align-items: center;
 
     .box1 {
       flex-basis: 15rem;
+      text-align: right;
+      padding-right: 10rem;
+
+      h2 {
+        margin: 0.8rem 0;
+      }
+
+      .light {
+        margin-bottom: 1.5rem;
+      }
     }
 
     .box2 {
@@ -861,6 +871,54 @@ body {
       //   max-height: auto;
       //   border-radius: 50%;
       // }
+    }
+  }
+
+  .account-orders, .account-superorders{
+    padding: 0 3rem;
+
+    .account-items {
+      margin: 3rem auto;
+      max-width: 60rem;
+      padding: 0 2.5rem;
+      box-sizing: border-box;
+      border: 1px solid $dark-grey;
+      display: flex;
+      flex-wrap: wrap;
+    }
+
+    .box1, .box2, .box3 {
+      height: 6rem;
+      margin: 1.5rem 0;
+      text-align: left;
+    }
+
+    .box1 {
+      flex: 0 0 8rem;
+      position: relative;
+
+      .item-img {
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+      }
+    }
+
+    .box2, .box3 {
+      margin-left: 4rem;
+      flex: 2 0 10rem;
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+
+      span {
+        display: block;
+      }
+    }
+
+    .box3 {
+      flex-basis: 6rem;
     }
   }
 }

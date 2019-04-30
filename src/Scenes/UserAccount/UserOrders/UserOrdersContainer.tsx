@@ -5,6 +5,7 @@ import * as actions from "../../UserAccount/UserOrders/UserOrdersActions";
 import {clearJwt} from "../../../helpers/loadJwt";
 import {RouteComponentProps} from "react-router";
 import Loader from "../../../Components/Loader";
+import OrderImg from '../../../img/order_img.jpg';
 
 interface IUserOrdersContainerProps {
 	isLoading: boolean;
@@ -30,9 +31,10 @@ class UserOrdersContainer extends React.Component<IUserOrdersContainerProps & Ro
 	}
 
 	public render() {
+		let content;
 
 		if(this.props.isLoading){
-			return <Loader/>;
+			content = <Loader/>;
 		}
 
 		if(this.props.error){
@@ -41,10 +43,10 @@ class UserOrdersContainer extends React.Component<IUserOrdersContainerProps & Ro
 				clearJwt();
 				alert("Your session has expired");
 				this.props.history.push("/catalog");
-				return null;
+				content = null;
 			}
 			else{
-				return <p>{this.props.error.message}</p>
+				content = <h3 className="error">{this.props.error.message}</h3>
 			}
 		}
 
@@ -58,12 +60,36 @@ class UserOrdersContainer extends React.Component<IUserOrdersContainerProps & Ro
 			(<UserOrder key={orders[key][idKey]} superorder = {orders[key]} />)
 		);
 
-		return (
+		content = (
 			<div>
 				{confirmDelete}
 				{list}
-			</div>
 
+			</div>
+		);
+
+		return (
+			<React.Fragment>
+				{content}
+				<div className="account-orders">
+					<div className="account-items semi-bold">
+						<div className="box1">
+							<img className="item-img" src={OrderImg} alt="" />
+						</div>
+						<div className="box2">
+							<span>StoreName, CountryCode</span>
+							<span>#OrderId</span>
+							<span>OrderDate</span>
+							<span>From InitiatorName</span>
+						</div>
+						<div className="box3">
+							<span>? Items</span>
+							<span>Dispatch</span>
+							<span>Status: Pending</span>
+						</div>
+					</div>
+				</div>
+			</React.Fragment>
 		);
 	}
 }
