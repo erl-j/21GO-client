@@ -1,12 +1,9 @@
 import * as React from "react";
-import {uploadImage} from "../../../helpers/uploadImage";
-import {APICall, Method} from "../../../apiCall";
-import loadJwt from "../../../helpers/loadJwt";
 import ImageSelector from "../../../Components/ImageSelector";
 
 const UserProfile = (props) => {
 
-    const {user} = props;
+    const {user, uploadHandler} = props;
 
     return (
       <React.Fragment>
@@ -19,7 +16,7 @@ const UserProfile = (props) => {
             <h2 className="bold">Last Name</h2>
             <h2 className="light">{user.lastName}</h2>
             <h2 className="bold">Email</h2>
-            <h2 className="light">{user.email}</h2>
+            <h2 className="light">{user.mail}</h2>
             <h2 className="bold">Phone</h2>
             <h2 className="light">{user.phone}</h2>
             <h2 className="bold">Location</h2>
@@ -33,36 +30,6 @@ const UserProfile = (props) => {
 
       </React.Fragment>
     );
-
-};
-
-const uploadHandler = (files) => {
-    const file = files[0];
-    if(file == null){
-        alert("must select a file");
-        return;
-    }
-
-    uploadImage(file).then((res) => {
-        console.log(res);
-        const url = res.secure_url;
-        const attributes = {
-            "username": null,
-            "firstName": null,
-            "lastName": null,
-            "mail": null,
-            "location": null,
-            "phone": null,
-            "imageUrl": url
-        };
-
-        APICall(Method.PUT, "/user/profile", attributes, loadJwt()).then((res2) => {
-            console.log(res2);
-        });
-
-    }).catch((err) => {
-        console.log(err);
-    });
 
 };
 

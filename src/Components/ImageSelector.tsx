@@ -1,6 +1,7 @@
 import * as React from 'react';
 import {CSSProperties, SetStateAction, useEffect, useState} from "react";
 import {useDropzone} from "react-dropzone";
+import {uploadImage} from "../helpers/uploadImage";
 
 const thumbsContainer: CSSProperties = {
     display: 'flex',
@@ -76,6 +77,25 @@ function ImageSelector(props) {
     }, [files]);
 
 
+    const submitHandler = () => {
+
+        const file = files[0];
+        if(file == null){
+            alert("must select a file");
+            return;
+        }
+
+        uploadImage(file).then((res) => {
+            console.log(res);
+            const url = res.secure_url;
+            props.clickHandler(url);
+
+        }).catch((err) => {
+            console.log(err);
+        });
+
+    };
+
     return (
         <div>
         <section className="container" style={thumbsContainer}>
@@ -86,7 +106,7 @@ function ImageSelector(props) {
                 {thumbs}
         </section>
 
-        <button className="button2" type="button" onClick={() => props.clickHandler(files)}>  Submit </button>
+        <button className="button2" type="button" onClick={submitHandler}>  Submit </button>
         </div>
 );
 }
