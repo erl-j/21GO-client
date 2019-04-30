@@ -11,6 +11,8 @@ interface IUserProfileContainerProps {
     user: any;
     loadUser: any;
 	error: any;
+	editImage: any;
+	editUser: any;
 }
 const mapStateToProps = state => ({
 	user: state.account.results,
@@ -19,7 +21,9 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-	loadUser: () => dispatch(actions.fetchAccount())
+	loadUser: () => dispatch(actions.fetchAccount()),
+	editImage: (url: string) => dispatch(actions.editImage(url)),
+	editUser: (attributes: any) => dispatch(actions.editUser(attributes))
 });
 
 class UserProfileContainer extends React.Component<IUserProfileContainerProps & RouteComponentProps> {
@@ -46,8 +50,12 @@ class UserProfileContainer extends React.Component<IUserProfileContainerProps & 
 			}
 		}
 
-		return <UserProfile user={this.props.user}/>;
+		return <UserProfile user={this.props.user} uploadHandler={this.uploadHandler}/>;
 	}
+
+	private uploadHandler = (url) => {
+		this.props.editImage(url);
+	};
 }
 
 export default connect(

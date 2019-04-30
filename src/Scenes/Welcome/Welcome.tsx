@@ -16,7 +16,7 @@ const Welcome = ({mode, history}) => {
 				<img className="logo"/>
 				<p>- Hello there, welcome to 21go -</p>
 				<div className="welcome-account">
-					{mode === WelcomeMode.SIGN_IN ? <SignInContainer /> : <SignUpContainer success={false} />}
+					{mode === WelcomeMode.SIGN_IN ? <SignInContainer /> : <SignUpContainer />}
 					<button className={"button1" + ((mode === WelcomeMode.SIGN_IN) ? " active": "")}
 							onClick={() => history.push("/signIn")}>Sign in</button>
 					<button className={"button1" + ((mode === WelcomeMode.SIGN_UP) ? " active": "")}

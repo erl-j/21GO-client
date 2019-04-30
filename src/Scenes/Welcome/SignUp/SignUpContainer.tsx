@@ -70,7 +70,7 @@ class SignUpContainer extends React.Component<ISignUpContainerProps,{params: any
 
 		if(this.props.success) {
 			alert("Successful Registration");
-			return <Redirect to="/signIn"/>
+			return <Redirect to="/signIn" />
 		}
 
 		if(this.props.isLoading) {
