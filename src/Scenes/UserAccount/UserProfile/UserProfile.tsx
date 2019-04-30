@@ -7,7 +7,7 @@ const UserProfile = (props) => {
 
     return (
       <React.Fragment>
-        <div className="profile">
+        <div className="account-profile">
           <div className="box1">
             <h2 className="bold">Username</h2>
             <h2 className="light">{user.username}</h2>

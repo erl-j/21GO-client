@@ -5,6 +5,7 @@ import * as actions from "../../UserAccount/UserSuperorders/UserSuperordersActio
 import Loader from "../../../Components/Loader";
 import {clearJwt} from "../../../helpers/loadJwt";
 import {RouteComponentProps} from "react-router";
+import OrderImg from '../../../img/order_img.jpg';
 
 interface IUserSuperordersContainerProps {
 	isLoading: boolean;
@@ -24,16 +25,16 @@ const mapDispatchToProps = dispatch => ({
 });
 
 class UserSuperordersContainer extends React.Component<IUserSuperordersContainerProps & RouteComponentProps> {
-    
+
     public componentDidMount(){
 		this.props.getUserSuperorders();
 	}
 
 	public render() {
-
+		let content;
 
 		if(this.props.isLoading){
-			return <Loader/>;
+			content = <Loader/>;
 		}
 
 		if(this.props.error){
@@ -42,10 +43,10 @@ class UserSuperordersContainer extends React.Component<IUserSuperordersContainer
 				clearJwt();
 				alert("Your session has expired");
 				this.props.history.push("/catalog");
-				return null;
+				content = null;
 			}
 			else{
-				return <p>{this.props.error.message}</p>
+				content = <h3 className="error">{this.props.error.message}</h3>
 			}
 		}
 
@@ -55,9 +56,32 @@ class UserSuperordersContainer extends React.Component<IUserSuperordersContainer
 			(<UserSuperorder key = {superorders[key].id!} superorder = {superorders[key]} />)
 		);
 
-		return (
+		content = (
 			<React.Fragment>
 				{list}
+			</React.Fragment>
+		);
+
+		return (
+			<React.Fragment>
+				{content}
+				<div className="account-superorders">
+					<div className="account-items semi-bold">
+						<div className="box1">
+							<img className="item-img" src={OrderImg} alt="" />
+						</div>
+						<div className="box2">
+							<span>StoreName, CountryCode</span>
+							<span>#SuperorderId</span>
+							<span>Duration</span>
+						</div>
+						<div className="box3">
+							<span>? Members</span>
+							<span>Dispatch</span>
+							<span>Status: Ordered</span>
+						</div>
+					</div>
+				</div>
 			</React.Fragment>
 		);
 	}
