@@ -18,9 +18,9 @@ const SuperorderSummary = props => {
 					<span className="uppercase">{props.arrivalLocation.substring(0, 2)}</span>
 				</span>
 			</div>
-			<div className="catalog-superorder-user">
-				<img className="avatar" src={props.user.imageUrl} alt="avatar"/>
-				<span>{props.user.firstName + " " + props.user.lastName}</span>
+			<div className="catalog-superorder-user vertical-center">
+				<img className="avatar inner" src={props.user.imageUrl} alt="avatar"/>
+				<span className="inner">{props.user.firstName + " " + props.user.lastName}</span>
 			</div>
 			{/* <ul>
 			{Object.keys(props).map(ent => (

@@ -5,7 +5,7 @@ import * as actions from "../../UserAccount/UserSuperorders/UserSuperordersActio
 import Loader from "../../../Components/Loader";
 import {clearJwt} from "../../../helpers/loadJwt";
 import {RouteComponentProps} from "react-router";
-import OrderImg from '../../../img/order_img.jpg';
+import orderImg from '../../../img/order_img.jpg';
 
 interface IUserSuperordersContainerProps {
 	isLoading: boolean;
@@ -64,11 +64,10 @@ class UserSuperordersContainer extends React.Component<IUserSuperordersContainer
 
 		return (
 			<React.Fragment>
-				{content}
 				<div className="account-superorders">
 					<div className="account-items semi-bold">
 						<div className="box1">
-							<img className="item-img" src={OrderImg} alt="" />
+							<img className="item-img" src={orderImg} alt="" />
 						</div>
 						<div className="box2">
 							<span>StoreName, CountryCode</span>
@@ -76,12 +75,13 @@ class UserSuperordersContainer extends React.Component<IUserSuperordersContainer
 							<span>Duration</span>
 						</div>
 						<div className="box3">
-							<span>? Members</span>
+							<span>? Orders</span>
 							<span>Dispatch</span>
 							<span>Status: Ordered</span>
 						</div>
 					</div>
 				</div>
+				{content}
 			</React.Fragment>
 		);
 	}

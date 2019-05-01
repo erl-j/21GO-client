@@ -1,11 +1,12 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
-import UserOrder from "./UserOrder";
-import * as actions from "../../UserAccount/UserOrders/UserOrdersActions";
-import {clearJwt} from "../../../helpers/loadJwt";
+import UserOrder from './UserOrder';
+import * as actions from '../../UserAccount/UserOrders/UserOrdersActions';
+import {clearJwt} from '../../../helpers/loadJwt';
 import {RouteComponentProps} from "react-router";
-import Loader from "../../../Components/Loader";
-import OrderImg from '../../../img/order_img.jpg';
+import Loader from '../../../Components/Loader';
+import orderImg from '../../../img/order_img.jpg';
+import UserOrderDetails from './UserOrderDetails';
 
 interface IUserOrdersContainerProps {
 	isLoading: boolean;
@@ -70,11 +71,11 @@ class UserOrdersContainer extends React.Component<IUserOrdersContainerProps & Ro
 
 		return (
 			<React.Fragment>
-				{content}
+				<UserOrderDetails />
 				<div className="account-orders">
 					<div className="account-items semi-bold">
 						<div className="box1">
-							<img className="item-img" src={OrderImg} alt="" />
+							<img className="item-img" src={orderImg} alt="" />
 						</div>
 						<div className="box2">
 							<span>StoreName, CountryCode</span>
@@ -89,6 +90,7 @@ class UserOrdersContainer extends React.Component<IUserOrdersContainerProps & Ro
 						</div>
 					</div>
 				</div>
+				{content}
 			</React.Fragment>
 		);
 	}

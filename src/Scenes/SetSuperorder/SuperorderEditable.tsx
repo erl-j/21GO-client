@@ -113,8 +113,8 @@ const SuperorderEditable = ({attributes,isLoading,error,post,goBack}) => {
 	}
 	return (
 		<React.Fragment>
-			<div className="setSuperorder">
-				<div className="setSuperorder-content">
+			<div className="grey-overlay">
+				<div className="setSuperorder">
 					<img className="close" src={closeIcon} alt="Close" onClick={goBack}/>
 					{content}
 					{console.log(error)}
