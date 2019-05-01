@@ -26,7 +26,7 @@ const mapStateToProps = state => ({
 	error: state.catalog.error,
 });
 
-class CatalogContainer extends React.Component<RouteComponentProps & ICatalogContainerProps,{_filter:any,isSettingSuperorder:boolean}> {
+class CatalogContainer extends React.Component<RouteComponentProps & ICatalogContainerProps,{_filter:any, isSettingSuperorder:boolean}> {
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -36,7 +36,7 @@ class CatalogContainer extends React.Component<RouteComponentProps & ICatalogCon
 			sortOrder: 'ASC',
 			},
 			isSettingSuperorder:false
-			
+
 		};
 	}
 

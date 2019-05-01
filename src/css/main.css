@@ -749,17 +749,15 @@ body {
     position: sticky;
     top: 8rem;
     display: flex;
-    height: max-content; }
+    height: 34rem; }
     .account .account-order-details .box1 {
       flex: 3 0 21rem;
       display: flex;
-      flex-direction: column;
-      min-height: max-content; }
+      flex-direction: column; }
       .account .account-order-details .box1 .items-box {
         flex-grow: 1;
-        height: max-content;
-        padding-right: 2rem;
-        padding-bottom: 3rem; }
+        overflow: scroll;
+        padding-right: 2rem; }
         .account .account-order-details .box1 .items-box .order-item {
           border-bottom: 1px solid #EEE;
           padding: 0.5rem; }
@@ -780,8 +778,7 @@ body {
       .account .account-order-details .box1 .superorder-box {
         height: max-content;
         box-sizing: border-box;
-        padding-right: 2rem;
-        padding-left: 0.5rem; }
+        padding: 2rem 2rem 0 0.5rem; }
         .account .account-order-details .box1 .superorder-box .emailIcon, .account .account-order-details .box1 .superorder-box .phoneIcon, .account .account-order-details .box1 .superorder-box .boxIcon {
           height: 1rem; }
     .account .account-order-details .box2 {
@@ -803,6 +800,44 @@ body {
         font-size: 1.2rem;
         padding: 0.5rem 2rem;
         margin: 1rem; }
+  .account .account-superorder-details {
+    width: 44rem;
+    margin-left: auto;
+    margin-right: auto;
+    box-sizing: border-box;
+    padding: 3rem 4rem;
+    border: #D8D8D8 1px solid;
+    background: #fff;
+    position: sticky;
+    top: 8rem;
+    display: flex;
+    flex-direction: column;
+    height: 34rem; }
+    .account .account-superorder-details .superorder-info {
+      margin-bottom: 2rem; }
+      .account .account-superorder-details .superorder-info span, .account .account-superorder-details .superorder-info img {
+        margin-right: 0.5rem; }
+    .account .account-superorder-details .superorder-orders {
+      overflow: scroll;
+      flex-grow: 1; }
+      .account .account-superorder-details .superorder-orders .superorder-order-info {
+        min-height: 6rem;
+        padding: 0.5rem;
+        box-sizing: border-box;
+        border-top: 1px solid #EEE; }
+        .account .account-superorder-details .superorder-orders .superorder-order-info .superorder-order-brief {
+          display: flex;
+          align-items: center; }
+          .account .account-superorder-details .superorder-orders .superorder-order-info .superorder-order-brief .box1 {
+            flex-grow: 1;
+            margin-right: 2rem; }
+            .account .account-superorder-details .superorder-orders .superorder-order-info .superorder-order-brief .box1 div {
+              display: flex;
+              justify-content: space-between; }
+            .account .account-superorder-details .superorder-orders .superorder-order-info .superorder-order-brief .box1 .accept-reject {
+              justify-content: center; }
+          .account .account-superorder-details .superorder-orders .superorder-order-info .superorder-order-brief img {
+            height: 0.5rem; }
 
 @keyframes logoAnimation {
   to {

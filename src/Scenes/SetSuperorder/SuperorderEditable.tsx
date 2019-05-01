@@ -4,7 +4,7 @@ import Loader from '../../Components/Loader';
 import closeIcon from '../../img/icons/close.svg';
 import Tag from '../../Components/Tag';
 
-const SuperorderEditable = ({attributes,isLoading,error,post,goBack}) => {
+const SuperorderEditable = ({attributes, isLoading, error, post, goBack}) => {
 	// const { id, storeURL, storeLocation, deadline, arrivalLocation, availableDispatch, tags } = props;
 	const dispatchModes = ["NEITHER", "PICKUP", "DELIVERY", "BOTH"];
 

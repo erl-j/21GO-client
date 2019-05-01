@@ -25,7 +25,13 @@ const mapDispatchToProps = dispatch => ({
 	getUserOrders: () => dispatch(actions.getUserOrders()),
 });
 
-class UserOrdersContainer extends React.Component<IUserOrdersContainerProps & RouteComponentProps>  {
+class UserOrdersContainer extends React.Component<IUserOrdersContainerProps & RouteComponentProps, {isShowingDetails:boolean}>  {
+	constructor(props) {
+		super(props);
+		this.state = {
+			isShowingDetails: false
+		};
+	}
 
 	public componentDidMount(){
 		this.props.getUserOrders();
@@ -71,8 +77,8 @@ class UserOrdersContainer extends React.Component<IUserOrdersContainerProps & Ro
 
 		return (
 			<React.Fragment>
-				<UserOrderDetails />
-				<div className="account-orders">
+				{this.state.isShowingDetails? <UserOrderDetails goBack={() => this.setState({isShowingDetails: false})} /> : ''}
+				<div className="account-orders" onClick={() => this.setState({isShowingDetails: true})}>
 					<div className="account-items semi-bold">
 						<div className="box1">
 							<img className="item-img" src={orderImg} alt="" />
