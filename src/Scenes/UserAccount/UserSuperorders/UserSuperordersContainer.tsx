@@ -9,27 +9,33 @@ import UserSuperorderDetails from './UserSuperorderDetails';
 
 interface IUserSuperordersContainerProps {
 	isLoading: boolean;
-	getUserSuperorders: any;
-	userSuperordersResults: any;
+	userSuperorders: any;
 	error: any;
+
+	getUserSuperorders: any;
+	deleteSuperorder: any;
+	editOrderStatus: any;
 }
 
 const mapStateToProps = state => ({
 	isLoading: state.userSuperorders.loading,
-	userSuperordersResults: state.userSuperorders.results,
+	userSuperorders: state.userSuperorders.userSuperorders,
 	error: state.userSuperorders.error,
 });
 
 const mapDispatchToProps = dispatch => ({
 	getUserSuperorders: () => dispatch(actions.getUserSuperorders()),
+	deleteSuperorder: (superorderId) => dispatch(actions.deleteSuperorder(superorderId)),
+	editOrderStatus: (orderId, status) => dispatch(actions.editOrderStatus(orderId, status))
 });
 
-class UserSuperordersContainer extends React.Component<IUserSuperordersContainerProps & RouteComponentProps, {isShowingDetails:boolean, currentSuperorder:any}> {
+class UserSuperordersContainer extends React.Component<IUserSuperordersContainerProps
+	& RouteComponentProps, {isShowingDetails: boolean, selectSuperorderIndex: number}> {
 	constructor(props) {
 		super(props);
 		this.state = {
 			isShowingDetails: false,
-			currentSuperorder: {}
+			selectSuperorderIndex: -1
 		};
 	}
 
@@ -43,8 +49,7 @@ class UserSuperordersContainer extends React.Component<IUserSuperordersContainer
 		if(this.props.isLoading){
 			content = <Loader/>;
 		}
-
-		if(this.props.error){
+		else if(this.props.error){
 			console.log(this.props.error);
 			if(this.props.error.status === 401){
 				clearJwt();
@@ -56,23 +61,34 @@ class UserSuperordersContainer extends React.Component<IUserSuperordersContainer
 				content = <h3 className="error">{this.props.error.message}</h3>
 			}
 		}
+		else{
 
-		const superorders = this.props.userSuperordersResults;
+			const superorders = this.props.userSuperorders;
 
-		const list = Object.keys(superorders).map(key =>
-			(<UserSuperorder key = {superorders[key].id!}  superorder = {superorders[key]}
-					   seeDetails={() => this.setState({isShowingDetails: true, currentSuperorder: superorders[key]})} />)
-		);
+			const list = Object.keys(superorders).map(key =>
+				(<UserSuperorder key = {superorders[key].id!}  superorder = {superorders[key]}
+								 seeDetails={() => this.setState({isShowingDetails: true,
+									selectSuperorderIndex: key as unknown as number})} />)
+			);
 
-		content = (
-			<React.Fragment>
-				{list}
-			</React.Fragment>
-		);
+			content = (
+				<React.Fragment>
+					{list}
+				</React.Fragment>
+			);
+
+		}
 
 		return (
 			<React.Fragment>
-				{this.state.isShowingDetails? <UserSuperorderDetails goBack={() => this.setState({isShowingDetails: false})} superorder={this.state.currentSuperorder}/> : ''}
+				{this.state.isShowingDetails
+					? <UserSuperorderDetails
+						goBack={() => this.setState({isShowingDetails: false})}
+						superorder={this.props.userSuperorders[this.state.selectSuperorderIndex]}
+						onStatusChange={this.props.editOrderStatus}
+						onDelete={this.props.deleteSuperorder}
+					/>
+					: ''}
 				<div className="account-superorders">
 					{content}
 				</div>
@@ -80,6 +96,7 @@ class UserSuperordersContainer extends React.Component<IUserSuperordersContainer
 		);
 	}
 }
+
 
 export default connect(
 	mapStateToProps,

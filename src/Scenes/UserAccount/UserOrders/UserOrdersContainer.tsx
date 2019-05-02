@@ -5,33 +5,34 @@ import * as actions from '../../UserAccount/UserOrders/UserOrdersActions';
 import {clearJwt} from '../../../helpers/loadJwt';
 import {RouteComponentProps} from "react-router";
 import Loader from '../../../Components/Loader';
-// import orderImg from '../../../img/order_img.jpg';
 import UserOrderDetails from './UserOrderDetails';
 
 interface IUserOrdersContainerProps {
 	isLoading: boolean;
 	getUserOrders: any;
-	userOrdersResults: any;
+	userOrders: any;
 	error: any;
+	deleteOrder: any;
 }
 
 const mapStateToProps = state => ({
 	isLoading: state.userOrders.loading,
-	userOrdersResults: state.userOrders.results,
+	userOrders: state.userOrders.userOrders,
 	error: state.userOrders.error,
 });
 
 const mapDispatchToProps = dispatch => ({
 	getUserOrders: () => dispatch(actions.getUserOrders()),
+	deleteOrder: (id) => dispatch(actions.deleteOrder(id))
 });
 
 class UserOrdersContainer extends React.Component<IUserOrdersContainerProps & RouteComponentProps,
-	{isShowingDetails:boolean, currentSuperorder:any}>  {
+	{isShowingDetails: boolean, selectedSuperorderIndex: any}>  {
 	constructor(props) {
 		super(props);
 		this.state = {
 			isShowingDetails: false,
-			currentSuperorder: {}
+			selectedSuperorderIndex: -1
 		};
 	}
 
@@ -45,8 +46,7 @@ class UserOrdersContainer extends React.Component<IUserOrdersContainerProps & Ro
 		if(this.props.isLoading){
 			content = <Loader/>;
 		}
-
-		if(this.props.error){
+		else if(this.props.error){
 
 			if(this.props.error.status === 401){
 				clearJwt();
@@ -58,28 +58,32 @@ class UserOrdersContainer extends React.Component<IUserOrdersContainerProps & Ro
 				content = <h3 className="error">{this.props.error.message}</h3>
 			}
 		}
+		else {
 
-		console.log(this.props.userOrdersResults);
-		const orders = this.props.userOrdersResults;
-		const idKey = "id";
+			console.log(this.props.userOrders);
+			const orders = this.props.userOrders;
 
-		const list = Object.keys(orders).map(key =>
-			<UserOrder key={orders[key][idKey]} superorder = {orders[key]}
-					   seeDetails={() => this.setState({isShowingDetails: true, currentSuperorder: orders[key]})}/>
-		);
+			const list = Object.keys(orders).map(key => {
+				const order = orders[key] as { id: any };
+				return <UserOrder key={order.id} superorder={order}
+								  seeDetails={() =>
+									  this.setState({isShowingDetails: true, selectedSuperorderIndex: key})}/>
+			});
 
-		content = (
-			<React.Fragment>
-				{list}
-			</React.Fragment>
-		);
-		console.log(this.state);
+			content = (
+				<React.Fragment>
+					{list}
+				</React.Fragment>
+			);
+			console.log(this.state);
+
+		}
 
 		return (
 			<React.Fragment>
-				{this.state.isShowingDetails? <UserOrderDetails
+				{this.state.isShowingDetails? <UserOrderDetails onDelete={(id) => this.props.deleteOrder(id)}
 					goBack={() => this.setState({isShowingDetails: false})}
-					superorder={this.state.currentSuperorder} /> : ''}
+					superorder={this.props.userOrders[this.state.selectedSuperorderIndex]} /> : ''}
 
 				<div className="account-orders">
 					{content}
