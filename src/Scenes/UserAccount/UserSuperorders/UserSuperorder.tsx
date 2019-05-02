@@ -7,6 +7,9 @@ const UserSuperorder = (props) => {
     const keyId = "id";
     const orderList = superorder.orders.map((order) => <UserSuperorderOrders order = {order} key = {order[keyId]} /> );
 
+    const currentTime = new Date();
+    console.log(currentTime);
+
     return (
         <React.Fragment>
           <div className="account-superorders" >
@@ -20,9 +23,9 @@ const UserSuperorder = (props) => {
   							<span>{'From ' + superorder.createdAt.substring(0, 10) + ' to ' + superorder.deadline.substring(0, 10)}</span>
   						</div>
   						<div className="box3">
-  							<span>? Orders</span>
+  							<span>{orderList.length} Orders</span>
   							<span>{superorder.dispatch}</span>
-  							<span>Status: {superorder.status}</span>
+  							<span>{currentTime < new Date(superorder.deadline) ? 'On going' : 'Passed'}</span>
   						</div>
   					</div>
   				</div>

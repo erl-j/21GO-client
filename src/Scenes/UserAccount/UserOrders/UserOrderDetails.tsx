@@ -6,8 +6,6 @@ import boxIcon from '../../../img/icons/box.svg';
 
 const UserOrderDetails = ({goBack, superorder}) => {
   const order = superorder.myOrder;
-  console.log(order);
-  console.log(superorder);
   let itemAmount = 0;
 
   const items = order.orderItems.map((orderItem) => {
@@ -19,6 +17,18 @@ const UserOrderDetails = ({goBack, superorder}) => {
       </div>
     );
   });
+
+  console.log(order);
+  console.log(superorder);
+
+  let deleteStatus:any = '';
+  if (order.isDeleted) {
+    deleteStatus = <div><h4 className="error">Deleted by me</h4></div>;
+  } else if (superorder.isDeleted) {
+    deleteStatus = <div><h4 className="error">Deleted by initiator</h4></div>;
+  } else if (order.status === "PENDING") {
+    deleteStatus = <div><button className="button2 v3">Delete</button></div>;
+  }
 
   return (
     <div className="grey-overlay">
@@ -44,7 +54,7 @@ const UserOrderDetails = ({goBack, superorder}) => {
           <h4 className="light">{order.status}</h4>
           <h4 className="bold">Dispatch</h4>
           <h4 className="light">{order.dispatch}</h4>
-          {order.status === "PENDING"? <div><button className="button2 v3">Delete</button></div>: ''}
+          {deleteStatus}
         </div>
       </div>
     </div>

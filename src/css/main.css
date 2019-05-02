@@ -69,8 +69,7 @@ a {
   font-weight: 500; }
 
 .logo {
-  content: url(../img/logo.png);
-  background-image: url(../img/logo.png);
+  content: url(../img/logo_2x.png);
   height: 3rem; }
 
 .button1 {
@@ -773,7 +772,7 @@ a {
     position: sticky;
     top: 8rem;
     display: flex;
-    height: 34rem; }
+    height: 30rem; }
     .account .account-order-details .box1 {
       flex: 3 0 21rem;
       display: flex;

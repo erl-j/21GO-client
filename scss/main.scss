@@ -36,7 +36,6 @@ a {
 
 .logo {
  content: $logo;
- background-image: $logo;
  height: 3rem;
 }
 
@@ -983,7 +982,7 @@ a {
     position: sticky;
     top: 8rem;
     display: flex;
-    height: 34rem;
+    height: 30rem;
 
     .box1 {
       flex: 3 0 21rem;
