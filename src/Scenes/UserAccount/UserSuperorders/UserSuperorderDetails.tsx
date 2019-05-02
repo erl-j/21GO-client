@@ -1,74 +1,38 @@
 import * as React from "react";
 import closeIcon from '../../../img/icons/close.svg';
 import boxIcon from '../../../img/icons/box.svg';
-import downIcon from '../../../img/icons/down.svg';
+import UserSuperorderOrders from "./UserSuperorderOrders";
 
-const UserSuperorderDetails = ({goBack}) => {
+const UserSuperorderDetails = ({goBack, superorder}) => {
+  const keyId = "id";
+  const orderList = superorder.orders.map((order) => <UserSuperorderOrders order = {order} key = {order[keyId]} /> );
+
+  let i = 1;
+	let tagsStr = '';
+	if(superorder.tags) {
+		tagsStr = " " + superorder.tags[0];
+	}
+	for(; i < superorder.tags.length; i++) {
+		tagsStr = tagsStr + ", " + superorder.tags[i];
+	}
 
   return (
     <div className="grey-overlay">
+
       <div className="account-superorder-details">
         <img className="close" src={closeIcon} alt="Close" onClick={goBack}/>
         <div className="superorder-info semi-bold">
-          <span>#ID</span><span>StoreName, storeLocation</span><br />
-          <span>Url</span><br />
-          <span>Duration</span><br />
-          <img src={boxIcon} alt="Ship location" /><span>Country</span><br />
-          <span>Dispatch</span><br />
-          <span>Tags: </span>
+          <span>#{superorder.id + ' '}<a href={superorder.storeURL} target="_blank">{superorder.storeName}</a>{", " + superorder.storeLocation}</span><br />
+          <a href={superorder.storeURL} target="_blank"><span>{superorder.storeURL}</span></a><br />
+          <span>{'From ' + superorder.createdAt.substring(0, 10) + ' to ' + superorder.deadline.substring(0, 10)}</span><br />
+          <img src={boxIcon} alt="Ship location" /><span>{superorder.arrivalLocation}</span><br />
+          <span>{superorder.availableDispatch === 'BOTH' ? 'PICKUP / DELIVERY' : superorder.availableDispatch}</span><br />
+          <span>Tags: {tagsStr}</span><br />
+          {superorder.isDeleted ? <span className="error">Deleted</span> : ''}
         </div>
+
         <div className="superorder-orders">
-          <div className="superorder-order-info">
-            <div className="superorder-order-brief">
-              <div className="box1">
-                <div><span>From Name #ID</span><span>Date</span></div>
-                <div><span>? Items</span><span>Dispatch</span><span>Status</span></div>
-                <span>Address</span>
-                <div className="accept-reject"><button className="button2">Accept</button><button className="button2 v2">Reject</button></div>
-              </div>
-              <img src={downIcon} alt="See order items" />
-            </div>
-          </div>
-          <div className="superorder-order-info">
-            <div className="superorder-order-brief">
-              <div className="box1">
-                <div><span>From Name #ID</span><span>Date</span></div>
-                <div><span>? Items</span><span>Dispatch</span><span>Status</span></div>
-                <span>Address</span>
-              </div>
-              <img src={downIcon} alt="See order items" />
-            </div>
-          </div>
-          <div className="superorder-order-info">
-            <div className="superorder-order-brief">
-              <div className="box1">
-                <div><span>From Name #ID</span><span>Date</span></div>
-                <div><span>? Items</span><span>Dispatch</span><span>Status</span></div>
-                <span>Address</span>
-              </div>
-              <img src={downIcon} alt="See order items" />
-            </div>
-          </div>
-          <div className="superorder-order-info">
-            <div className="superorder-order-brief">
-              <div className="box1">
-                <div><span>From Name #ID</span><span>Date</span></div>
-                <div><span>? Items</span><span>Dispatch</span><span>Status</span></div>
-                <span>Address</span>
-              </div>
-              <img src={downIcon} alt="See order items" />
-            </div>
-          </div>
-          <div className="superorder-order-info">
-            <div className="superorder-order-brief">
-              <div className="box1">
-                <div><span>From Name #ID</span><span>Date</span></div>
-                <div><span>? Items</span><span>Dispatch</span><span>Status</span></div>
-                <span>Address</span>
-              </div>
-              <img src={downIcon} alt="See order items" />
-            </div>
-          </div>
+          {orderList}
         </div>
       </div>
     </div>

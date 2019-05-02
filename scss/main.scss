@@ -926,7 +926,7 @@ a {
   .account-orders, .account-superorders{
     padding: 3rem;
 
-    .account-items {
+    .account-item {
       margin: 0 auto 2rem auto;
       max-width: 60rem;
       padding: 0 2.5rem;
@@ -1106,15 +1106,28 @@ a {
               display: flex;
               justify-content: space-between;
             }
-
-            .accept-reject {
-              justify-content: center;
-            }
           }
 
-          img {
+          .avatar {
+            margin-left: 0.5rem;
+          }
+
+          .unfold {
             height: 0.5rem;
           }
+        }
+
+        .accept-refuse {
+          .button2 {
+            font-size: 1.2rem;
+            padding: 0.5rem 2rem;
+            margin: 1rem;
+          }
+        }
+
+        .superorder-order-item {
+          display: flex;
+          justify-content: space-between;
         }
       }
     }
