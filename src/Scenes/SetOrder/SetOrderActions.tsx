@@ -52,9 +52,9 @@ export const postOrderBegin = () => ({
 	type: POST_ORDER_BEGIN,
 });
 
-export const postOrderSuccess = id => ({
+export const postOrderSuccess = order => ({
 	type: POST_ORDER_SUCCESS,
-	payload: { id },
+	payload: { order },
 });
 
 export const postOrderFailure = error => ({
@@ -62,24 +62,15 @@ export const postOrderFailure = error => ({
 	payload: { error },
 });
 
-export function postOrder(id,attributes) {
+export function postOrder(attributes) {
 
-	attributes = {
-		"superOrderId": id,
-		"dispatch": "PICKUP",
-		"items": [
-			{
-			"additionalInfo":(attributes.url+" "+attributes.details),
-			"quantity":attributes.amount
-			}
-		]
-	};
+	console.log(attributes);
 
 	return (dispatch: any) => {
 		dispatch(postOrderBegin());
 		return APICall(Method.POST, '/order/',attributes,loadJwt())
 		.then(json => {
-			dispatch(postOrderSuccess(json.id));
+			dispatch(postOrderSuccess(json.order));
 			return json;
 		})
 		.catch(error => dispatch(postOrderFailure(error)));
