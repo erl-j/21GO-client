@@ -1,97 +1,113 @@
 import * as React from 'react';
 import * as setOrderActions from './SetOrderActions';
-import * as userOrdersActions from './../UserAccount/UserOrders/UserOrdersActions';
-import { RouteComponentProps } from 'react-router';
+import {Redirect, RouteComponentProps} from 'react-router';
 import { connect } from 'react-redux';
 import ItemForm from './ItemForm';
-import ItemDisplay from './ItemDisplay';
 import Navbar from '../../Components/Navbar';
 import SuperorderInspect from '../../Superorder/SuperorderInspect';
 import Loader from '../../Components/Loader';
+import loadJwt, {clearJwt} from "../../helpers/loadJwt";
+import OrderMySuperorder from "./OrderMySuperorder";
+import OrderJoinedSuperorder from "./OrderJoinedSuperorder";
 
 const mapStateToProps = state => ({
-	superorder: state.setOrder.attributes,
+	superorder: state.setOrder.superorder,
 	items: state.setOrder.items,
 	isLoading: state.setOrder.loading,
-	remoteOrders: state.userOrders.results,
-	superOrderId: state.setOrder.attributes.id,
-	error: state.setOrder.error
+	error: state.setOrder.error,
+	deleted: state.setOrder.deleted
 });
 
 const mapDispatchToProps = dispatch => ({
 	getSuperorder: id => dispatch(setOrderActions.getSuperorder(id)),
 	postOrder: (id, details) => dispatch(setOrderActions.postOrder(id, details)),
-	getRemoteOrderItems: () => dispatch(userOrdersActions.getUserOrders()),
+	editOrderStatus: (id, status) => dispatch(setOrderActions.editOrderStatus(id, status)),
+	deleteOrder: (id) => dispatch(setOrderActions.deleteOrder(id)),
+	deleteSuperorder: (id) => dispatch(setOrderActions.deleteSuperorder(id))
 });
 
 interface ISetOrderContainerProps {
 	superorder: any;
-	getSuperorder: any;
-	superOrderId: number;
 	items: any;
-	postOrder: any;
 	isLoading: boolean;
-	remoteOrders: any;
-	getRemoteOrderItems: any;
-	error: any
+	error: any;
+	deleted: any;
+
+	postOrder: any;
+	getSuperorder: any;
+	editOrderStatus: any;
+	deleteOrder: any;
+	deleteSuperorder: any;
 }
 
 class SetOrderContainer extends React.Component<RouteComponentProps & ISetOrderContainerProps> {
-	public componentDidMount() {
-		const id = 'id';
-		const superorderId = this.props.match.params[id];
-		this.props.getSuperorder(superorderId);
-		this.props.getRemoteOrderItems();
+
+	public componentWillMount()  {
+		const params = this.props.match.params as {id: string};
+		this.props.getSuperorder(params.id);
 	}
 
 	public render() {
 
-		if(this.props.error){
+		// TODO Check this works
+		if(this.props.error){ // TODO can't do that for post errors, only works for the get ones
 			if(this.props.error.status === 401){
+				clearJwt();
+				const params = this.props.match.params as {id: string};
+				this.props.getSuperorder(params.id);
 				return null;
 			}
 			else {
-				return <p>{this.props.error.message}</p>
+				return <p>{JSON.stringify(this.props.error)}</p>
 			}
 		}
 
-		//   if(this.props.isLoading){
+		if(this.props.deleted){
+			alert("The superorder has been deleted");
+			return <Redirect to={"/catalog"}/>;
+		}
 
-		//       return (<div className="setOrder">
-		//                 <Navbar isCatalog={false} />
-		//                 <Loader/>
-		//             </div>);
+		const content: JSX.Element[] = [];
 
-		//   }
+		if(this.props.isLoading){
+			content.push(<Loader/>);
+		}
+		else{
 
+			content.push(<SuperorderInspect superorder={this.props.superorder} />);
+
+			if(loadJwt() == null){
+				content.push(<h3>You must be logged in to see more</h3>);
+			}
+			else if(this.props.superorder.hasOwnProperty("orders")){
+
+				content.push(<button className="button2 v3" onClick={() =>
+				{this.props.deleteSuperorder(this.props.superorder.id)}} >
+					Delete Superorder</button>);
+
+				content.push(<h3>Current Orders:</h3>);
+
+				for(const order of this.props.superorder.orders){
+					content.push(<OrderMySuperorder order={order} onStatusChange={this.props.editOrderStatus}/> );
+				}
+
+			}
+			else if(this.props.superorder.hasOwnProperty("myOrder")){
+				content.push(<h3>My order:</h3>);
+				content.push(<OrderJoinedSuperorder order={this.props.superorder.myOrder}
+													onDelete={this.props.deleteOrder}/>);
+			}
+
+			else{
+				content.push(<h3>New order:</h3>);
+				content.push(<ItemForm key={-1} post={e => {this.props.postOrder(this.props.match.params, e);}}/>);
+			}
+		}
 
 		return (
 			<div className="setOrder">
 				<Navbar isCatalog={false} {...this.props} />
-				<div>
-					<SuperorderInspect superorder={this.props.superorder} />
-					<h3>Current orders:</h3>
-					{// console.log(this.props.remoteOrders)
-
-					this.props.remoteOrders
-						.filter(c => c.id === this.props.superOrderId)
-						.map(c => c.myOrder.orderItems)
-						.map(c => c[0])
-						.map(c => (
-							<ItemDisplay key={c.id} qt={c.quantity} info={c.additionalInfo} />
-						))}
-					<br />
-					{this.props.isLoading ? (
-						<Loader />
-					) : (
-						<ItemForm
-							key={-1}
-							post={e => {
-                                this.props.postOrder(this.props.match.params, e);
-							}}
-						/>
-					)}
-				</div>
+				<div>{content}</div>
 			</div>
 		);
 	}
