@@ -47,16 +47,9 @@ class Navbar extends React.Component< { isCatalog: boolean } & RouteComponentPro
             );
         }
 
-        let navAccountClass = '';
-        if(this.state.visible) {
-          navAccountClass = 'nav-account visible';
-        } else {
-          navAccountClass = 'nav-account';
-        }
-
-        if(this.state.loggedIn) {
-          navAccountClass += ' loggedIn';
-        }
+        const navAccountClass =  'nav-account'
+            + (this.state.visible ? " visible" : "")
+            + (this.state.loggedIn ? " loggedIn" : "");
 
         return (
 

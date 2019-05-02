@@ -1,34 +1,26 @@
 import loadJwt from '../../helpers/loadJwt';
 import {APICall, Method} from "../../apiCall";
 
-export const GET_SUPERORDER_BEGIN = 'GET_SUPERORDER_BEGIN';
-export const GET_SUPERORDER_FAILURE = 'GET_SUPERORDER_FAILURE';
-export const GET_SUPERORDER_SUCCESS = 'GET_SUPERORDER_SUCCESS';
-
 export const POST_SUPERORDER_BEGIN = 'POST_SUPERORDER_BEGIN';
 export const POST_SUPERORDER_FAILURE = 'POST_SUPERORDER_FAILURE';
 export const POST_SUPERORDER_SUCCESS = 'POST_SUPERORDER_SUCCESS';
 
-// Sets the given superorder attribute list to be stored
-export const SET_LOCAL_SUPERORDER = 'SET_LOCAL_SUPERORDER';
+export const EDIT_SUPERORDER_IMAGE_BEGIN = 'EDIT_SUPERORDER_IMAGE_BEGIN';
+export const EDIT_SUPERORDER_IMAGE_FAILURE = 'EDIT_SUPERORDER_IMAGE_FAILURE';
+export const EDIT_SUPERORDER_IMAGE_SUCCESS = 'EDIT_SUPERORDER_IMAGE_SUCCESS';
 
-export const getSuperorderBegin = () => ({
-	type: GET_SUPERORDER_BEGIN,
+export const editSuperorderImageBegin = () => ({
+	type: EDIT_SUPERORDER_IMAGE_BEGIN,
 });
 
-export const getSuperorderSuccess = result => ({
-	type: GET_SUPERORDER_SUCCESS,
-	payload: { result },
+export const editSuperorderImageSuccess = id => ({
+	type: EDIT_SUPERORDER_IMAGE_SUCCESS,
+	payload: { id },
 });
 
-export const getSuperorderFailure = (error: string) => ({
-	type: GET_SUPERORDER_FAILURE,
+export const editSuperorderImageFailure = (error: any) => ({
+	type: EDIT_SUPERORDER_IMAGE_FAILURE,
 	payload: { error },
-});
-
-export const setLocalSuperorder = attributes => ({
-	type: SET_LOCAL_SUPERORDER,
-	payload: { attributes },
 });
 
 export const postSuperorderBegin = () => ({
@@ -40,49 +32,38 @@ export const postSuperorderSuccess = id => ({
 	payload: { id },
 });
 
-export const postSuperorderFailure = (error: any,details:any) => ({
+export const postSuperorderFailure = (error: any) => ({
 	type: POST_SUPERORDER_FAILURE,
-	payload: { error,details },
+	payload: { error },
 });
 
-export function getSuperorder(id) {
+export function postSuperorder(attributes, handler) {
 	return (dispatch: any) => {
-		dispatch(getSuperorderBegin());
-
-		return APICall(Method.GET,  '/superOrder/' + id, null, loadJwt())
-			.then(json => {
-				dispatch(getSuperorderSuccess(json));
-				return json;
-			})
-			.catch(error => dispatch(getSuperorderFailure(error)));
-	};
-}
-export function postSuperorder(attributes) {
-	return (dispatch: any) => {
-		dispatch(setLocalSuperorder(attributes));
 		dispatch(postSuperorderBegin());
-		return APICall(Method.POST,  '/superOrder/', attributes, loadJwt())
+		return APICall(Method.POST,  '/superOrder', attributes, loadJwt())
 			.then(body => {
-				dispatch(postSuperorderSuccess(body.id));
+
+				console.log("successful post superOrder");
+				console.log(body);
+
+				return handler().then((url) => {
+
+					if(url != null){
+
+						dispatch(editSuperorderImageBegin());
+						return APICall(Method.PUT, `/superOrder/${body.superOrder.id}/image`,
+							{imageUrl: url}, loadJwt())
+							.then(dispatch(editSuperorderImageSuccess(body.superOrder.id)))
+							.catch(error => dispatch(editSuperorderImageFailure(error)));
+					}
+					else{
+						dispatch(postSuperorderSuccess(body.superOrder.id));
+						return body;
+					}
+				});
+
 			})
-			.catch(error => {
-				dispatch(postSuperorderFailure(error.message, error.details));
-			});
+			.catch(error => dispatch(postSuperorderFailure(error)));
 	};
 }
 
-export function editSuperorderImage(id, imageUrl) {
-
-	const attributes = {imageUrl};
-
-	return (dispatch: any) => {
-		dispatch(setLocalSuperorder(attributes));
-		dispatch(postSuperorderBegin());
-		return APICall(Method.PUT, '/superOrder/' + id, attributes, loadJwt())
-			.then(json => {
-				dispatch(postSuperorderSuccess(json.id));
-				return json;
-			})
-			.catch(error => dispatch(postSuperorderFailure(error,error.details)));
-	};
-}
