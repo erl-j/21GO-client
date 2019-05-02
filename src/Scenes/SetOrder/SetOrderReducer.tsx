@@ -37,31 +37,25 @@ export default function setOrderReducer(state = initialState, action: any) {
 		case POST_ORDER_FAILURE:
 			return { ...state, loading: false, error: action.payload.error};
 		case POST_ORDER_SUCCESS:
-			const myOrderKey = "myOrder";
-			const superorder3 = state.superorder;
-			superorder3[myOrderKey] = action.payload.order;
+			const superorder3 = state.superorder  as {myOrder: any};
+			superorder3.myOrder = action.payload.order;
 			return { ...state, loading: false, id: action.payload.id, superorder: superorder3};
-
 		case DELETE_ORDER_BEGIN:
 			return { ...state, loading: true };
 		case DELETE_ORDER_FAILURE:
 			return { ...state, loading: false, error: action.payload.error};
 		case DELETE_ORDER_SUCCESS:
-			const myOrderKey2 = "myOrder";
-			const superorder = state.superorder;
-			delete superorder[myOrderKey2];
+			const superorder = state.superorder as {myOrder: any};
+			delete superorder.myOrder;
 			return { ...state, loading: false, id: action.payload.id, superorder};
-
 		case EDIT_ORDER_STATUS_BEGIN:
 			return { ...state, loading: true };
 		case EDIT_ORDER_STATUS_FAILURE:
 			return { ...state, loading: false, error: action.payload.error};
 		case EDIT_ORDER_STATUS_SUCCESS:
 
-			const superorder2 = state.superorder;
-			const key2 = "orders";
-
-			superorder2[key2] = superorder2[key2].map((order) => {
+			const superorder2 = state.superorder as {orders: any};
+			superorder2.orders = superorder2.orders.map((order) => {
 				if(order.id === action.payload.id) {
 					order.status = action.payload.status;
 				}

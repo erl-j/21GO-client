@@ -1,6 +1,6 @@
 import * as React from "react";
 
-const UserSuperorderOrders = ({order}) => {
+const UserSuperorderOrders = ({order, onStatusChange}) => {
 
     const keyId = "id";
     const items = order.orderItems.map((item) => <UserSuperordersOrdersOrderItem orderItem ={item} key={item[keyId]}/> );
@@ -14,7 +14,11 @@ const UserSuperorderOrders = ({order}) => {
           </div>
         </div>
         {items}
-        {order.status === 'PENDING' ? <div className="accept-refuse"><button className="button2">Accept</button><button className="button2 v2">Refuse</button></div> : ''}
+        {order.status === 'PENDING' ?
+            <div className="accept-refuse">
+                <button className="button2" onClick={() => onStatusChange(order.id, "ACCEPTED")}>Accept</button>
+                <button className="button2 v2" onClick={() => onStatusChange(order.id, "REFUSED")}>Refuse</button>
+            </div> : ''}
       </div>
     );
 };

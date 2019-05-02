@@ -4,7 +4,7 @@ import emailIcon from '../../../img/icons/email.svg';
 import phoneIcon from '../../../img/icons/phone.svg';
 import boxIcon from '../../../img/icons/box.svg';
 
-const UserOrderDetails = ({goBack, superorder}) => {
+const UserOrderDetails = ({goBack, superorder, onDelete}) => {
   const order = superorder.myOrder;
   let itemAmount = 0;
 
@@ -27,7 +27,7 @@ const UserOrderDetails = ({goBack, superorder}) => {
   } else if (superorder.isDeleted) {
     deleteStatus = <div><h4 className="error">Deleted by initiator</h4></div>;
   } else if (order.status === "PENDING") {
-    deleteStatus = <div><button className="button2 v3">Delete</button></div>;
+    deleteStatus = <div><button className="button2 v3" onClick={() => onDelete(order.id)}>Delete</button></div>;
   }
 
   return (

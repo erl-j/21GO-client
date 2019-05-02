@@ -1,7 +1,6 @@
 import * as React from "react";
-const UserOrder = (props) => {
+const UserOrder = ({superorder, seeDetails}) => {
 
-    const superorder = props.superorder;
     const order = superorder.myOrder;
     let itemAmount = 0;
 
@@ -15,11 +14,11 @@ const UserOrder = (props) => {
       //   </div>
       // );
       return '';
-    });
+    }); // TODO WHAT?
 
     return (
         <React.Fragment>
-					<div className="account-item semi-bold" onClick={props.seeDetails}>
+					<div className="account-item semi-bold" onClick={seeDetails}>
 						<div className="box1">
 							<img className="item-img" src={superorder.imageUrl} alt="Superorder image" />
 						</div>
