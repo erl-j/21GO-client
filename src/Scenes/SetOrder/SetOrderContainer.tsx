@@ -73,7 +73,6 @@ class SetOrderContainer extends React.Component<RouteComponentProps & ISetOrderC
 			content.push(<Loader/>);
 		}
 		else{
-
 			content.push(<SuperorderInspect superorder={this.props.superorder} />);
 
 			if(loadJwt() == null){
@@ -84,16 +83,16 @@ class SetOrderContainer extends React.Component<RouteComponentProps & ISetOrderC
 				content.push(<button className="button2 v3" onClick={() =>
 					{this.props.deleteSuperorder(this.props.superorder.id)}} > Delete Superorder</button>);
 
-				content.push(<h3>Current Orders:</h3>);
+				content.push(<h2>Current Orders:</h2>);
 
 				for(const order of this.props.superorder.orders){
 					content.push(<OrderMySuperorder key={order.id} order={order}
 													onStatusChange={this.props.editOrderStatus}/> );
 				}
-
 			}
+			
 			else if(this.props.superorder.hasOwnProperty("myOrder")){
-				content.push(<h3>My order:</h3>);
+				content.push(<h2>My order:</h2>);
 				content.push(<OrderJoinedSuperorder order={this.props.superorder.myOrder}
 													onDelete={this.props.deleteOrder}/>);
 			}

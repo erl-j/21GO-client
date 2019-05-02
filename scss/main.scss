@@ -71,7 +71,7 @@ a {
 
   &.v3 {
     background-color: $secondary-color;
-    color: &$primary-color;
+    color: $primary-color;
   }
 }
 
@@ -847,6 +847,37 @@ a {
       margin: 1rem 0 1rem 2rem;
     }
   }
+
+  .setorder-orders {
+    margin: 1rem auto;
+    max-width: 48rem;
+    padding: 0.5rem;
+    box-sizing: border-box;
+    border-bottom: 1px solid $light-grey;
+
+    .setOrder-orders-brief {
+      display: flex;
+      align-items: center;
+
+      .box1 {
+        flex-grow: 1;
+
+        .avatar {
+          margin-left: 0.5rem;
+        }
+
+        div {
+          display: flex;
+          justify-content: space-between;
+        }
+      }
+    }
+
+    .order-item {
+      display: flex;
+      justify-content: space-between;
+    }
+  }
 }
 
 .account {
@@ -1054,8 +1085,6 @@ a {
       }
 
       .button2 {
-        color: $primary-color;
-        border-radius: 3px;
         font-size: 1.2rem;
         padding: 0.5rem 2rem;
         margin: 1rem;
@@ -1100,7 +1129,6 @@ a {
 
           .box1 {
             flex-grow: 1;
-            margin-right: 2rem;
 
             div {
               display: flex;
@@ -1110,10 +1138,6 @@ a {
 
           .avatar {
             margin-left: 0.5rem;
-          }
-
-          .unfold {
-            height: 0.5rem;
           }
         }
 

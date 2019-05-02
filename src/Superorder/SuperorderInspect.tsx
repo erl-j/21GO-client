@@ -28,6 +28,7 @@ const SuperorderInspect = ({superorder}) => {
 					{/* <img src={superorder.user.imageUrl} alt="avatar"/>*/}
 					<img className="emailIcon" src={emailIcon} alt="Email" /><br />
 					<span>Initiated by {superorder.user.firstName + " " + superorder.user.lastName}</span><br />
+					<span><a href={superorder.storeURL} target="_blank">{superorder.storeURL}</a></span><br />
 					<img className="boxIcon" src={boxIcon} alt="Ship location" />
 					<span>{superorder.arrivalLocation}</span><br />
 					<span>Ends in {dateDiffInDays(new Date(), new Date(superorder.deadline))} days. Till&nbsp;

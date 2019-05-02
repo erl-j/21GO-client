@@ -24,14 +24,14 @@ const OrderJoinedSuperorder = ({ order, onDelete }) => {
 
                 </div>
                 <div className="box2">
-                    <h4 className="bold">Order ID</h4>
-                    <h4 className="light">#{order.id}</h4>
-                    <h4 className="bold">Total amount</h4>
-                    <h4 className="light">{itemAmount}</h4>
-                    <h4 className="bold">Status</h4>
-                    <h4 className="light">{order.status}</h4>
-                    <h4 className="bold">Dispatch</h4>
-                    <h4 className="light">{order.dispatch}</h4>
+                    <span className="bold">Order ID</span>
+                    <span className="light">#{order.id}</span>
+                    <span className="bold">Total amount</span>
+                    <span className="light">{itemAmount}</span>
+                    <span className="bold">Status</span>
+                    <span className="light">{order.status}</span>
+                    <span className="bold">Dispatch</span>
+                    <span className="light">{order.dispatch}</span>
                     {order.status === "PENDING" ? <div>
                         <button className="button2 v3" onClick={() => onDelete(order.id)}>Delete</button>
                     </div>: ''}
