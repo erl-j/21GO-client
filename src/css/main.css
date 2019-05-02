@@ -50,6 +50,12 @@ body {
   color: #233142;
   font-family: 'Raleway', sans-serif; }
 
+a {
+  color: #233142;
+  text-decoration: none; }
+  a:visited {
+    text-decoration: none; }
+
 .bold {
   font-weight: 600; }
 
@@ -146,6 +152,22 @@ body {
   vertical-align: middle;
   margin-right: 0.5rem; }
 
+.capitalize::-webkit-input-placeholder {
+  /* Chrome/Opera/Safari */
+  text-transform: capitalize; }
+
+.capitalize::-moz-placeholder {
+  /* Firefox 19+ */
+  text-transform: capitalize; }
+
+.capitalize:-ms-input-placeholder {
+  /* IE 10+ */
+  text-transform: capitalize; }
+
+.capitalize:-moz-placeholder {
+  /* Firefox 18- */
+  text-transform: capitalize; }
+
 .welcome {
   min-height: 100vh;
   background: url(../img/welcome-bg.png);
@@ -228,10 +250,7 @@ body {
     position: relative;
     left: 8rem;
     color: #233142;
-    text-decoration: none;
     text-align: right; }
-    .welcome .welcome-form a:visited {
-      text-decoration: none; }
 
 .nav-content, .filter-content {
   align-items: center;
@@ -402,7 +421,11 @@ body {
       .catalog .catalog-content-superorders .catalog-superorder .catalog-superorder-img {
         width: 100%;
         height: 12rem;
-        object-fit: cover; }
+        background-color: #D8D8D8; }
+        .catalog .catalog-content-superorders .catalog-superorder .catalog-superorder-img img {
+          width: 100%;
+          height: 12rem;
+          object-fit: cover; }
       .catalog .catalog-content-superorders .catalog-superorder .catalog-superorder-store {
         width: 100%;
         height: 2rem;
@@ -667,20 +690,21 @@ body {
     flex-grow: 1;
     position: relative; }
   .account .account-profile {
-    padding: 2rem 8rem;
+    padding: 3rem 5rem;
     display: flex;
     align-items: center; }
     .account .account-profile .box1 {
+      box-sizing: border-box;
       flex-basis: 15rem;
       text-align: right;
-      padding-right: 10rem; }
+      padding-right: 8rem; }
       .account .account-profile .box1 h2 {
-        margin: 0.8rem 0; }
+        font-size: 1.5rem;
+        margin: 0.5rem 0; }
       .account .account-profile .box1 .light {
-        margin-bottom: 1.5rem; }
+        margin-bottom: 1rem; }
     .account .account-profile .box2 {
-      flex-basis: 10rem;
-      text-align: left; }
+      flex-basis: 8rem; }
       .account .account-profile .box2 .container {
         position: relative;
         min-width: 8rem;
@@ -707,9 +731,9 @@ body {
         /* Equivalent of the background-size: cover; of a background-image */
         object-position: center; }
   .account .account-orders, .account .account-superorders {
-    padding: 0 3rem; }
+    padding: 3rem; }
     .account .account-orders .account-items, .account .account-superorders .account-items {
-      margin: 3rem auto;
+      margin: 0 auto 2rem auto;
       max-width: 60rem;
       padding: 0 2.5rem;
       box-sizing: border-box;
@@ -794,6 +818,8 @@ body {
         margin: 0; }
         .account .account-order-details .box2 h4.light {
           margin-bottom: 1rem; }
+      .account .account-order-details .box2 div {
+        text-align: center; }
       .account .account-order-details .box2 .button2 {
         color: #233142;
         border-radius: 3px;
@@ -907,11 +933,43 @@ body {
   .account .account-tab {
     height: 5rem; }
   .account .account-profile {
-    padding-left: 6rem;
-    padding-right: 3rem; }
+    padding: 3rem 1rem; }
+    .account .account-profile .box1 {
+      padding-right: 4rem; }
+      .account .account-profile .box1 h2 {
+        font-size: 1.2rem; }
+    .account .account-profile .box2 {
+      text-align: center; }
+      .account .account-profile .box2 .container {
+        display: inline-block; }
     .account .account-profile .container {
       width: 8rem;
-      height: 8rem; } }
+      height: 8rem; }
+  .account .account-orders, .account .account-superorders {
+    padding: 2rem 1rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center; }
+    .account .account-orders:first-child, .account .account-superorders:first-child {
+      margin-top: 0rem; }
+    .account .account-orders:last-child, .account .account-superorders:last-child {
+      margin-bottom: 0rem; }
+    .account .account-orders .account-items, .account .account-superorders .account-items {
+      margin: 1rem;
+      padding: 0.8rem;
+      flex-basis: 15rem;
+      width: 16rem;
+      height: max-content; }
+    .account .account-orders .box1, .account .account-superorders .box1 {
+      display: none; }
+    .account .account-orders .box2, .account .account-orders .box3, .account .account-superorders .box2, .account .account-superorders .box3 {
+      flex: 1 1 6rem;
+      margin: 0;
+      font-size: 0.8rem; }
+    .account .account-orders .box3, .account .account-superorders .box3 {
+      box-sizing: border-box;
+      padding-left: 0.8rem;
+      text-align: right; } }
 
 @media screen and (max-width: 500px) {
   .navbar .box2 form input[type=search] {
@@ -974,11 +1032,14 @@ body {
   .account .account-tab {
     height: max-content; }
   .account .account-profile {
-    padding: 2rem 0;
+    padding: 0;
+    padding-top: 3rem;
     flex-direction: column-reverse;
     align-items: center; }
-    .account .account-profile h2 {
-      font-size: 1.2rem; }
+    .account .account-profile .box1 {
+      margin-top: 1.5rem;
+      text-align: center;
+      padding-right: 0; }
   @keyframes logoAnimation {
     to {
       margin-top: 10vh;
