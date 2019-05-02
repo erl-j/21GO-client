@@ -32,7 +32,7 @@ const SuperorderInspect = ({superorder}) => {
 					<span>{superorder.arrivalLocation}</span><br />
 					<span>Ends in {dateDiffInDays(new Date(), new Date(superorder.deadline))} days. Till&nbsp;
 						{superorder.deadline.substring(0, 10)}</span><br />
-					<span>{superorder.availableDispatch}</span><br />
+					<span>{superorder.availableDispatch === 'BOTH' ? 'PICKUP / DELIVERY' : superorder.availableDispatch}</span><br />
 					<p><span className="semi-bold">Tags:</span>
 						{tagsStr}
 					</p>

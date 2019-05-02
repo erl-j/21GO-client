@@ -19,7 +19,7 @@ const UserOrder = (props) => {
 
     return (
         <React.Fragment>
-					<div className="account-items semi-bold" onClick={props.seeDetails}>
+					<div className="account-item semi-bold" onClick={props.seeDetails}>
 						<div className="box1">
 							<img className="item-img" src={superorder.imageUrl} alt="Superorder image" />
 						</div>

@@ -6,7 +6,7 @@ const SuperorderSummary = props => {
 		<div className="catalog-superorder" onClick={props.onClick}>
 			<div className="catalog-superorder-img"><img src={props.imageUrl} alt="Superorder image" /></div>
 			<div className="catalog-superorder-store">
-				<span className="bold uppercase">{props.storeName}</span>
+				<a href={props.storeURL} target="_blank"><span className="bold uppercase">{props.storeName}</span></a>
 				<span className="uppercase">{props.storeLocation.substr(0,2)}</span>
 			</div>
 			<div className="catalog-superorder-info">

@@ -69,8 +69,7 @@ a {
   font-weight: 500; }
 
 .logo {
-  content: url(../img/logo.png);
-  background-image: url(../img/logo.png);
+  content: url(../img/logo_2x.png);
   height: 3rem; }
 
 .button1 {
@@ -732,7 +731,7 @@ a {
         object-position: center; }
   .account .account-orders, .account .account-superorders {
     padding: 3rem; }
-    .account .account-orders .account-items, .account .account-superorders .account-items {
+    .account .account-orders .account-item, .account .account-superorders .account-item {
       margin: 0 auto 2rem auto;
       max-width: 60rem;
       padding: 0 2.5rem;
@@ -773,7 +772,7 @@ a {
     position: sticky;
     top: 8rem;
     display: flex;
-    height: 34rem; }
+    height: 30rem; }
     .account .account-order-details .box1 {
       flex: 3 0 21rem;
       display: flex;
@@ -860,10 +859,17 @@ a {
             .account .account-superorder-details .superorder-orders .superorder-order-info .superorder-order-brief .box1 div {
               display: flex;
               justify-content: space-between; }
-            .account .account-superorder-details .superorder-orders .superorder-order-info .superorder-order-brief .box1 .accept-reject {
-              justify-content: center; }
-          .account .account-superorder-details .superorder-orders .superorder-order-info .superorder-order-brief img {
+          .account .account-superorder-details .superorder-orders .superorder-order-info .superorder-order-brief .avatar {
+            margin-left: 0.5rem; }
+          .account .account-superorder-details .superorder-orders .superorder-order-info .superorder-order-brief .unfold {
             height: 0.5rem; }
+        .account .account-superorder-details .superorder-orders .superorder-order-info .accept-refuse .button2 {
+          font-size: 1.2rem;
+          padding: 0.5rem 2rem;
+          margin: 1rem; }
+        .account .account-superorder-details .superorder-orders .superorder-order-info .superorder-order-item {
+          display: flex;
+          justify-content: space-between; }
 
 @keyframes logoAnimation {
   to {
@@ -954,7 +960,7 @@ a {
       margin-top: 0rem; }
     .account .account-orders:last-child, .account .account-superorders:last-child {
       margin-bottom: 0rem; }
-    .account .account-orders .account-items, .account .account-superorders .account-items {
+    .account .account-orders .account-item, .account .account-superorders .account-item {
       margin: 1rem;
       padding: 0.8rem;
       flex-basis: 15rem;

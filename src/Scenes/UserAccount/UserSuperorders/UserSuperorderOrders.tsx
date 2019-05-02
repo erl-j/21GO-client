@@ -1,54 +1,33 @@
 import * as React from "react";
 
-const UserSuperorderOrders = (props) => {
-
-    const {order} = props;
+const UserSuperorderOrders = ({order}) => {
 
     const keyId = "id";
     const items = order.orderItems.map((item) => <UserSuperordersOrdersOrderItem orderItem ={item} key={item[keyId]}/> );
 
     return (
-
-        <React.Fragment>
-            <h1>ID {order.id}</h1>
-            <h1>Dispatch {order.dispatch}</h1>
-            <h1>Status {order.status}</h1>
-            <h1>Is Deleted {order.isDeleted}</h1>
-            <UserSuperordersOrdersUser user={order.user}/>
-            {items}
-        </React.Fragment>
+      <div className="superorder-order-info">
+        <div className="superorder-order-brief">
+          <div className="box1">
+            <div><span className="inner">From {order.user.firstName + ' ' + order.user.lastName}<img className="avatar inner" src={order.user.imageUrl} alt="avatar" /></span><span className="inner">#{order.id}</span></div>
+            <div><span>{order.dispatch}</span><span>{order.status}</span>{order.isDeleted ? <span className="error">Deleted</span> : ''}</div>
+          </div>
+        </div>
+        {items}
+        {order.status === 'PENDING' ? <div className="accept-refuse"><button className="button2">Accept</button><button className="button2 v2">Refuse</button></div> : ''}
+      </div>
     );
-
 };
 
 export default UserSuperorderOrders;
 
-const UserSuperordersOrdersOrderItem = (props) => {
+const UserSuperordersOrdersOrderItem = ({orderItem}) => {
 
-    const {orderItem} = props;
-
-    return (
-        <React.Fragment>
-            <h1>ID {orderItem.id}</h1>
-            <h1>Additional Info {orderItem.additionalInfo}</h1>
-            <h1>Quantity {orderItem.quantity}</h1>
-        </React.Fragment>
-    );
-
-};
-
-const UserSuperordersOrdersUser = (props) => {
-
-    const {user} = props;
-
-    return (
-        <React.Fragment>
-            <h1>ID {user.id}</h1>
-            <h1>First Name {user.firstName}</h1>
-            <h1>Last Name {user.lastName}</h1>
-            <h1>Image URL{user.imageUrl}</h1>
-        </React.Fragment>
-    );
-
-
+  return (
+    <div className="superorder-order-item">
+      <span>{orderItem.url}</span>
+      <span>{orderItem.additionalInfo}</span>
+      <span>Amount {orderItem.quantity}</span>
+    </div>
+  );
 };
