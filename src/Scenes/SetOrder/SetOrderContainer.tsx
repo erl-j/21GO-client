@@ -15,6 +15,7 @@ const mapStateToProps = state => ({
 	isLoading: state.setOrder.loading,
 	remoteOrders: state.userOrders.results,
 	superOrderId: state.setOrder.attributes.id,
+	error: state.setOrder.error
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -32,6 +33,7 @@ interface ISetOrderContainerProps {
 	isLoading: boolean;
 	remoteOrders: any;
 	getRemoteOrderItems: any;
+	error: any
 }
 
 class SetOrderContainer extends React.Component<RouteComponentProps & ISetOrderContainerProps> {
@@ -43,6 +45,16 @@ class SetOrderContainer extends React.Component<RouteComponentProps & ISetOrderC
 	}
 
 	public render() {
+
+		if(this.props.error){
+			if(this.props.error.status === 401){
+				return null;
+			}
+			else {
+				return <p>{this.props.error.message}</p>
+			}
+		}
+
 		//   if(this.props.isLoading){
 
 		//       return (<div className="setOrder">

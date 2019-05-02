@@ -48,7 +48,7 @@ const img: CSSProperties  = {
 
 const preview = "preview";
 
-function ImageSelector(props) {
+function ImageSelector(props: {submitButton?: any, clickHandler?: any}) {
 
     const [files, setFiles] = useState([]);
     const {getRootProps, getInputProps} = useDropzone({
@@ -81,20 +81,25 @@ function ImageSelector(props) {
 
         const file = files[0];
         if(file == null){
-            alert("must select a file");
-            return;
+            return Promise.resolve();
         }
 
-        uploadImage(file).then((res) => {
+        return uploadImage(file).then((res) => {
             console.log(res);
             const url = res.secure_url;
-            props.clickHandler(url);
-
+            if(props.hasOwnProperty("clickHandler")){
+                props.clickHandler(url);
+            }
+            return url;
         }).catch((err) => {
             console.log(err);
         });
 
     };
+
+    const submitButton = props.hasOwnProperty("submitButton")
+                    ? props.submitButton(submitHandler)
+                    : <button className="button2" type="button" onClick={submitHandler}>  Submit </button>;
 
     return (
         <div>
@@ -106,7 +111,8 @@ function ImageSelector(props) {
                 {thumbs}
         </section>
 
-        <button className="button2" type="button" onClick={submitHandler}>  Submit </button>
+        {submitButton}
+
         </div>
 );
 }

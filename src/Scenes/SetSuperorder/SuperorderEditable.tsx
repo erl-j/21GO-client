@@ -1,131 +1,151 @@
-import { useState } from 'react';
+import {useState} from 'react';
 import * as React from 'react';
 import Loader from '../../Components/Loader';
 import closeIcon from '../../img/icons/close.svg';
 import Tag from '../../Components/Tag';
+import ImageSelector from "../../Components/ImageSelector";
 
-const SuperorderEditable = ({attributes, isLoading, error, post, goBack}) => {
-	// const { id, storeURL, storeLocation, deadline, arrivalLocation, availableDispatch, tags } = props;
-	const dispatchModes = ["NEITHER", "PICKUP", "DELIVERY", "BOTH"];
+enum DispatchMode {NEITHER = "NEITHER", PICKUP = "PICKUP", DELIVERY = "DELIVERY", BOTH = "BOTH"}
 
-	const [isEditable, setEditable] = useState(true);
-	const [params, setParams] = useState(
-		attributes
-	);
-	const [inputTag, setInputTag] = useState<string>('');
-  const [tags, setTags] = useState<string[]>([]);
-	const [availableDispatch, setAvailableDispatch] = useState(1);
-	const [isPickup, setIsPickup] = useState(true);
-	const [isDelivery, setIsDelivery] = useState(false);
+const SuperorderEditable = ({id, attributes, isLoading, error, post, goBack}) => {
+
+    const [params, setParams] = useState(attributes);
+    const [inputTag, setInputTag] = useState<string>('');
+    const [tags, setTags] = useState<string[]>([]);
+    const [checked, setChecked] = useState([true, false]);
+
+    const handleInputTagChange = event => {
+        setInputTag(event.target.value);
+    };
+
+    const handleKeyPress = event => {
+        if (event.key === 'Enter') {
+            setTags(tags.concat(inputTag));
+            setParams({...params, tags: [...tags, inputTag]});
+            setInputTag('');
+        }
+    };
+
+    const handleTagDelete = (index) => {
+        const newTags = Object.assign([], tags);
+        newTags.splice(index, 1);
+        setTags(newTags);
+        setParams({...params, tags: [...newTags]});
+    };
+
+    const handleCheckChange = (e) => {
+        const newChecked = e.target.value === "pickup" ? [!checked[0], checked[1]] : [checked[0], !checked[1]];
+        setChecked(newChecked);
+        const dispatch = newChecked[0]
+            ? (newChecked[1] ? DispatchMode.BOTH : DispatchMode.PICKUP)
+            : (newChecked[1] ? DispatchMode.DELIVERY : DispatchMode.NEITHER);
+        setParams({...params, availableDispatch: dispatch.toString()});
+        console.log(newChecked);
+        console.log(dispatch);
+    };
 
 
-	const handleInputTagChange = event => {
-    setInputTag(event.target.value);
-  }
+    let content;
 
-	const handleKeyPress = event => {
-		if(event.key === 'Enter') {
-			setTags(tags.concat(inputTag));
-			setParams({...params, tags: [...tags, inputTag]});
-			setInputTag('');
-		}
-	}
+    if(id){
+        content = (<div>
+                    <p>SuperOrder Successfully created, click on the button below to see it!</p>
+                    <a href={"/setOrder/" + id} className="button2">Click me!</a>
+                </div>);
+    }
+    else if (isLoading) {
+        content = <Loader/>;
+    } else {
+        content = <form>
+            <div className="setSuperorder-form">
+                <div className="box1">
+                    <input name="storeName" type="text" placeholder="store name" value={params.storeName}
+                           onChange={e => setParams({...params, storeName: e.target.value})}/>
+                    <br/>
+                    <input name="storeLocation" type="text" placeholder="country" value={params.storeLocation}
+                           onChange={e => setParams({...params, storeLocation: e.target.value})}/>
+                    <br/>
+                    <input name="storeURL" type="text" placeholder="store url" value={params.storeURL}
+                           onChange={e => setParams({...params, storeURL: e.target.value})}/>
+                    <br/>
+                    <input name="arrivalLocation" type="text" placeholder="arrival location"
+                           value={params.arrivalLocation}
+                           onChange={e => setParams({...params, arrivalLocation: e.target.value})}/>
+                    <br/>
 
-	const handleTagDelete = (index) => {
-		const newTags = Object.assign([], tags);
-		newTags.splice(index, 1);
-		setTags(newTags);
-		setParams({...params, tags:[...newTags]});
-	}
+                    <h3>Dispatch Method</h3>
 
-	const handlePickupChange = () => {
-		let currentDispatch = availableDispatch;
-		if(isPickup) {
-			currentDispatch -= 1;
-		} else {
-			currentDispatch += 1;
-		}
-		setIsPickup(!isPickup);
-		setParams({...params, availableDispatch: dispatchModes[currentDispatch]});
-		setAvailableDispatch(currentDispatch);
-	}
+                    <label className="checkbox-container">
+                        <span>Pick up</span>
+                        <input name="dispatchMode" value="pickup" type="checkbox"
+                               checked={checked[0]} onChange={handleCheckChange}/>
+                        <span className="checkmark"/>
+                    </label>
+                    <label className="checkbox-container">
+                        <span>Delivery</span>
+                        <input name="dispatchMode" value="delivery" type="checkbox"
+                               checked={checked[1]} onChange={handleCheckChange}/>
+                        <span className="checkmark"/>
+                    </label>
+                </div>
 
-	const handleDeliveryChange = () => {
-		let currentDispatch = availableDispatch;
-		if(isDelivery) {
-			currentDispatch -= 2;
-		} else {
-			currentDispatch += 2;
-		}
-		setIsDelivery(!isDelivery);
-		setParams({...params, availableDispatch: dispatchModes[currentDispatch]});
-		setAvailableDispatch(currentDispatch);
-	}
+                <div className="box2">
+                    <h3>Deadline</h3>
+                    <input name="deadline" type="date" value={params.deadline}
+                           onChange={e => setParams({...params, deadline: e.target.value})}/>
+                    <br/>
+                    <h3>Tags</h3>
 
-	let content;
-	if(isLoading) {
-		content = <Loader />;
-	} else {
-		content = <form>
-								<fieldset disabled={!isEditable}>
-									<div className="setSuperorder-form">
-										<div className="box1">
-											<input name="storeName" type="text" placeholder="store name" onChange={e => setParams({...params, storeName: e.target.value})} value={params.storeName}/>
-											<br />
-											<input name="storeLocation" type="text" placeholder="country" onChange={e => setParams({...params, storeLocation: e.target.value})} value={params.storeLocation}/>
-											<br />
-											<input name="storeURL" type="text" placeholder="store url" onChange={e => setParams({...params, storeURL: e.target.value})} value={params.storeURL}/>
-											<br />
-											<input name="arrivalLocation" type="text" placeholder="arrival location" onChange={e => setParams({...params, arrivalLocation: e.target.value})} value={params.arrivalLocation} />
-											<br />
-											<h3>Dispatch Method</h3>
-											<label className="checkbox-container">
-												<span>Pick up</span>
-											  <input name="pickup" type="checkbox" checked={isPickup} onChange={handlePickupChange} />
-											  <span className="checkmark" />
-											</label>
-											<label className="checkbox-container">
-												<span>Delivery</span>
-											  <input name="delivery" type="checkbox" checked={isDelivery} onChange={handleDeliveryChange} />
-											  <span className="checkmark" />
-											</label>
-											{/*<input name="availableDispatch" type="text" placeholder="dispatch mode" onChange={e => setParams({...params, availableDispatch: e.target.value})} value={params.availableDispatch} />
-											<br />*/}
-										</div>
-										<div className="box2">
-											<h3>Deadline</h3>
-											<input name="deadline" type="date" onChange={e => setParams({...params, deadline: e.target.value})} value={params.deadline} />
-											<br />
-											<h3>Tags</h3>
-											<div className="tags_master">
-								        <div className="tags clearfix">
-								          {tags.map((tag, index) => <Tag key={index} tag={tag} index={index} onDeleteClick={handleTagDelete}/>)}
-								        </div>
-								        <div className="tags_input">
-								          <input type="text" value={inputTag} onChange={handleInputTagChange} onKeyPress={handleKeyPress} autoFocus={true} placeholder="add..." />
-								        </div>
-								      </div>
+                    <div className="tags_master">
 
-										</div>
-									</div>
-								</fieldset>
-							</form>;
-	}
-	return (
-		<React.Fragment>
-			<div className="grey-overlay">
-				<div className="setSuperorder">
-					<img className="close" src={closeIcon} alt="Close" onClick={goBack}/>
-					{content}
-					{console.log(error)}
-					{/* {error?Object.keys(error).map(er=>(<h3 className="error">{error[er]}</h3>)):""} */}
-					<button className="button2" onClick={() => {
-						setEditable(!isEditable)}}>{isEditable ? 'Confirm' : 'Edit'}</button>
-					{!isEditable?<button className="button2" onClick={()=>post(params)}>Post</button>:""}
-				</div>
-			</div>
-		</React.Fragment>
-	);
+                        <div className="tags clearfix">
+                            {tags.map((tag, index) =>
+                                <Tag key={index} tag={tag} index={index} onDeleteClick={handleTagDelete}/>)}
+                        </div>
+
+                        <div className="tags_input">
+                            <input type="text" value={inputTag} onChange={handleInputTagChange}
+                                   onKeyPress={handleKeyPress} autoFocus={true} placeholder="add..."/>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+
+            <ImageSelector submitButton={
+                                (handler) => <button className="button2" onClick={() => post(params, handler)
+                                        }>Submit</button>}/>
+
+        </form>;
+    }
+
+    const errors: JSX.Element[] = [];
+
+    if(error){
+        for (const el of error.details.error) {
+            const key = el.property;
+            const msg = Object.keys(el.constraints).reduce((previous, keyy) => {
+                return previous + (previous !== "" ? ", " : "") + el.constraints[keyy];
+            }, "");
+
+            errors.push(<p key={key}>{key + ": " + msg + "\n"}</p>);
+        }
+    }
+
+    console.log(error);
+
+    return (
+        <React.Fragment>
+            <div className="grey-overlay">
+                <div className="setSuperorder">
+                    <img className="close" src={closeIcon} alt="Close" onClick={goBack}/>
+                    {content}
+                    {errors}
+                </div>
+            </div>
+        </React.Fragment>
+    );
 };
 
 export default SuperorderEditable;
