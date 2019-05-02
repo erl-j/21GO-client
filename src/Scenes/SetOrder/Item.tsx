@@ -11,15 +11,15 @@ const Item = ({index, item, isLast, onItemChange, onDeleteClick, onAddClick}) =>
         onItemChange(index, newItem);
     };
 
-    const handleAmountUp = () => {
+    const handleQuantityUp = () => {
         const newItem = item;
-        newItem.amount += 1;
+        newItem.quantity += 1;
         onItemChange(index, newItem);
     };
 
-    const handleAmountDown = () => {
+    const handleQuantityDown = () => {
         const newItem = item;
-        newItem.amount = (newItem.amount > 1) ? (newItem.amount - 1) : 1;
+        newItem.quantity = (newItem.quantity > 1) ? (newItem.quantity - 1) : 1;
         onItemChange(index, newItem);
     };
 
@@ -27,11 +27,11 @@ const Item = ({index, item, isLast, onItemChange, onDeleteClick, onAddClick}) =>
         <div className="orderItem">
             <input name="url" type="text" placeholder="Item Url" defaultValue={item.url} onBlur={handleInputChange}/>
             <input name="details" type="text" placeholder="Details" defaultValue={item.details} onBlur={handleInputChange}/>
-            <input name="amount" type="number" min="1" defaultValue={item.amount} onBlur={handleInputChange}/>
+            <input name="quantity" type="number" min="1" defaultValue={item.quantity} onBlur={handleInputChange}/>
 
             <div className="quantity-nav">
-                <img src={upIcon} alt="more" className="quantity-button quantity-up" onClick={handleAmountUp}/>
-                <img src={downIcon} alt="less" className="quantity-button quantity-down" onClick={handleAmountDown}/>
+                <img src={upIcon} alt="more" className="quantity-button quantity-up" onClick={handleQuantityUp}/>
+                <img src={downIcon} alt="less" className="quantity-button quantity-down" onClick={handleQuantityDown}/>
             </div>
 
             <img src={closeIcon} alt="delete" className="deleteButton" onClick={() => onDeleteClick(index)}/>

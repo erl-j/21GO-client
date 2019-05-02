@@ -9,16 +9,16 @@ const ItemForm = (props) => {
     interface IOrderItem {
         url: string;
         details: string;
-        amount: number;
+        quantity: number;
     }
 
-    const [items, setItems] = useState<IOrderItem[]>([{url: '', details: '', amount: 1}]);
+    const [items, setItems] = useState<IOrderItem[]>([{url: '', details: '', quantity: 1}]);
     const [dispatch, setDispatch] = useState(availableDispatch === "BOTH" ? "PICKUP" : availableDispatch);
 
     const handleItemDelete = index => {
         const newItems = Object.assign([], items);
         if (newItems.length === 1) {
-            newItems.splice(index, 1, {url: '', details: '', amount: 1});
+            newItems.splice(index, 1, {url: '', details: '', quantity: 1});
         } else {
             newItems.splice(index, 1);
         }
@@ -27,7 +27,7 @@ const ItemForm = (props) => {
     };
 
     const handleItemAdd = () => {
-        setItems(items.concat({url: '', details: '', amount: 1}));
+        setItems(items.concat({url: '', details: '', quantity: 1}));
         console.log(items);
 
     };
@@ -62,7 +62,24 @@ const ItemForm = (props) => {
                 )}
             </div>
 
-            <button className="button2" onClick={() => post({orderItems: items, dispatch})}>Create Order</button>
+            <button className="button2" onClick={() => {
+
+                let valid = true;
+                items.forEach((el) => {
+                    if(el.url === ""){
+                        valid = false;
+                    }
+                });
+
+                if(!valid){
+                    alert("All item urls must be set");
+                }
+                else{
+                    post({items, dispatch});
+                }
+            }
+
+            }>Create Order</button>
 
         </React.Fragment>
     );

@@ -64,6 +64,8 @@ export const postOrderFailure = error => ({
 
 export function postOrder(attributes) {
 
+	console.log(attributes);
+
 	return (dispatch: any) => {
 		dispatch(postOrderBegin());
 		return APICall(Method.POST, '/order/',attributes,loadJwt())
