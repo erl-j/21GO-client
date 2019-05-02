@@ -25,7 +25,8 @@ const mapDispatchToProps = dispatch => ({
 	getUserOrders: () => dispatch(actions.getUserOrders()),
 });
 
-class UserOrdersContainer extends React.Component<IUserOrdersContainerProps & RouteComponentProps, {isShowingDetails:boolean, currentSuperorder:any}>  {
+class UserOrdersContainer extends React.Component<IUserOrdersContainerProps & RouteComponentProps,
+	{isShowingDetails:boolean, currentSuperorder:any}>  {
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -63,7 +64,8 @@ class UserOrdersContainer extends React.Component<IUserOrdersContainerProps & Ro
 		const idKey = "id";
 
 		const list = Object.keys(orders).map(key =>
-			<UserOrder key={orders[key][idKey]} superorder = {orders[key]} seeDetails={() => this.setState({isShowingDetails: true, currentSuperorder: orders[key]})}/>
+			<UserOrder key={orders[key][idKey]} superorder = {orders[key]}
+					   seeDetails={() => this.setState({isShowingDetails: true, currentSuperorder: orders[key]})}/>
 		);
 
 		content = (
@@ -75,24 +77,11 @@ class UserOrdersContainer extends React.Component<IUserOrdersContainerProps & Ro
 
 		return (
 			<React.Fragment>
-				{this.state.isShowingDetails? <UserOrderDetails goBack={() => this.setState({isShowingDetails: false})} superorder={this.state.currentSuperorder} /> : ''}
+				{this.state.isShowingDetails? <UserOrderDetails
+					goBack={() => this.setState({isShowingDetails: false})}
+					superorder={this.state.currentSuperorder} /> : ''}
+
 				<div className="account-orders">
-					{/*<div className="account-items semi-bold" onClick={() => this.setState({isShowingDetails: true})}>
-						<div className="box1">
-							<img className="item-img" src={orderImg} alt="" />
-						</div>
-						<div className="box2">
-							<span>StoreName, CountryCode</span>
-							<span>#OrderId</span>
-							<span>From InitiatorName</span>
-						</div>
-						<div className="box3">
-							<span>? Items</span>
-							<span>Dispatch</span>
-							<span>Status: Pending</span>
-							<span className="error">Deleted by initiator</span>
-						</div>
-					</div>*/}
 					{content}
 				</div>
 			</React.Fragment>

@@ -18,7 +18,6 @@ const UserOrderDetails = ({goBack, superorder}) => {
         <div><span>{orderItem.additionalInfo}</span><span>Amount {orderItem.quantity}</span></div>
       </div>
     );
-    return '';
   });
 
   return (
