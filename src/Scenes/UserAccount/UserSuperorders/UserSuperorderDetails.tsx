@@ -28,7 +28,7 @@ const UserSuperorderDetails = ({goBack, superorder}) => {
           <img src={boxIcon} alt="Ship location" /><span>{superorder.arrivalLocation}</span><br />
           <span>{superorder.availableDispatch === 'BOTH' ? 'PICKUP / DELIVERY' : superorder.availableDispatch}</span><br />
           <span>Tags: {tagsStr}</span><br />
-          {superorder.isDeleted ? <span className="error">Deleted</span> : ''}
+          {superorder.isDeleted ? <span className="error">Deleted</span> : <button className="button2">Delete</button>}
         </div>
 
         <div className="superorder-orders">
