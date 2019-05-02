@@ -14,7 +14,7 @@ class App extends React.Component {
 				<Route path="/catalog" render={props => <CatalogContainer {...props} />} />
 				<RestrictedRoute loggedIn={false} path="/signIn" render={ props => <Welcome {...props} mode={WelcomeMode.SIGN_IN} />}  />
 				<RestrictedRoute loggedIn={false} path="/signUp" render={props => <Welcome {...props} mode={WelcomeMode.SIGN_UP} />}  />
-				<RestrictedRoute loggedIn={true} path="/setOrder/:id" render={props => <SetOrderContainer {...props} />} />
+				<Route path="/setOrder/:id" render={props => <SetOrderContainer {...props} />} />
 				<RestrictedRoute loggedIn={true} path="/setSuperorder" render={props => <SetSuperorderContainer {...props}  />} />
 				<RestrictedRoute loggedIn={true} path="/account/:mode" render={props => <UserAccount {...props} />} />
 				<Route render = {() => <Redirect to="/catalog"/>}/>

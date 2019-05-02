@@ -59,18 +59,18 @@ const SuperorderEditable = ({id, attributes, isLoading, error, post, goBack}) =>
         content = <form>
             <div className="setSuperorder-form">
                 <div className="box1">
-                    <input name="storeName" type="text" placeholder="store name" value={params.storeName}
-                           onChange={e => setParams({...params, storeName: e.target.value})}/>
+                    <input name="storeName" type="text" placeholder="store name" defaultValue={params.storeName}
+                           onBlur={e => setParams({...params, storeName: e.target.value})}/>
                     <br/>
-                    <input name="storeLocation" type="text" placeholder="country" value={params.storeLocation}
-                           onChange={e => setParams({...params, storeLocation: e.target.value})}/>
+                    <input name="storeLocation" type="text" placeholder="country" defaultValue={params.storeLocation}
+                           onBlur={e => setParams({...params, storeLocation: e.target.value})}/>
                     <br/>
-                    <input name="storeURL" type="text" placeholder="store url" value={params.storeURL}
-                           onChange={e => setParams({...params, storeURL: e.target.value})}/>
+                    <input name="storeURL" type="text" placeholder="store url" defaultValue={params.storeURL}
+                           onBlur={e => setParams({...params, storeURL: e.target.value})}/>
                     <br/>
                     <input name="arrivalLocation" type="text" placeholder="arrival location"
-                           value={params.arrivalLocation}
-                           onChange={e => setParams({...params, arrivalLocation: e.target.value})}/>
+                           defaultValue={params.arrivalLocation}
+                           onBlur={e => setParams({...params, arrivalLocation: e.target.value})}/>
                     <br/>
 
                     <h3>Dispatch Method</h3>
@@ -132,8 +132,6 @@ const SuperorderEditable = ({id, attributes, isLoading, error, post, goBack}) =>
             errors.push(<p key={key}>{key + ": " + msg + "\n"}</p>);
         }
     }
-
-    console.log(error);
 
     return (
         <React.Fragment>

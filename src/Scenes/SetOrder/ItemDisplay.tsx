@@ -1,8 +1,9 @@
 import * as React from 'react';
 
-const ItemDisplay = ({ info, qt }) => {
+const ItemDisplay = ({ url, info, qt }) => {
 	return (
 		<div>
+			<span>{url}</span>
 			<span >{info}</span>
 			<span>{qt}</span>
 		</div>
