@@ -37,18 +37,21 @@ export default function setOrderReducer(state = initialState, action: any) {
 		case POST_ORDER_FAILURE:
 			return { ...state, loading: false, error: action.payload.error};
 		case POST_ORDER_SUCCESS:
-			return { ...state, loading: false, id: action.payload.id, };
+			const myOrderKey = "myOrder";
+			const superorder3 = state.superorder;
+			superorder3[myOrderKey] = action.payload.order;
+			return { ...state, loading: false, id: action.payload.id, superorder: superorder3};
+
 		case DELETE_ORDER_BEGIN:
 			return { ...state, loading: true };
 		case DELETE_ORDER_FAILURE:
 			return { ...state, loading: false, error: action.payload.error};
 		case DELETE_ORDER_SUCCESS:
-
+			const myOrderKey2 = "myOrder";
 			const superorder = state.superorder;
-			const key = "myOrder";
-			delete superorder[key];
-
+			delete superorder[myOrderKey2];
 			return { ...state, loading: false, id: action.payload.id, superorder};
+
 		case EDIT_ORDER_STATUS_BEGIN:
 			return { ...state, loading: true };
 		case EDIT_ORDER_STATUS_FAILURE:

@@ -20,7 +20,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
 	getSuperorder: id => dispatch(setOrderActions.getSuperorder(id)),
-	postOrder: (id, details) => dispatch(setOrderActions.postOrder(id, details)),
+	postOrder: (attributes) => dispatch(setOrderActions.postOrder(attributes)),
 	editOrderStatus: (id, status) => dispatch(setOrderActions.editOrderStatus(id, status)),
 	deleteOrder: (id) => dispatch(setOrderActions.deleteOrder(id)),
 	deleteSuperorder: (id) => dispatch(setOrderActions.deleteSuperorder(id))
@@ -82,13 +82,13 @@ class SetOrderContainer extends React.Component<RouteComponentProps & ISetOrderC
 			else if(this.props.superorder.hasOwnProperty("orders")){
 
 				content.push(<button className="button2 v3" onClick={() =>
-				{this.props.deleteSuperorder(this.props.superorder.id)}} >
-					Delete Superorder</button>);
+					{this.props.deleteSuperorder(this.props.superorder.id)}} > Delete Superorder</button>);
 
 				content.push(<h3>Current Orders:</h3>);
 
 				for(const order of this.props.superorder.orders){
-					content.push(<OrderMySuperorder order={order} onStatusChange={this.props.editOrderStatus}/> );
+					content.push(<OrderMySuperorder key={order.id} order={order}
+													onStatusChange={this.props.editOrderStatus}/> );
 				}
 
 			}
@@ -100,7 +100,11 @@ class SetOrderContainer extends React.Component<RouteComponentProps & ISetOrderC
 
 			else{
 				content.push(<h3>New order:</h3>);
-				content.push(<ItemForm key={-1} post={e => {this.props.postOrder(this.props.match.params, e);}}/>);
+				content.push(<ItemForm key={-1} availableDispatch={this.props.superorder.availableDispatch}
+									   post={attributes => {
+									   	attributes.superOrderId = this.props.superorder.id;
+									   	this.props.postOrder(attributes);
+									   }}/>);
 			}
 		}
 
