@@ -98,7 +98,7 @@ a {
     color: #233142; }
   .button2.v3 {
     background-color: #facf5a;
-    color: .button2.v3 #233142; }
+    color: #233142; }
 
 .button3 {
   background: none;
@@ -675,6 +675,25 @@ a {
       font-size: 1.3rem;
       padding: 0.5rem 2rem;
       margin: 1rem 0 1rem 2rem; }
+  .setOrder .setorder-orders {
+    margin: 1rem auto;
+    max-width: 48rem;
+    padding: 0.5rem;
+    box-sizing: border-box;
+    border-bottom: 1px solid #EEE; }
+    .setOrder .setorder-orders .setOrder-orders-brief {
+      display: flex;
+      align-items: center; }
+      .setOrder .setorder-orders .setOrder-orders-brief .box1 {
+        flex-grow: 1; }
+        .setOrder .setorder-orders .setOrder-orders-brief .box1 .avatar {
+          margin-left: 0.5rem; }
+        .setOrder .setorder-orders .setOrder-orders-brief .box1 div {
+          display: flex;
+          justify-content: space-between; }
+    .setOrder .setorder-orders .order-item {
+      display: flex;
+      justify-content: space-between; }
 
 .account {
   min-height: 100vh;
@@ -820,8 +839,6 @@ a {
       .account .account-order-details .box2 div {
         text-align: center; }
       .account .account-order-details .box2 .button2 {
-        color: #233142;
-        border-radius: 3px;
         font-size: 1.2rem;
         padding: 0.5rem 2rem;
         margin: 1rem; }
@@ -854,15 +871,12 @@ a {
           display: flex;
           align-items: center; }
           .account .account-superorder-details .superorder-orders .superorder-order-info .superorder-order-brief .box1 {
-            flex-grow: 1;
-            margin-right: 2rem; }
+            flex-grow: 1; }
             .account .account-superorder-details .superorder-orders .superorder-order-info .superorder-order-brief .box1 div {
               display: flex;
               justify-content: space-between; }
           .account .account-superorder-details .superorder-orders .superorder-order-info .superorder-order-brief .avatar {
             margin-left: 0.5rem; }
-          .account .account-superorder-details .superorder-orders .superorder-order-info .superorder-order-brief .unfold {
-            height: 0.5rem; }
         .account .account-superorder-details .superorder-orders .superorder-order-info .accept-refuse .button2 {
           font-size: 1.2rem;
           padding: 0.5rem 2rem;

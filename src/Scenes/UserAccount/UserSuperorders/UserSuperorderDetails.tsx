@@ -46,6 +46,7 @@ const UserSuperorderDetails = ({goBack, superorder, onDelete, onStatusChange}) =
                         : <button className="button2" onClick={() => onDelete(superorder.id)}>Delete</button>}
                 </div>
 
+
                 <div className="superorder-orders">
                     {orderList}
                 </div>
