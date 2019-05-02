@@ -21,7 +21,7 @@ const SuperorderInspect = ({superorder}) => {
 				<img className="superorder-img" src={superorder.imageUrl} alt="Superorder image" />
 				<div className="superorder-info">
 					<h3 className="bold">
-						<span className="uppercase">{superorder.storeName}</span>
+						<a href={superorder.storeURL} target="_blank"><span className="uppercase">{superorder.storeName}</span></a>
 						{", " + superorder.storeLocation}
 					</h3>
 					<img className="avatar" src={superorder.user.imageUrl} alt="avatar"/>

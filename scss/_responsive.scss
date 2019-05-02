@@ -96,12 +96,64 @@
     }
 
     .account-profile{
-      padding-left: 6rem;
-      padding-right: 3rem;
+      padding: 3rem 1rem;
+      .box1 {
+        padding-right: 4rem;
+
+        h2 {
+          font-size: 1.2rem;
+        }
+      }
+      .box2 {
+        text-align: center;
+        .container {
+          display: inline-block;
+        }
+      }
 
       .container {
         width: 8rem;
         height: 8rem;
+      }
+    }
+
+    .account-orders, .account-superorders {
+      padding: 2rem 1rem;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+
+      &:first-child {
+        margin-top: 0rem;
+      }
+
+      &:last-child {
+        margin-bottom: 0rem;
+      }
+
+      .account-items {
+        margin: 1rem;
+        padding: 0.8rem;
+        flex-basis: 15rem;
+        width: 16rem;
+        height: max-content;
+      }
+
+      .box1 {
+        display: none;
+      }
+
+      .box2, .box3 {
+        flex: 1 1 6rem;
+        margin: 0;
+        // max-width: 6rem;
+        font-size: 0.8rem;
+      }
+
+      .box3 {
+        box-sizing: border-box;
+        padding-left: 0.8rem;
+        text-align: right;
       }
     }
   }
@@ -229,12 +281,15 @@
     }
 
     .account-profile {
-      padding: 2rem 0;
+      padding: 0;
+      padding-top: 3rem;
       flex-direction: column-reverse;
       align-items: center;
 
-      h2 {
-        font-size: 1.2rem;
+      .box1 {
+        margin-top: 1.5rem;
+        text-align: center;
+        padding-right: 0;
       }
     }
   }

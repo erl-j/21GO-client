@@ -4,7 +4,7 @@ import boxIcon from '../img/icons/box.svg';
 const SuperorderSummary = props => {
 	return (
 		<div className="catalog-superorder" onClick={props.onClick}>
-			<img className="catalog-superorder-img" src={props.imageUrl} alt="Card image cap" />
+			<div className="catalog-superorder-img"><img src={props.imageUrl} alt="Superorder image" /></div>
 			<div className="catalog-superorder-store">
 				<span className="bold uppercase">{props.storeName}</span>
 				<span className="uppercase">{props.storeLocation.substr(0,2)}</span>

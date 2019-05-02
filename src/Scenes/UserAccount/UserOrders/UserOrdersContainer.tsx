@@ -5,7 +5,7 @@ import * as actions from '../../UserAccount/UserOrders/UserOrdersActions';
 import {clearJwt} from '../../../helpers/loadJwt';
 import {RouteComponentProps} from "react-router";
 import Loader from '../../../Components/Loader';
-import orderImg from '../../../img/order_img.jpg';
+// import orderImg from '../../../img/order_img.jpg';
 import UserOrderDetails from './UserOrderDetails';
 
 interface IUserOrdersContainerProps {
@@ -25,11 +25,12 @@ const mapDispatchToProps = dispatch => ({
 	getUserOrders: () => dispatch(actions.getUserOrders()),
 });
 
-class UserOrdersContainer extends React.Component<IUserOrdersContainerProps & RouteComponentProps, {isShowingDetails:boolean}>  {
+class UserOrdersContainer extends React.Component<IUserOrdersContainerProps & RouteComponentProps, {isShowingDetails:boolean, currentSuperorder:any}>  {
 	constructor(props) {
 		super(props);
 		this.state = {
-			isShowingDetails: false
+			isShowingDetails: false,
+			currentSuperorder: {}
 		};
 	}
 
@@ -57,46 +58,43 @@ class UserOrdersContainer extends React.Component<IUserOrdersContainerProps & Ro
 			}
 		}
 
-		const confirmDelete = <div />;
-
 		console.log(this.props.userOrdersResults);
 		const orders = this.props.userOrdersResults;
 		const idKey = "id";
 
 		const list = Object.keys(orders).map(key =>
-			(<UserOrder key={orders[key][idKey]} superorder = {orders[key]} />)
+			<UserOrder key={orders[key][idKey]} superorder = {orders[key]} seeDetails={() => this.setState({isShowingDetails: true, currentSuperorder: orders[key]})}/>
 		);
 
 		content = (
-			<div>
-				{confirmDelete}
+			<React.Fragment>
 				{list}
-
-			</div>
+			</React.Fragment>
 		);
+		console.log(this.state);
 
 		return (
 			<React.Fragment>
-				{this.state.isShowingDetails? <UserOrderDetails goBack={() => this.setState({isShowingDetails: false})} /> : ''}
-				<div className="account-orders" onClick={() => this.setState({isShowingDetails: true})}>
-					<div className="account-items semi-bold">
+				{this.state.isShowingDetails? <UserOrderDetails goBack={() => this.setState({isShowingDetails: false})} superorder={this.state.currentSuperorder} /> : ''}
+				<div className="account-orders">
+					{/*<div className="account-items semi-bold" onClick={() => this.setState({isShowingDetails: true})}>
 						<div className="box1">
 							<img className="item-img" src={orderImg} alt="" />
 						</div>
 						<div className="box2">
 							<span>StoreName, CountryCode</span>
 							<span>#OrderId</span>
-							<span>OrderDate</span>
 							<span>From InitiatorName</span>
 						</div>
 						<div className="box3">
 							<span>? Items</span>
 							<span>Dispatch</span>
 							<span>Status: Pending</span>
+							<span className="error">Deleted by initiator</span>
 						</div>
-					</div>
+					</div>*/}
+					{content}
 				</div>
-				{content}
 			</React.Fragment>
 		);
 	}

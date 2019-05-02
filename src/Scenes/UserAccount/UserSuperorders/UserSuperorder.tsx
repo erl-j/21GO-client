@@ -9,6 +9,23 @@ const UserSuperorder = (props) => {
 
     return (
         <React.Fragment>
+          <div className="account-superorders" >
+  					<div className="account-items semi-bold">
+  						<div className="box1">
+  							<img className="item-img" src={superorder.imageUrl} alt="" />
+  						</div>
+  						<div className="box2">
+  							<span>{superorder.storeName + ' ' + superorder.storeLocation}</span>
+  							<span>#{superorder.id}</span>
+  							<span>{'From ' + superorder.createdAt.substring(0, 10) + ' to ' + superorder.deadline.substring(0, 10)}</span>
+  						</div>
+  						<div className="box3">
+  							<span>? Orders</span>
+  							<span>{superorder.dispatch}</span>
+  							<span>Status: {superorder.status}</span>
+  						</div>
+  					</div>
+  				</div>
             <h1>ID {superorder.id}</h1>
             <h1>Store URL {superorder.storeURL}</h1>
             <h1>Store Location {superorder.storeLocation}</h1>
