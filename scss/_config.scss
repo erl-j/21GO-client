@@ -14,6 +14,12 @@ $welcome-bg: url(../img/welcome-bg.png);
 }
 
 // Media query mixins
+@mixin mediaXs {
+  @media screen and (max-width: 272px) {
+    @content;
+  }
+}
+
 @mixin mediaSm {
   @media screen and (max-width: 500px) {
     @content;

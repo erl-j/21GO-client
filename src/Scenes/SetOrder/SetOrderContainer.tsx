@@ -86,24 +86,24 @@ class SetOrderContainer extends React.Component<RouteComponentProps & ISetOrderC
 				content.push(<h2>Current Orders:</h2>);
 
 				for(const order of this.props.superorder.orders){
-					content.push(<OrderMySuperorder key={order.id} order={order}
-													onStatusChange={this.props.editOrderStatus}/> );
+					content.push(<div className="setOrder-orders-container"><OrderMySuperorder key={order.id} order={order}
+													onStatusChange={this.props.editOrderStatus}/></div> );
 				}
 			}
-			
+
 			else if(this.props.superorder.hasOwnProperty("myOrder")){
 				content.push(<h2>My order:</h2>);
-				content.push(<OrderJoinedSuperorder order={this.props.superorder.myOrder}
-													onDelete={this.props.deleteOrder}/>);
+				content.push(<div className="setOrder-orders-container"><OrderJoinedSuperorder order={this.props.superorder.myOrder}
+													onDelete={this.props.deleteOrder}/></div>);
 			}
 
 			else{
 				content.push(<h3>New order:</h3>);
-				content.push(<ItemForm key={-1} availableDispatch={this.props.superorder.availableDispatch}
+				content.push(<div className="setOrder-orders-container"><ItemForm key={-1} availableDispatch={this.props.superorder.availableDispatch}
 									   post={attributes => {
 									   	attributes.superOrderId = this.props.superorder.id;
 									   	this.props.postOrder(attributes);
-									   }}/>);
+										}}/></div>);
 			}
 		}
 

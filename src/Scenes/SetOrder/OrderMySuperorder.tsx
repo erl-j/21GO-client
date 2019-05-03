@@ -13,8 +13,8 @@ const OrderMySuperorder = ({ order, onStatusChange }) => {
     });
 
     return (
-            <div className="setorder-orders">
-              <div className="setOrder-orders-brief">
+            <div className="setOrder-orders">
+              <div className="setOrder-orders-brief semi-bold">
                 <div className="box1">
                   <div><span className="inner">From {order.user.firstName + ' ' + order.user.lastName}<img className="avatar inner" src={order.user.imageUrl} alt="avatar" /></span><span className="inner">#{order.id}</span></div>
                   <div><span>{order.dispatch}</span><span>{order.status}</span>{order.isDeleted ? <span className="error">Deleted</span> : ''}</div>

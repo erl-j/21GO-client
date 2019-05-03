@@ -40,9 +40,11 @@ a {
 }
 
 .button1 {
+  -webkit-appearance: none;
+  -moz-appearance: none;
   background: none;
   background-color: none;
-  margin: 2rem 2rem;
+  margin: 1rem 2rem 4rem 2rem;
   padding: 0.5rem 1rem;
   border: none;
   font-size: 1.8rem;
@@ -76,6 +78,8 @@ a {
 }
 
 .button3 {
+  -webkit-appearance: none;
+  -moz-appearance: none;
   background: none;
   background-color: none;
   margin: 1.5rem 2rem;
@@ -576,7 +580,7 @@ a {
 
     .box2 {
       flex: 1 1 auto;
-      padding: 0 2rem;
+      padding: 0 2rem 1rem 2rem;
       text-align: right;
     }
 
@@ -594,7 +598,6 @@ a {
 
       &:hover input[type=checkbox] ~ .checkmark {
         border: 1px solid $primary-color;
-        // background-color: $dark-grey;
       }
 
       input[type=checkbox] {
@@ -640,7 +643,6 @@ a {
         }
       }
     }
-
 
     input[type=text] {
       width: 15rem;
@@ -773,18 +775,23 @@ a {
     }
   }
 
+  .setOrder-orders-container {
+    padding: 0 4rem;
+  }
+
   .setOrder-form {
     text-align: left;
-    margin: 0 2rem;;
+    margin: 0 auto;
+    width: max-content;
     input:focus {
       outline: 0;
     }
 
     input[type="text"], input[type="number"] {
-      width: 15rem;
-      padding: 0.5rem 1rem;
-      margin: 1rem 1rem;
-      font-size: 1.2rem;
+      width: 12rem;
+      padding: 0.5rem 0.8rem;
+      margin: 0.8rem 0.5rem;
+      font-size: 1rem;
       font-weight: 200;
       background: transparent;
       border: none;
@@ -813,9 +820,9 @@ a {
     }
 
     input[type="number"] {
-      width: 3rem;
+      width: 2.5rem;
       padding: 0.5rem 0.5rem;
-      margin: 1rem 1rem;
+      margin: 0.8rem 0.5rem;
       -moz-appearance: textfield;
     }
 
@@ -836,22 +843,27 @@ a {
     }
 
     .deleteButton {
-      height: 1.2rem;
+      height: 1rem;
       position: relative;
       top: 0.2rem;
     }
 
     .button2 {
-      font-size: 1.3rem;
-      padding: 0.5rem 2rem;
-      margin: 1rem 0 1rem 2rem;
+      font-size: 1.2rem;
+      padding: 0.5rem 1.5rem;
+      margin: 0.8rem 0 0.8rem 1.5rem;
+    }
+
+    .orderItem {
+      display: flex;
+      flex-wrap: wrap;
     }
   }
 
-  .setorder-orders {
-    margin: 1rem auto;
+  .setOrder-orders {
+    margin: 0 auto;
     max-width: 48rem;
-    padding: 0.5rem;
+    padding: 1rem 0.5rem;
     box-sizing: border-box;
     border-bottom: 1px solid $light-grey;
 
@@ -864,11 +876,6 @@ a {
 
         .avatar {
           margin-left: 0.5rem;
-        }
-
-        div {
-          display: flex;
-          justify-content: space-between;
         }
       }
     }
@@ -1110,7 +1117,10 @@ a {
       span, img {
         margin-right: 0.5rem;
       }
-      margin-bottom: 2rem;
+
+      .button2 {
+        margin-top: 1.5rem;
+      }
     }
 
     .superorder-orders {

@@ -19,7 +19,7 @@ const SuperorderEditable = ({id, attributes, isLoading, error, post, goBack}) =>
     };
 
     const handleKeyPress = event => {
-        if (event.key === 'Enter') {
+        if (event.key === ' ' || event.key === 'Spacebar') {
             setTags(tags.concat(inputTag));
             setParams({...params, tags: [...tags, inputTag]});
             setInputTag('');
@@ -44,6 +44,11 @@ const SuperorderEditable = ({id, attributes, isLoading, error, post, goBack}) =>
         console.log(dispatch);
     };
 
+    const preventSubmit = event => {
+        if(event.keyCode === 13) {
+            event.preventDefault();
+        }
+    }
 
     let content;
 
@@ -56,7 +61,7 @@ const SuperorderEditable = ({id, attributes, isLoading, error, post, goBack}) =>
     else if (isLoading) {
         content = <Loader/>;
     } else {
-        content = <form>
+        content = <form onKeyPress={preventSubmit} onKeyDown={preventSubmit}>
             <div className="setSuperorder-form">
                 <div className="box1">
                     <input name="storeName" type="text" placeholder="store name" defaultValue={params.storeName}

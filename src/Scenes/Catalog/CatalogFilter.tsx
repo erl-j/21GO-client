@@ -29,7 +29,7 @@ const CatalogFilter = ({pushParam, goToSetSuperorder}) => {
   }
 
   const handleKeyPress = event => {
-    if(event.key === 'Enter') {
+    if(event.key === 'Enter' || event.key === ' ' || event.key === 'Spacebar') {
       setTags(tags.concat(inputTag));
       pushParam({tags:[...tags,inputTag]});
       setInputTag('');

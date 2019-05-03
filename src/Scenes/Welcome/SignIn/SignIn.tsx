@@ -18,7 +18,7 @@ const SignIn = ({ onSignInPressed, isLoading, error}) => {
 					<input name="password" type="password" placeholder="Password" onChange={e => setPassword(e.target.value)} />
 					<br />
 					<input className="button2" type="submit" value="Enter" />
-				</form>;
+				</form>
 				{error && <h3 className="error">{error.toString()}</h3>}
 			</div>
 		);

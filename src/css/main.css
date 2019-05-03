@@ -73,9 +73,11 @@ a {
   height: 3rem; }
 
 .button1 {
+  -webkit-appearance: none;
+  -moz-appearance: none;
   background: none;
   background-color: none;
-  margin: 2rem 2rem;
+  margin: 1rem 2rem 4rem 2rem;
   padding: 0.5rem 1rem;
   border: none;
   font-size: 1.8rem;
@@ -101,6 +103,8 @@ a {
     color: #233142; }
 
 .button3 {
+  -webkit-appearance: none;
+  -moz-appearance: none;
   background: none;
   background-color: none;
   margin: 1.5rem 2rem;
@@ -481,7 +485,7 @@ a {
       padding: 0 2rem; }
     .setSuperorder .setSuperorder-form .box2 {
       flex: 1 1 auto;
-      padding: 0 2rem;
+      padding: 0 2rem 1rem 2rem;
       text-align: right; }
     .setSuperorder .setSuperorder-form .checkbox-container {
       display: block;
@@ -621,16 +625,19 @@ a {
         position: relative;
         margin-right: 0.5rem;
         top: 2px; }
+  .setOrder .setOrder-orders-container {
+    padding: 0 4rem; }
   .setOrder .setOrder-form {
     text-align: left;
-    margin: 0 2rem; }
+    margin: 0 auto;
+    width: max-content; }
     .setOrder .setOrder-form input:focus {
       outline: 0; }
     .setOrder .setOrder-form input[type="text"], .setOrder .setOrder-form input[type="number"] {
-      width: 15rem;
-      padding: 0.5rem 1rem;
-      margin: 1rem 1rem;
-      font-size: 1.2rem;
+      width: 12rem;
+      padding: 0.5rem 0.8rem;
+      margin: 0.8rem 0.5rem;
+      font-size: 1rem;
       font-weight: 200;
       background: transparent;
       border: none;
@@ -653,9 +660,9 @@ a {
       -webkit-appearance: none;
       margin: 0; }
     .setOrder .setOrder-form input[type="number"] {
-      width: 3rem;
+      width: 2.5rem;
       padding: 0.5rem 0.5rem;
-      margin: 1rem 1rem;
+      margin: 0.8rem 0.5rem;
       -moz-appearance: textfield; }
     .setOrder .setOrder-form .quantity-nav {
       display: inline-flex;
@@ -668,30 +675,30 @@ a {
       .setOrder .setOrder-form .quantity-nav .quantity-up {
         margin-bottom: 0.5rem; }
     .setOrder .setOrder-form .deleteButton {
-      height: 1.2rem;
+      height: 1rem;
       position: relative;
       top: 0.2rem; }
     .setOrder .setOrder-form .button2 {
-      font-size: 1.3rem;
-      padding: 0.5rem 2rem;
-      margin: 1rem 0 1rem 2rem; }
-  .setOrder .setorder-orders {
-    margin: 1rem auto;
+      font-size: 1.2rem;
+      padding: 0.5rem 1.5rem;
+      margin: 0.8rem 0 0.8rem 1.5rem; }
+    .setOrder .setOrder-form .orderItem {
+      display: flex;
+      flex-wrap: wrap; }
+  .setOrder .setOrder-orders {
+    margin: 0 auto;
     max-width: 48rem;
-    padding: 0.5rem;
+    padding: 1rem 0.5rem;
     box-sizing: border-box;
     border-bottom: 1px solid #EEE; }
-    .setOrder .setorder-orders .setOrder-orders-brief {
+    .setOrder .setOrder-orders .setOrder-orders-brief {
       display: flex;
       align-items: center; }
-      .setOrder .setorder-orders .setOrder-orders-brief .box1 {
+      .setOrder .setOrder-orders .setOrder-orders-brief .box1 {
         flex-grow: 1; }
-        .setOrder .setorder-orders .setOrder-orders-brief .box1 .avatar {
+        .setOrder .setOrder-orders .setOrder-orders-brief .box1 .avatar {
           margin-left: 0.5rem; }
-        .setOrder .setorder-orders .setOrder-orders-brief .box1 div {
-          display: flex;
-          justify-content: space-between; }
-    .setOrder .setorder-orders .order-item {
+    .setOrder .setOrder-orders .order-item {
       display: flex;
       justify-content: space-between; }
 
@@ -855,10 +862,10 @@ a {
     display: flex;
     flex-direction: column;
     height: 34rem; }
-    .account .account-superorder-details .superorder-info {
-      margin-bottom: 2rem; }
-      .account .account-superorder-details .superorder-info span, .account .account-superorder-details .superorder-info img {
-        margin-right: 0.5rem; }
+    .account .account-superorder-details .superorder-info span, .account .account-superorder-details .superorder-info img {
+      margin-right: 0.5rem; }
+    .account .account-superorder-details .superorder-info .button2 {
+      margin-top: 1.5rem; }
     .account .account-superorder-details .superorder-orders {
       overflow: scroll;
       flex-grow: 1; }
@@ -903,7 +910,28 @@ a {
 @media screen and (min-width: 1171px) {
   .account .account-profile .container {
     width: 20rem;
-    height: 20rem; } }
+    height: 20rem; }
+  .setOrder .setOrder-form input[type="text"], .setOrder .setOrder-form input[type="number"] {
+    width: 15rem;
+    padding: 0.5rem 1rem;
+    margin: 1rem 1rem;
+    font-size: 1.2rem; }
+  .setOrder .setOrder-form input[type="number"] {
+    width: 3rem;
+    padding: 0.5rem 0.5rem;
+    margin: 1rem 1rem; }
+  .setOrder .setOrder-form .quantity-nav {
+    left: -1.5rem;
+    top: -0.6rem; }
+    .setOrder .setOrder-form .quantity-nav .quantity-up {
+      margin-bottom: 0.5rem; }
+  .setOrder .setOrder-form .deleteButton {
+    height: 1.2rem;
+    top: 0.2rem; }
+  .setOrder .setOrder-form .button2 {
+    font-size: 1.3rem;
+    padding: 0.5rem 2rem;
+    margin: 1rem 0 1rem 2rem; } }
 
 @media screen and (max-width: 768px) {
   .logo {
@@ -928,11 +956,12 @@ a {
   .button1 {
     font-size: 1.6rem;
     padding: 0.5rem 0.8rem;
-    margin: 1rem 1rem; }
+    margin: 1rem 1rem 2rem 1rem; }
   .button2 {
+    margin: 1rem 0.5rem;
     font-size: 1.3rem;
     padding: 0.5rem 2.5rem; }
-  .setSuperorder .setSuperorder-content {
+  .setSuperorder {
     max-width: 24rem;
     padding: 2rem; }
   .filter {
@@ -950,6 +979,13 @@ a {
     margin: 1.2rem 1.2rem;
     padding: 0.3rem 0.5rem;
     font-size: 1.2rem; }
+  .setOrder .superorder {
+    padding: 0; }
+    .setOrder .superorder .superorder-info {
+      margin: 0 6rem; }
+  .setOrder .setOrder-form {
+    margin: 0 auto;
+    width: 100%; }
   .account .account-tab {
     height: 5rem; }
   .account .account-profile {
@@ -989,7 +1025,28 @@ a {
     .account .account-orders .box3, .account .account-superorders .box3 {
       box-sizing: border-box;
       padding-left: 0.8rem;
-      text-align: right; } }
+      text-align: right; }
+  .account .account-order-details {
+    width: 80%;
+    height: 85vh;
+    overflow-y: scroll;
+    flex-wrap: wrap;
+    top: 3rem;
+    padding: 2rem; }
+    .account .account-order-details .box1 {
+      margin-bottom: 1rem; }
+      .account .account-order-details .box1 .items-box {
+        padding-right: 0; }
+    .account .account-order-details .box2 {
+      padding: 1rem 2rem; }
+  .account .account-superorder-details {
+    width: 80%;
+    height: 85vh;
+    overflow-y: scroll;
+    padding: 2rem;
+    top: 3rem; }
+    .account .account-superorder-details .superorder-info .button2 {
+      margin-top: 1rem; } }
 
 @media screen and (max-width: 500px) {
   .navbar .box2 form input[type=search] {
@@ -998,13 +1055,21 @@ a {
     flex-direction: column; }
   .navbar .nav-account {
     top: 5.5rem;
-    right: calc(100vw / 2 - 8rem); }
+    right: calc(100vw / 2 - 8rem);
+    width: 8rem;
+    height: auto;
+    padding: 0.5rem 0.3rem 0.8rem 0.3rem; }
+    .navbar .nav-account h3 {
+      font-size: 1rem; }
+    .navbar .nav-account li {
+      font-size: 1rem; }
   .buttom3 {
     display: block; }
   .welcome p {
     margin-top: 3rem;
     font-size: 2rem; }
-  .welcome .welcome-form input[type=text] {
+  .welcome .welcome-form input[type=text], .welcome .welcome-form input[type=password] {
+    margin: 0.5rem;
     width: -moz-calc(100% - 4rem);
     width: -webkit-calc(100% - 4rem);
     width: -o-calc(100% - 4rem);
@@ -1022,31 +1087,67 @@ a {
       margin-right: 0.8rem; }
     .filter .tags_master {
       top: 8rem;
-      left: 5rem; }
+      left: 5rem;
+      width: 8rem;
+      min-height: 4rem; }
+      .filter .tags_master .tags span {
+        font-size: 0.8rem; }
+        .filter .tags_master .tags span .delete {
+          height: 0.5rem; }
+      .filter .tags_master .tags_input input[type=text] {
+        font-size: 0.8rem; }
     .filter select:not([multiple]) {
+      max-width: 3rem;
+      text-overflow: ellipsis;
       margin-left: 0.3rem;
       font-size: 0.8rem;
       padding-right: 1.2em;
       background-position: right 60%; }
     .filter .dropdown {
       margin-right: 1rem; }
-  .setSuperorder .setSuperorder-content {
+  .catalog-superorder {
+    font-size: 0.9rem; }
+  .setSuperorder {
     width: 80%;
     padding: 2rem 0; }
-  .setSuperorder .setSuperorder-form input[type=text] {
-    width: 100%;
-    padding: 0.4rem 1rem;
-    font-size: 1rem; }
-  .setSuperorder .setSuperorder-form textarea {
-    width: 100%;
-    height: 8rem;
-    border: #D8D8D8 1px solid; }
-  .setSuperorder .setSuperorder-form h4 {
-    margin-top: 1.2rem;
-    margin-bottom: 0.3rem; }
+    .setSuperorder .setSuperorder-form input[type=text] {
+      width: 100%;
+      padding: 0.4rem 1rem;
+      font-size: 1rem; }
+    .setSuperorder .setSuperorder-form textarea {
+      width: 100%;
+      height: 8rem;
+      border: #D8D8D8 1px solid; }
+    .setSuperorder .setSuperorder-form h3 {
+      font-size: 1rem;
+      margin-top: 1.2rem;
+      margin-bottom: 0.3rem; }
+    .setSuperorder .setSuperorder-form .checkbox-container {
+      font-size: 1rem; }
+      .setSuperorder .setSuperorder-form .checkbox-container .checkmark {
+        height: 1rem;
+        width: 1rem; }
+        .setSuperorder .setSuperorder-form .checkbox-container .checkmark:after {
+          left: 0.3rem;
+          top: 1px;
+          width: 0.3rem;
+          height: 0.6rem; }
+    .setSuperorder .setSuperorder-form .tags_master {
+      max-width: 15rem;
+      width: 100%; }
+      .setSuperorder .setSuperorder-form .tags_master .tags span {
+        font-size: 0.8rem; }
+        .setSuperorder .setSuperorder-form .tags_master .tags span .delete {
+          height: 0.5rem; }
+      .setSuperorder .setSuperorder-form .tags_master .tags_input input[type=text] {
+        font-size: 0.8rem; }
   .setOrder .superorder .superorder-img {
     width: 100%;
     height: auto; }
+  .setOrder .superorder .superorder-info {
+    margin: 0 3rem; }
+  .setOrder .setOrder-orders-container {
+    padding: 0 3rem; }
   .setOrder .setOrder-form input[type="text"] {
     width: 80%; }
   .account .account-tab {
@@ -1060,6 +1161,36 @@ a {
       margin-top: 1.5rem;
       text-align: center;
       padding-right: 0; }
+  .account .account-order-details {
+    width: 85%; }
+    .account .account-order-details .box1 {
+      flex-basis: 100%; }
+      .account .account-order-details .box1 span {
+        font-size: 0.8rem; }
+      .account .account-order-details .box1 .items-box {
+        padding-right: 0; }
+        .account .account-order-details .box1 .items-box .order-item .item-link {
+          margin-bottom: 0.3rem; }
+      .account .account-order-details .box1 .superorder-box {
+        padding: 1rem 0.5rem; }
+    .account .account-order-details .box2 {
+      padding: 1rem 1.5rem;
+      flex-basis: 100%; }
+      .account .account-order-details .box2 h4 {
+        font-size: 0.8rem; }
+        .account .account-order-details .box2 h4 .light {
+          margin-bottom: 0.8rem; }
+      .account .account-order-details .box2 .button2 {
+        font-size: 1rem;
+        padding: 0.5rem 1.5rem;
+        margin: 0.8rem; }
+  .account .account-superorder-details {
+    width: 85%; }
+    .account .account-superorder-details .superorder-order-info {
+      min-width: 15rem;
+      overflow: scroll; }
+    .account .account-superorder-details span {
+      font-size: 0.8rem; }
   @keyframes logoAnimation {
     to {
       margin-top: 10vh;
@@ -1069,3 +1200,19 @@ a {
       margin-top: 2rem;
       padding: 0.8rem 4rem;
       font-size: 1.5rem; } } }
+
+@media screen and (max-width: 272px) {
+  .button1 {
+    margin-top: 0.5rem;
+    margin-bottom: 1rem; }
+  .navbar {
+    padding: 1rem 0.5rem 0.3rem 0.5rem; }
+  @keyframes logoAnimation {
+    to {
+      margin-top: 10vh;
+      height: 3rem; } }
+  @keyframes sloganAnimation {
+    to {
+      margin-top: 2rem;
+      padding: 0.5rem 3rem;
+      font-size: 1.2rem; } } }
