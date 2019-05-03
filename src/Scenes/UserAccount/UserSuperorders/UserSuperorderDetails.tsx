@@ -4,6 +4,16 @@ import boxIcon from '../../../img/icons/box.svg';
 import UserSuperorderOrders from "./UserSuperorderOrders";
 
 const UserSuperorderDetails = ({goBack, superorder, onDelete, onStatusChange}) => {
+    if(!superorder){
+        return (
+            <div className="grey-overlay">
+                <div className="account-superorder-details">
+                    <img className="close" src={closeIcon} alt="Close" onClick={goBack}/>
+                    <div className="box1"> This superorder doesn't exist anymore</div>
+                </div>
+            </div>
+        );
+    }
 
     const orderList = superorder.orders.map((order) => <UserSuperorderOrders
         onStatusChange={onStatusChange} order={order} key={order.id!}/>);

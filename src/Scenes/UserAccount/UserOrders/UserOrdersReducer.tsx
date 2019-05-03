@@ -11,6 +11,7 @@ const initialState = {
     userOrders: [],
     loading: false,
     error: null,
+    deletedId: -1
 };
 
 export default function userOrdersReducer(state = initialState, action: any) {
@@ -31,7 +32,7 @@ export default function userOrdersReducer(state = initialState, action: any) {
                 return superorder.myOrder.id !== action.payload.id;
             });
 
-            return { ...state, loading: false, id: action.payload.id, userOrders: superorders};
+            return { ...state, loading: false, userOrders: superorders};
 
         default:
             return state;
