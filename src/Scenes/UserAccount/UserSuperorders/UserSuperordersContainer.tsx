@@ -30,12 +30,12 @@ const mapDispatchToProps = dispatch => ({
 });
 
 class UserSuperordersContainer extends React.Component<IUserSuperordersContainerProps
-	& RouteComponentProps, {isShowingDetails: boolean, selectSuperorderIndex: number}> {
+	& RouteComponentProps, {isShowingDetails: boolean, selectSuperorderId: number}> {
 	constructor(props) {
 		super(props);
 		this.state = {
 			isShowingDetails: false,
-			selectSuperorderIndex: -1
+			selectSuperorderId: -1
 		};
 	}
 
@@ -68,7 +68,7 @@ class UserSuperordersContainer extends React.Component<IUserSuperordersContainer
 			const list = Object.keys(superorders).map(key =>
 				(<UserSuperorder key = {superorders[key].id!}  superorder = {superorders[key]}
 								 seeDetails={() => this.setState({isShowingDetails: true,
-									selectSuperorderIndex: key as unknown as number})} />)
+									selectSuperorderId: superorders[key].id! as unknown as number})} />)
 			);
 
 			content = (
@@ -84,7 +84,7 @@ class UserSuperordersContainer extends React.Component<IUserSuperordersContainer
 				{this.state.isShowingDetails
 					? <UserSuperorderDetails
 						goBack={() => this.setState({isShowingDetails: false})}
-						superorder={this.props.userSuperorders[this.state.selectSuperorderIndex]}
+						superorder={this.props.userSuperorders.find(el => el.id === this.state.selectSuperorderId)}
 						onStatusChange={this.props.editOrderStatus}
 						onDelete={this.props.deleteSuperorder}
 					/>
